@@ -1,0 +1,228 @@
+import React, { Component } from 'react';
+import {
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  FlatList,
+  Button,
+  Alert,
+  TextInput,
+  Dimensions
+} from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../Actions';
+import Entypo from 'react-native-vector-icons/Entypo'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Item from '../components/Item';
+import { _storeUser } from '../services/Api';
+import { CommonActions } from '@react-navigation/native';
+class UserScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameFocus: false,
+      mobileFocus: false,
+      streetFocus: false,
+      areaFocus: false,
+      mobile1Focus: false,
+      name: "",
+      mobile: "",
+      street: "",
+      area: "",
+      mobile1: "",
+      message: ""
+
+    };
+  }
+  changeFocus(type, typeFocus) {
+    if (typeFocus) {
+      const text = true
+      console.log(type)
+      if (type === "nameFocus") {
+
+        this.setState({ nameFocus: text })
+      }
+      else if (type === "mobileFocus") {
+        this.setState({ mobileFocus: text })
+      }
+      else if (type === "streetFocus") {
+        this.setState({ streetFocus: text })
+      }
+      else if (type === "areaFocus") {
+        this.setState({ areaFocus: text })
+      } else {
+        this.setState({ mobile1Focus: text })
+      }
+
+    } else {
+      const text = false
+      if (type === "nameFocus") {
+
+        this.setState({ nameFocus: text })
+      }
+      else if (type === "mobileFocus") {
+        this.setState({ mobileFocus: text })
+      }
+      else if (type === "streetFocus") {
+        this.setState({ streetFocus: text })
+      }
+      else if (type === "areaFocus") {
+        this.setState({ areaFocus: text })
+      } else {
+        this.setState({ mobile1Focus: text })
+      }
+    }
+  }
+  handleChange(text, type) {
+    if (type === "name") {
+      this.setState({ name: text })
+    }
+    else if (type === "mobile") {
+      this.setState({ mobile: text })
+    }
+    else if (type === "street") {
+      this.setState({ street: text })
+    }
+    else if (type === "area") {
+      this.setState({ area: text })
+    } else {
+      this.setState({ mobile1: text })
+    }
+  }
+ async continue() {
+  // const area=  this.state.area
+  // const name = this.state.name
+    let user = {name:this.state.name,mobile:this.state.mobile,street:this.state.street,area:this.state.area,mobile1:this.state.mobile1}
+   await _storeUser(user);
+    // this.props.navigation.navigate("Links")
+    this.props.saveUser(user);
+    this.props.navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [
+          { name: 'Links' },
+        ],
+      })
+    );
+
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={{ marginTop: 10, marginRight: 10, borderBottomWidth: 1.5, fontSize: 20, marginLeft: 10, borderColor: 'grey' }}>بيانات المستخدم</Text>
+        <View style={{ alignItems: 'center' }}>
+          <TextInput
+            style={{ ...styles.input, borderColor: this.state.nameFocus ? '#4287f5' : '#a7b2b5' }}
+            value={this.state.name}
+            onChangeText={type => this.handleChange(type, "name")}
+            placeholder={"الاسم"}
+            onEndEditing={() => this.changeFocus("nameFocus", false)}
+            onFocus={() => this.changeFocus("nameFocus", true)}
+          >
+          </TextInput>
+          <TextInput
+            style={{ ...styles.input, borderColor: this.state.mobileFocus ? '#4287f5' : '#a7b2b5' }}
+            value={this.state.mobile}
+            onChangeText={type => this.handleChange(type, "mobile")}
+            placeholder={"رقم التليفون الأساسي"}
+            keyboardType='numeric'
+            onEndEditing={() => this.changeFocus("mobileFocus", false)}
+            onFocus={() => this.changeFocus("mobileFocus", true)}
+          >
+          </TextInput>
+          <TextInput
+            style={{ ...styles.input, borderColor: this.state.streetFocus ? '#4287f5' : '#a7b2b5' }}
+            value={this.state.street}
+            onChangeText={type => this.handleChange(type, "street")}
+            placeholder={"الشارع"}
+            onEndEditing={() => this.changeFocus("streetFocus", false)}
+            onFocus={() => this.changeFocus("streetFocus", true)}
+          >
+          </TextInput>
+          <TextInput
+            style={{ ...styles.input, borderColor: this.state.areaFocus ? '#4287f5' : '#a7b2b5' }}
+            value={this.state.area}
+            onChangeText={type => this.handleChange(type, "area")}
+            placeholder={"المنطقة"}
+            onEndEditing={() => this.changeFocus("areaFocus", false)}
+            onFocus={() => this.changeFocus("areaFocus", true)}
+          >
+          </TextInput>
+          <TextInput
+            style={{ ...styles.input, borderColor: this.state.mobile1Focus ? '#4287f5' : '#a7b2b5' }}
+            value={this.state.mobile1}
+            onChangeText={type => this.handleChange(type, "mobile1")}
+            placeholder={"رقم تليفون بديل"}
+            keyboardType='numeric'
+            onEndEditing={() => this.changeFocus("mobile1Focus", false)}
+            onFocus={() => this.changeFocus("mobile1Focus", true)}
+          >
+          </TextInput>
+          <Text style={{ margin: 10, fontSize: 15 }}>إذا كان مكانك الحالى هو مكان التسليم من الأفضل فتح ال location لسهولة الوصول إليك</Text>
+        </View>
+        <View style={{ alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
+          <TouchableOpacity
+            disabled={(this.state.mobile === "" || this.state.name === "") ? true : false}
+            onPress={() => { this.continue() }}
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "") ? '#DDDFE2' : 'grey', width: 100, flexDirection: 'row' }}>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo>
+            <Text style={{ fontSize: 25, color: 'white' }}>تابع</Text>
+          </TouchableOpacity>
+          {/* {this.state.message === "" ? null :
+            <Text style={{color:'red',fontSize:30,marginTop:15}}>{this.state.message}</Text>
+          } */}
+        </View>
+      </View>
+    );
+  }
+}
+UserScreen.navigationOptions = {
+  header: null,
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ccffdc'
+    // b3ffcc
+  },
+  input: {
+    // b3ffcc
+    textAlign: 'right',
+    width: Dimensions.get('screen').width - 30,
+    borderWidth: 2,
+    marginTop: 20,
+    paddingRight: 10,
+    height: 50,
+    borderRadius: 30
+  },
+});
+
+
+
+const mapStateToProps = ({ rooms }, props) => {
+  // const { activePost, isLoading } = posts;
+  return {
+    // posts: posts.list || [],
+    // post: activePost,
+    // isLoading,
+    // user:"ss"
+    number: rooms.number
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  saveUser: (user) => dispatch(actions.saveUser(user)),
+  // postsReceived: post => dispatch(actions.postsReceived(post)),
+  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
+});
+// export default HomeScreen
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserScreen);

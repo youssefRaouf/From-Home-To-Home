@@ -1,0 +1,10 @@
+export const CHANGE_NUMBER = 'CHANGE_NUMBER';
+
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
+export const FETCH_USER_FAIL = 'FETCH_USER_FAIL';
+
+export const SAVE_USER = 'SAVE_USER';
+export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
+export const SAVE_USER_FAIL = 'SAVE_USER_FAIL';
+
