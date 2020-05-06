@@ -18,7 +18,7 @@ import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Item from '../components/Item';
-import { _storeUser } from '../services/Api';
+import { _storeUser, _storeReceiveMethod } from '../services/Api';
 import { CommonActions } from '@react-navigation/native';
 class RecieveScreen extends Component {
   constructor(props) {
@@ -93,15 +93,16 @@ class RecieveScreen extends Component {
   //     this.setState({ mobile1: text })
   //   }
   // }
-  continue1() {
+  async continue1() {
   // const area=  this.state.area
   // const name = this.state.name
     // let user = {name:this.state.name,mobile:this.state.mobile,street:this.state.street,area:this.state.area,mobile1:this.state.mobile1}
-  //  await _storeUser(user);
+   await _storeReceiveMethod("1")
     // this.props.navigation.navigate("Links")
     // this.props.saveUser(user);
     console.log("sss")
     alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
+
     this.props.navigation.dispatch(
       CommonActions.reset({
         index: 1,
@@ -112,6 +113,41 @@ class RecieveScreen extends Component {
     );
 
   }
+  async continue2() {
+    // const area=  this.state.area
+    // const name = this.state.name
+      // let user = {name:this.state.name,mobile:this.state.mobile,street:this.state.street,area:this.state.area,mobile1:this.state.mobile1}
+    
+      await _storeReceiveMethod("2")
+      this.props.navigation.push("User",{receive:true,receiveMethod:2,title:"من فضلك ادخل بيانات الشخص المفوض منك :"})
+    
+      // this.props.navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 1,
+      //     routes: [
+      //       { name: 'Links' },
+      //     ],
+      //   })
+      // );
+  
+    }
+    async continue3() {
+      // const area=  this.state.area
+      // const name = this.state.name
+        // let user = {name:this.state.name,mobile:this.state.mobile,street:this.state.street,area:this.state.area,mobile1:this.state.mobile1}
+       await _storeReceiveMethod("3")
+      this.props.navigation.push("User",{receive:true,receiveMethod:3,title:"من فضلك ادخل بيانات حارس العقار :"})
+
+        // this.props.navigation.dispatch(
+        //   CommonActions.reset({
+        //     index: 1,
+        //     routes: [
+        //       { name: 'Links' },
+        //     ],
+        //   })
+        // );
+    
+      }
   render() {
     return (
       <View style={styles.container}>
@@ -120,17 +156,17 @@ class RecieveScreen extends Component {
           </View>
           <View style={{alignItems:'center',marginTop:20}}>
        <TouchableOpacity onPress={()=>this.continue1()} style={{padding:5,justifyContent:'center',alignItems:'center',backgroundColor:'#19E363',width:Dimensions.get('screen').width-30,height:40,borderRadius:15}}>
-         <Text style={{fontSize:25,color:'#00004d'}}>مني شخصيا</Text>
+         <Text style={{fontSize:23,color:'#00004d'}}>مني شخصيا</Text>
        </TouchableOpacity>
        </View>
        <View style={{alignItems:'center',marginTop:20}}>
-       <TouchableOpacity style={{padding:5,justifyContent:'center',alignItems:'center',width:Dimensions.get('screen').width-30,backgroundColor:'#19E363',height:40,borderRadius:15}}>
-         <Text style={{fontSize:25,color:'#00004d'}}>من شخص مفوض في نفس العقار</Text>
+       <TouchableOpacity onPress={()=>this.continue2()} style={{padding:5,justifyContent:'center',alignItems:'center',width:Dimensions.get('screen').width-30,backgroundColor:'#19E363',height:40,borderRadius:15}}>
+         <Text style={{fontSize:23,color:'#00004d'}}>من شخص مفوض في نفس العقار</Text>
        </TouchableOpacity>
        </View>
        <View style={{alignItems:'center',marginTop:20}}>
-       <TouchableOpacity style={{padding:5,justifyContent:'center',alignItems:'center',width:Dimensions.get('screen').width-30,backgroundColor:'#19E363',height:40,borderRadius:15}}>
-         <Text style={{fontSize:25,color:'#00004d'}}>من حارس العقار</Text>
+       <TouchableOpacity onPress={()=>this.continue3()} style={{padding:5,justifyContent:'center',alignItems:'center',width:Dimensions.get('screen').width-30,backgroundColor:'#19E363',height:40,borderRadius:15}}>
+         <Text style={{fontSize:23,color:'#00004d'}}>من حارس العقار</Text>
        </TouchableOpacity>
        </View>
       </View>

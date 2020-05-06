@@ -38,8 +38,10 @@ async function fetchData() {
   try {
     let token = await AsyncStorage.getItem('deviceToken');
     let user = await AsyncStorage.getItem('user');
+    let receiveMethod = await AsyncStorage.getItem('receiveMethod');
+
     user=JSON.parse(user)
-    return [user, token];
+    return [user, token,receiveMethod];
   } catch (error) {
     // Error retrieving data
   }
@@ -48,6 +50,15 @@ const _storeUser = async (user) => {
   try {
       const strData = JSON.stringify(user);
       await AsyncStorage.setItem('user', strData);
+  } catch (error) {
+    // Error saving data
+    console.log(error)
+  }
+};
+const _storeReceiveMethod = async (receiveMethod) => {
+  try {
+      // const strData = JSON.stringify(user);
+      await AsyncStorage.setItem('receiveMethod', receiveMethod);
   } catch (error) {
     // Error saving data
     console.log(error)
@@ -62,4 +73,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export {_storeDeviceToken,_storeUser,fetchData};
+export {_storeReceiveMethod,_storeDeviceToken,_storeUser,fetchData};

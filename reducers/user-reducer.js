@@ -3,6 +3,7 @@ import * as types from '../utils/Consts';
 let USER_INITIAL_STATE = {
   user:'',
   deviceToken:'',
+  receiveMethod:'',
   loading:false
 };
 function user(state = USER_INITIAL_STATE, action) {
@@ -12,6 +13,7 @@ function user(state = USER_INITIAL_STATE, action) {
         ...state,
          user:action.data[0],
          deviceToken:action.data[1],
+         receiveMethod:action.data[2],
          loading:true
       };
       case types.SAVE_USER_SUCCESS:

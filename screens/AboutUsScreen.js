@@ -50,14 +50,14 @@ class AboutUsScreen extends Component {
             <FontAwesome style={{ fontSize: 20 }} name="list-ul"></FontAwesome>
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10 }}>
-          <Text style={{ fontSize: 15 }}>{this.state.number}</Text>
-          <Text style={{ fontSize: 15 }}> اتصل بنا: </Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10,marginTop:10 }}>
+          <Text style={{ fontSize: 18,color:'#00004d' }}>{this.state.number}</Text>
+          <Text style={{ fontSize: 18,color:'#00004d' }}> اتصل بنا: </Text>
         </View>
-        <View style={{ flexDirection: 'column', justifyContent: 'flex-end', marginRight: 10 }}>
-          <Text style={{ fontSize: 15 }}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
+        <View style={{ flexDirection: 'column', justifyContent: 'flex-end', marginRight: 10,marginTop:10 }}>
+          <Text style={{ fontSize: 18,color:'#00004d' }}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
           <TextInput
-            style={{marginTop:10, textAlignVertical: 'top', backgroundColor: '#A8A8A8', borderRadius: 10, color: 'black', fontSize: 15, marginLeft: 5, textAlign: 'right', padding: 5 }}
+            style={{marginTop:10, textAlignVertical: 'top', backgroundColor: '#E9EBEE', borderRadius: 10, color: 'black', fontSize: 15, marginLeft: 8, textAlign: 'right', padding: 5 }}
             value={this.state.complain}
             onChangeText={complain => this.handleChange(complain)}
             multiline={true}
@@ -69,7 +69,7 @@ class AboutUsScreen extends Component {
               onPress={() => { this.continue() }}
               style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
               {/* <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo> */}
-              <Text style={{ fontSize: 23, color: 'white' }}>ارسال</Text>
+              <Text style={{ fontSize: 25, color: '#00004d' }}>ارسال</Text>
             </TouchableOpacity>
           </View>
         </View>

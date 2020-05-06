@@ -94,13 +94,11 @@ class UserScreen extends Component {
       this.setState({ mobile1: text })
     }
   }
- async continue() {
-  // const area=  this.state.area
-  Keyboard.dismiss();
+  async continue() {
+    if(!this.props.route.params.receive){
+    let user = { name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
+    //  await _storeUser(user);
 
-  // const name = this.state.name
-    let user = {name:this.state.name,mobile:this.state.mobile,street:this.state.street,area:this.state.area,mobile1:this.state.mobile1}
-  //  await _storeUser(user);
     // this.props.navigation.navigate("Links")
     this.props.saveUser(user);
     // this.props.navigation.dispatch(
@@ -111,12 +109,28 @@ class UserScreen extends Component {
     //     ],
     //   })
     // );
-  this.props.navigation.navigate('Receive')
+    this.props.navigation.navigate('Receive')
+    }else{
+      if(this.props.route.params.receiveMethod===2){
+      alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+      }else{
+      alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+      }
+      this.props.navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [
+            { name: 'Links' },
+          ],
+        })
+      );
+  
+    }
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ marginTop: 10, marginRight: 10, borderBottomWidth: 1.5, fontSize: 20, marginLeft: 10, borderColor: 'grey' }}>بيانات المستخدم</Text>
+        <Text style={{ marginTop: 10, marginRight: 10, borderBottomWidth: 1.5, fontSize: 20, marginLeft: 10, borderColor: 'grey' }}>{this.props.route.params.title}</Text>
         <View style={{ alignItems: 'center' }}>
           <TextInput
             style={{ ...styles.input, borderColor: this.state.nameFocus ? '#4287f5' : '#a7b2b5' }}
@@ -137,49 +151,57 @@ class UserScreen extends Component {
             onFocus={() => this.changeFocus("mobileFocus", true)}
           >
           </TextInput>
-          <TextInput
-            style={{ ...styles.input, borderColor: this.state.streetFocus ? '#4287f5' : '#a7b2b5' }}
-            value={this.state.street}
-            onChangeText={type => this.handleChange(type, "street")}
-            placeholder={"الشارع"}
-            onEndEditing={() => this.changeFocus("streetFocus", false)}
-            onFocus={() => this.changeFocus("streetFocus", true)}
-          >
-          </TextInput>
-          <TextInput
-            style={{ ...styles.input, borderColor: this.state.areaFocus ? '#4287f5' : '#a7b2b5' }}
-            value={this.state.area}
-            onChangeText={type => this.handleChange(type, "area")}
-            placeholder={"المنطقة"}
-            onEndEditing={() => this.changeFocus("areaFocus", false)}
-            onFocus={() => this.changeFocus("areaFocus", true)}
-          >
-          </TextInput>
-          <TextInput
-            style={{ ...styles.input, borderColor: this.state.mobile1Focus ? '#4287f5' : '#a7b2b5' }}
-            value={this.state.mobile1}
-            onChangeText={type => this.handleChange(type, "mobile1")}
-            placeholder={"رقم تليفون بديل"}
-            keyboardType='numeric'
-            onEndEditing={() => this.changeFocus("mobile1Focus", false)}
-            onFocus={() => this.changeFocus("mobile1Focus", true)}
-          >
-          </TextInput>
+          { !this.props.route.params.receive ?
+            <TextInput
+              style={{ ...styles.input, borderColor: this.state.streetFocus ? '#4287f5' : '#a7b2b5' }}
+              value={this.state.street}
+              onChangeText={type => this.handleChange(type, "street")}
+              placeholder={"الشارع"}
+              onEndEditing={() => this.changeFocus("streetFocus", false)}
+              onFocus={() => this.changeFocus("streetFocus", true)}
+            >
+            </TextInput>
+            : null
+          }
+          {!this.props.route.params.receive ?
+
+            <TextInput
+              style={{ ...styles.input, borderColor: this.state.areaFocus ? '#4287f5' : '#a7b2b5' }}
+              value={this.state.area}
+              onChangeText={type => this.handleChange(type, "area")}
+              placeholder={"المنطقة"}
+              onEndEditing={() => this.changeFocus("areaFocus", false)}
+              onFocus={() => this.changeFocus("areaFocus", true)}
+            >
+            </TextInput>
+            : null}
+          {!this.props.route.params.receive ?
+            <TextInput
+              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? '#4287f5' : '#a7b2b5' }}
+              value={this.state.mobile1}
+              onChangeText={type => this.handleChange(type, "mobile1")}
+              placeholder={"رقم تليفون بديل"}
+              keyboardType='numeric'
+              onEndEditing={() => this.changeFocus("mobile1Focus", false)}
+              onFocus={() => this.changeFocus("mobile1Focus", true)}
+            >
+            </TextInput>
+            : null}
           <Text style={{ margin: 10, fontSize: 15 }}>إذا كان مكانك الحالى هو مكان التسليم من الأفضل فتح ال location لسهولة الوصول إليك</Text>
         </View>
-        <View style={{ justifyContent:'space-evenly',flexDirection:'row',alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
+        <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
           <TouchableOpacity
             disabled={(this.state.mobile === "" || this.state.name === "") ? true : false}
             onPress={() => { this.continue() }}
             style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
-            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo>
-            <Text style={{ fontSize: 25, color: 'white' }}>تابع</Text>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
+            <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { this.props.navigation.goBack() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor:'#19E363', width: 100, flexDirection: 'row' }}>
-            <Text style={{ fontSize: 25, color: 'white' }}>السابق</Text>
-            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: 'white' }}></Entypo>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+            <Text style={{ fontSize: 25, color: '#00004d' }}>السابق</Text>
+            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
           </TouchableOpacity>
           {/* {this.state.message === "" ? null :
             <Text style={{color:'red',fontSize:30,marginTop:15}}>{this.state.message}</Text>

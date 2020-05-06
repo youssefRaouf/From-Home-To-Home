@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   FlatList,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -53,9 +54,49 @@ class HomeScreen2 extends Component {
         return;
       }
     }
-    this.props.navigation.navigate("User")
-  }
+    this.createTwoButtonAlert();
+    // this.props.navigation.navigate("User",{receive:false,title:"بيانات المستخدم"})
 
+  }
+  createTwoButtonAlert() {
+    console.log(this.props.receiveMethod);
+    let message = ""
+    if (this.props.receiveMethod === "1") {
+      message = " لقد تم استلام مساهمتك السابقة منك هل يوجد أى تغيير فى طريقة التسليم ؟"
+    }
+    else if (this.props.receiveMethod === "2") {
+      message = "لقد تم استلام مساهمتك السابقة من مفوض منك هل يوجد أى تغيير فى طريقة التسليم ؟"
+    } else {
+      message = "لقد تم استلام مساهمتك السابقة من حارس العقار هل يوجد أى تغيير فى طريقة التسليم ؟"
+    }
+    Alert.alert(
+      "",
+      ""+message,
+      [
+      {
+        text: "لا",
+        onPress: () => {
+
+          if (this.props.receiveMethod === "1") {
+            alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
+          }
+          else if (this.props.receiveMethod === "2") {
+            alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+          } else {
+            alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+          }
+        },
+        style: "cancel"
+      },
+      {
+        text: "نعم", onPress: () => {
+          this.props.navigation.navigate("Receive")
+        }
+      }
+      ],
+      { cancelable: false }
+    );
+  }
   render() {
 
     return (
@@ -70,7 +111,7 @@ class HomeScreen2 extends Component {
           <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>بماذا تريد المساهمة ؟</Text>
         </View>
 
-        <Text style={{ fontSize: 20, marginRight: 35 }}>العدد</Text>
+        <Text style={{ color: '#00004d', fontSize: 20, marginRight: 35 }}>العدد</Text>
         <FlatList
           data={this.state.data}
           renderItem={this.renderItem.bind(this)}
@@ -83,10 +124,10 @@ class HomeScreen2 extends Component {
                 <Item text={""} edit={true}> </Item>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
                   <TouchableOpacity onPress={() => { this.addType() }}>
-                    <FontAwesome name="plus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
+                    <FontAwesome name="plus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => { this.removeType() }}>
-                    <FontAwesome name="minus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
+                    <FontAwesome name="minus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
                   </TouchableOpacity>
                   <Text style={{ fontSize: 20 }}>أخري</Text>
                 </View>
@@ -97,8 +138,8 @@ class HomeScreen2 extends Component {
         />
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
-            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo>
-            <Text style={{ fontSize: 25, color: 'white' }}>تابع</Text>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
+            <Text style={{ color: '#00004d', fontSize: 25 }}>تابع</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -130,6 +171,7 @@ const mapStateToProps = ({ user, rooms }, props) => {
     number: rooms.number,
     user: user.user,
     deviceToken: user.deviceToken,
+    receiveMethod: user.receiveMethod,
     loading: user.loading
   };
 };
