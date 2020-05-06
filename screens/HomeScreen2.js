@@ -60,15 +60,16 @@ class HomeScreen2 extends Component {
 
     return (
       <View style={styles.container}>
-        <View >
-         
-          <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>بماذا تريد المساهمة ؟</Text>
-        </View>
-        <View style={{flexDirection:'row',justifyContent:'flex-end',marginTop:-20,marginRight:10}}>
-        <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: -20, marginRight: 10 }}>
+          <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
             <FontAwesome style={{ fontSize: 20 }} name="list-ul"></FontAwesome>
           </TouchableOpacity>
-          </View>
+        </View>
+        <View >
+
+          <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>بماذا تريد المساهمة ؟</Text>
+        </View>
+
         <Text style={{ fontSize: 20, marginRight: 35 }}>العدد</Text>
         <FlatList
           data={this.state.data}
@@ -78,23 +79,26 @@ class HomeScreen2 extends Component {
           }}
           ListFooterComponent={() => {
             return (
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
-                <TouchableOpacity onPress={() => { this.addType() }}>
-                  <FontAwesome name="plus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { this.removeType() }}>
-                  <FontAwesome name="minus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
-                </TouchableOpacity>
-                <Text style={{ fontSize: 20 }}>أخري</Text>
+              <View>
+                <Item text={""} edit={true}> </Item>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
+                  <TouchableOpacity onPress={() => { this.addType() }}>
+                    <FontAwesome name="plus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => { this.removeType() }}>
+                    <FontAwesome name="minus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
+                  </TouchableOpacity>
+                  <Text style={{ fontSize: 20 }}>أخري</Text>
+                </View>
               </View>
             );
           }
           }
         />
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
-          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: 'grey', width: 100, flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo>
             <Text style={{ fontSize: 25, color: 'white' }}>تابع</Text>
-            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: 'white' }}></Entypo>
           </TouchableOpacity>
         </View>
       </View>
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    backgroundColor: '#ccffdc'
+    backgroundColor: '#e6ffee'
     // b3ffcc
   },
 });

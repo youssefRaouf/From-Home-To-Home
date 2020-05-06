@@ -22,7 +22,8 @@ class HomeScreen extends Component {
       data: [{ text: "كيس ارز" }, { text: "كيس ارز" }, { text: "كيس ارز" }],
       showError: false,
       initialLength: 3,
-      message: ""
+      message: "",
+      render:false
     };
   }
 
@@ -59,7 +60,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    if (this.props.user !== null && this.props.user !== '' && this.props.loading) {
+    if (this.props.user !== null && this.props.user !== '' && this.props.loading&&this.state.render!==true) {
       // this.props.navigation.reset({index:0})
       // this.props.navigation.replace('Links')
       this.props.navigation.dispatch(
@@ -80,6 +81,7 @@ class HomeScreen extends Component {
         </View>
       );
     } else {
+      this.state.render=true;
       return (
 
         <View style={styles.container}>
@@ -94,6 +96,8 @@ class HomeScreen extends Component {
             }}
             ListFooterComponent={() => {
               return (
+                <View>
+                  <Item text={""} edit={true}> </Item>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
                   <TouchableOpacity onPress={() => { this.addType() }}>
                     <FontAwesome name="plus" style={{ fontSize: 20, marginRight: 10 }}></FontAwesome>
@@ -103,14 +107,15 @@ class HomeScreen extends Component {
                   </TouchableOpacity>
                   <Text style={{ fontSize: 20 }}>أخري</Text>
                 </View>
+                </View>
               );
             }
             }
           />
           <View style={{ alignItems: 'center', marginBottom: 50 }}>
-            <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: 'grey', width: 100, flexDirection: 'row' }}>
+            <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+              <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo>
               <Text style={{ fontSize: 25, color: 'white' }}>تابع</Text>
-              <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: 'white' }}></Entypo>
             </TouchableOpacity>
           </View>
         
@@ -128,7 +133,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    backgroundColor: '#ccffdc'
+    backgroundColor: '#e6ffee'
     // b3ffcc
   },
 });

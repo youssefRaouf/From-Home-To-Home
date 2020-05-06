@@ -48,7 +48,7 @@ class Item extends React.Component {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 <TextInput
-                    style={{ borderRadius: 10, borderWidth: 1, padding: 5, marginRight: 10, fontSize: 20, width: Dimensions.get('screen').width - 100, textAlign: 'center' }}
+                    style={{color:'#00004d', borderRadius: 10, borderWidth: 1, padding: 5, marginRight: 10, fontSize: 20, width: Dimensions.get('screen').width - 100, textAlign: 'center' }}
                     value={this.state.type}
                     onChangeText={type => this.handleChangeType(type)}
                     editable={this.state.edit}

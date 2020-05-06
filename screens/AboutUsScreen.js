@@ -67,7 +67,7 @@ class AboutUsScreen extends Component {
             <TouchableOpacity
               disabled={(this.state.complain === "") ? true : false}
               onPress={() => { this.continue() }}
-              style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : 'grey', width: 100, flexDirection: 'row' }}>
+              style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
               {/* <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo> */}
               <Text style={{ fontSize: 23, color: 'white' }}>ارسال</Text>
             </TouchableOpacity>
@@ -84,7 +84,7 @@ AboutUsScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccffdc'
+    backgroundColor: '#e6ffee'
     // b3ffcc
   },
 });

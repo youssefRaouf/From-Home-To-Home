@@ -85,7 +85,7 @@ UserInfoScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccffdc'
+    backgroundColor: '#e6ffee'
     // b3ffcc
   },
   textContainer: {

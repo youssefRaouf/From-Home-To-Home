@@ -11,7 +11,8 @@ import {
   Button,
   Alert,
   TextInput,
-  Dimensions
+  Dimensions,
+  Keyboard
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -95,20 +96,22 @@ class UserScreen extends Component {
   }
  async continue() {
   // const area=  this.state.area
+  Keyboard.dismiss();
+
   // const name = this.state.name
     let user = {name:this.state.name,mobile:this.state.mobile,street:this.state.street,area:this.state.area,mobile1:this.state.mobile1}
-   await _storeUser(user);
+  //  await _storeUser(user);
     // this.props.navigation.navigate("Links")
     this.props.saveUser(user);
-    this.props.navigation.dispatch(
-      CommonActions.reset({
-        index: 1,
-        routes: [
-          { name: 'Links' },
-        ],
-      })
-    );
-
+    // this.props.navigation.dispatch(
+    //   CommonActions.reset({
+    //     index: 1,
+    //     routes: [
+    //       { name: 'Links' },
+    //     ],
+    //   })
+    // );
+  this.props.navigation.navigate('Receive')
   }
   render() {
     return (
@@ -164,13 +167,19 @@ class UserScreen extends Component {
           </TextInput>
           <Text style={{ margin: 10, fontSize: 15 }}>إذا كان مكانك الحالى هو مكان التسليم من الأفضل فتح ال location لسهولة الوصول إليك</Text>
         </View>
-        <View style={{ alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
+        <View style={{ justifyContent:'space-evenly',flexDirection:'row',alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
           <TouchableOpacity
             disabled={(this.state.mobile === "" || this.state.name === "") ? true : false}
             onPress={() => { this.continue() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "") ? '#DDDFE2' : 'grey', width: 100, flexDirection: 'row' }}>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo>
             <Text style={{ fontSize: 25, color: 'white' }}>تابع</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => { this.props.navigation.goBack() }}
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor:'#19E363', width: 100, flexDirection: 'row' }}>
+            <Text style={{ fontSize: 25, color: 'white' }}>السابق</Text>
+            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: 'white' }}></Entypo>
           </TouchableOpacity>
           {/* {this.state.message === "" ? null :
             <Text style={{color:'red',fontSize:30,marginTop:15}}>{this.state.message}</Text>
@@ -187,7 +196,7 @@ UserScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccffdc'
+    backgroundColor: '#e6ffee'
     // b3ffcc
   },
   input: {

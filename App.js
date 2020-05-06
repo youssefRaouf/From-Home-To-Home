@@ -15,6 +15,7 @@ import AboutUsScreen from './screens/AboutUsScreen';
 import UserInfoScreen from './screens/UserInfoScreen';
 import PushNotificationManager from './PushNotificationsManager'
 import HomeScreen2 from './screens/HomeScreen2';
+import RecieveScreen from './screens/RecieveScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 function customDrawer(props) {
@@ -51,6 +52,7 @@ const App = () => {
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Links" component={drawer} />
                 <Stack.Screen options={{ headerShown: false, }} name="User" component={UserScreen} />
+                <Stack.Screen options={{ headerShown: false, }} name="Receive" component={RecieveScreen} />
               </Stack.Navigator>
             }
           </NavigationContainer>
