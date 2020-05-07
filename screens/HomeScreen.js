@@ -60,27 +60,27 @@ class HomeScreen extends Component {
   }
 
   render() {
-    if (this.props.user !== null && this.props.user !== '' && this.props.loading&&this.state.render!==true) {
-      // this.props.navigation.reset({index:0})
-      // this.props.navigation.replace('Links')
-      this.props.navigation.dispatch(
-        CommonActions.reset({
-          index: 1,
-          routes: [
-            { name: 'Links' },
-          ],
-        })
-      );
-      return null;
-    }
-    else if (!this.props.loading) {
-      return (
-        <View style={{ backgroundColor:'#ccffdc',justifyContent: 'center', alignItems: 'center',height:Dimensions.get('screen').height }}>
-          <Text>LOADING</Text>
-         <LottieView source={require('../assets/loading.json')} autoPlay loop />
-        </View>
-      );
-    } else {
+    // if (this.props.user !== null && this.props.user !== '' && this.props.loading&&this.state.render!==true) {
+    //   // this.props.navigation.reset({index:0})
+    //   // this.props.navigation.replace('Links')
+    //   this.props.navigation.dispatch(
+    //     CommonActions.reset({
+    //       index: 1,
+    //       routes: [
+    //         { name: 'Links' },
+    //       ],
+    //     })
+    //   );
+    //   return null;
+    // }
+    // else if (!this.props.loading) {
+    //   return (
+    //     <View style={{ backgroundColor:'#ccffdc',justifyContent: 'center', alignItems: 'center',height:Dimensions.get('screen').height }}>
+    //       <Text>LOADING</Text>
+    //      <LottieView source={require('../assets/loading.json')} autoPlay loop />
+    //     </View>
+    //   );
+    // } else {
       this.state.render=true;
       return (
 
@@ -124,7 +124,7 @@ class HomeScreen extends Component {
       );
     }
   }
-}
+// }
 HomeScreen.navigationOptions = {
   header: null,
 };
