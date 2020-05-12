@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
- const baseUrl = getEnv().baseUrl;
+ const baseUrl = '';
 // let Token
 async function doRequest(url, options = {}, data = {}) {
   // let dataUser = await fetchUser()
@@ -32,13 +32,14 @@ async function doRequest(url, options = {}, data = {}) {
 //     .then(response => response.json())
 // };
 const getDonations = () => {
-  // const limit = 15;
+  const limit = 15;
+  const offset=15;
   const eventsRequest = () => {
     return doRequest('donations', { method: 'GET' }, { offset, limit });
   };
   return eventsRequest()
     .then(response => response.json())
-};
+};xx
 async function createUser(user) {
   let data = await fetch(baseUrl + 'Users', {
     method: 'POST',
@@ -72,6 +73,7 @@ async function fetchData() {
 };
 const _storeUser = async (user) => {
   try {
+    console.log("lol yaaaa")
       const strData = JSON.stringify(user);
       await AsyncStorage.setItem('user', strData);
   } catch (error) {
