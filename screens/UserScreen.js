@@ -95,26 +95,27 @@ class UserScreen extends Component {
     }
   }
   async continue() {
-    if(!this.props.route.params.receive){
-    let user = { name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
-    //  await _storeUser(user);
+    if (!this.props.route.params.receive) {
+      let user = { name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
+      //  await _storeUser(user);
 
-    // this.props.navigation.navigate("Links")
-    this.props.saveUser(user);
-    // this.props.navigation.dispatch(
-    //   CommonActions.reset({
-    //     index: 1,
-    //     routes: [
-    //       { name: 'Links' },
-    //     ],
-    //   })
-    // );
-    this.props.navigation.navigate('Receive')
-    }else{
-      if(this.props.route.params.receiveMethod===2){
-      alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
-      }else{
-      alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+      // this.props.navigation.navigate("Links")
+      // this.props.saveUser(user);
+      this.props.createUser(user);
+      // this.props.navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 1,
+      //     routes: [
+      //       { name: 'Links' },
+      //     ],
+      //   })
+      // );
+      this.props.navigation.navigate('Receive')
+    } else {
+      if (this.props.route.params.receiveMethod === 2) {
+        alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+      } else {
+        alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(
         CommonActions.reset({
@@ -124,7 +125,7 @@ class UserScreen extends Component {
           ],
         })
       );
-  
+
     }
   }
   render() {
@@ -151,7 +152,7 @@ class UserScreen extends Component {
             onFocus={() => this.changeFocus("mobileFocus", true)}
           >
           </TextInput>
-          { !this.props.route.params.receive ?
+          {!this.props.route.params.receive ?
             <TextInput
               style={{ ...styles.input, borderColor: this.state.streetFocus ? '#4287f5' : '#a7b2b5' }}
               value={this.state.street}
@@ -247,7 +248,8 @@ const mapStateToProps = ({ rooms }, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  saveUser: (user) => dispatch(actions.saveUser(user)),
+  // saveUser: (user) => dispatch(actions.saveUser(user)),
+  createUser: (user) => dispatch(actions.createUser(user)),
   // postsReceived: post => dispatch(actions.postsReceived(post)),
   // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });

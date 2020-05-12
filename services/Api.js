@@ -1,20 +1,19 @@
 import { AsyncStorage } from 'react-native';
-// export const baseUrl = getEnv().baseUrl;
+ const baseUrl = getEnv().baseUrl;
 // let Token
-// async function doRequest(url, options = {}, data = {}) {
-//   let dataUser = await fetchUser()
-//   Token = dataUser[1]
-//   const queryString = Object.keys(data)
-//     .map(key => key + '=' + data[key])
-//     .join('&');
-//   return fetch(`${baseUrl}${url}?${queryString}`, {
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//       token: Token
-//     }
-//   });
-// }
+async function doRequest(url, options = {}, data = {}) {
+  // let dataUser = await fetchUser()
+  // Token = dataUser[1]
+  const queryString = Object.keys(data)
+    .map(key => key + '=' + data[key])
+    .join('&');
+  return fetch(`${baseUrl}${url}?${queryString}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    }
+  });
+}
 
 // const getPosts = (offset) => {
 //   const limit = 15;
@@ -32,7 +31,32 @@ import { AsyncStorage } from 'react-native';
 //   return eventsRequest()
 //     .then(response => response.json())
 // };
-
+const getDonations = () => {
+  // const limit = 15;
+  const eventsRequest = () => {
+    return doRequest('donations', { method: 'GET' }, { offset, limit });
+  };
+  return eventsRequest()
+    .then(response => response.json())
+};
+async function createUser(user) {
+  let data = await fetch(baseUrl + 'Users', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: user.name,
+      mobile: user.mobile,
+      mobile1: user.mobile1,
+      street:user.street,
+      area:user.area,
+    }),
+  }).then(response => response.json())
+  await _storeUser(data)
+  return data;
+}
 
 async function fetchData() {
   try {
@@ -73,4 +97,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export {_storeReceiveMethod,_storeDeviceToken,_storeUser,fetchData};
+export {getDonations,createUser,_storeReceiveMethod,_storeDeviceToken,_storeUser,fetchData};

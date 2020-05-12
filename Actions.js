@@ -6,8 +6,11 @@ export function changeNumber(text,number) {
 export function fetchUser() {
     return {type: types.FETCH_USER};
 }
-export function saveUser(user) {
-    return {type: types.SAVE_USER,user};
+export function fetchDonations() {
+    return {type: types.FETCH_DONATIONS};
+}
+export function createUser(user) {
+    return {type: types.CREATE_USER,user};
 }
 // export function fetchPostsByUserId(offset,user_id) {
 //   console.log("d5lna user posts",user_id,offset)

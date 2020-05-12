@@ -1,24 +1,24 @@
-// import {call, put, takeLatest} from 'redux-saga/effects';
-// import * as types from '../utils/Consts';
-// // import Event from '../models/Event';
-// import {getPosts,createPost,getPostsByUserId} from '../services/Api';
+import {call, put, takeLatest} from 'redux-saga/effects';
+import * as types from '../utils/Consts';
+// import Event from '../models/Event';
+import {getDonations} from '../services/Api';
 
-// function* requestEvents({offset}) {
-//   try {
-//     let data = yield call(getPosts,offset);
-//     // data = data.map(event => new Event(event));
-//     yield put({
-//       type: types.FETCH_POSTS_SUCCESS, 
-//       data,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     yield put({
-//       type: types.FETCH_POSTS_FAIL,
-//       error,
-//     });
-//   }
-// }
+function* requestDonations() {
+  try {
+    let data = yield call(getDonations);
+    // data = data.map(event => new Event(event));
+    yield put({
+      type: types.FETCH_DONATIONS_SUCCESS, 
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    yield put({
+      type: types.FETCH_DONATIONS_FAIL,
+      error,
+    });
+  }
+}
 // function* requestEventsByUserId({offset,user_id}) {
 //   try {
 //     let data = yield call(getPostsByUserId,offset,user_id);
@@ -53,8 +53,8 @@
 //   }
 // }
 
-// export default function* eventsSagas() {
-//   yield takeLatest(types.FETCH_POSTS, requestEvents);
-//   yield takeLatest(types.FETCH_POSTS_USER_ID, requestEventsByUserId);
-//   yield takeLatest(types.CREATE_POST, createPosts);
-// }
+export default function* donationsSagas() {
+  yield takeLatest(types.FETCH_DONATIONS, requestDonations);
+  // yield takeLatest(types.FETCH_POSTS_USER_ID, requestEventsByUserId);
+  // yield takeLatest(types.CREATE_POST, createPosts);
+}

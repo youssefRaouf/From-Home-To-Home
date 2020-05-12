@@ -6,9 +6,12 @@ import user from './user-reducer'
 // import followers from './followers-reducer'
 // import messages from './messages-reducer'
 import rooms from './rooms-reducer'
+import donations from './donations-reducer'
 const reducers = combineReducers({
   user,
   rooms,
+  donations
+  
 });
 
 export default reducers;

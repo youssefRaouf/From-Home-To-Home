@@ -21,8 +21,14 @@ class HomeScreen2 extends Component {
       data: [{ text: "كيس ارز" }, { text: "كيس ارز" }, { text: "كيس ارز" }],
       showError: false,
       initialLength: 3,
-      message: ""
+      message: "",
+      donations:this.props.donations
     };
+  }
+
+  componentDidMount(){
+    this.props.fetchDonations();
+
   }
 
   addType() {
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({ user, rooms }, props) => {
+const mapStateToProps = ({ user, rooms,donations }, props) => {
   // const { activePost, isLoading } = posts;
   return {
     // posts: posts.list || [],
@@ -172,13 +178,16 @@ const mapStateToProps = ({ user, rooms }, props) => {
     user: user.user,
     deviceToken: user.deviceToken,
     receiveMethod: user.receiveMethod,
-    loading: user.loading
+    loading: user.loading,
+    donations:donations.list
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   // fetchPosts: offset => dispatch(actions.fetchPosts(offset)),
   // postsReceived: post => dispatch(actions.postsReceived(post)),
+  fetchDonations: () => dispatch(actions.fetchDonations()),
+
   // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });
 // export default HomeScreen
