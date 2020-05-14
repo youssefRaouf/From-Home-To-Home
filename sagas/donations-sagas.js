@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import * as types from '../utils/Consts';
 // import Event from '../models/Event';
-import {getDonations} from '../services/Api';
+import {getDonations,createDonation} from '../services/Api';
 
 function* requestDonations() {
   try {
@@ -36,25 +36,25 @@ function* requestDonations() {
 //     });
 //   }
 // }
-// function* createPosts({text,url,videoName}) {
-//   try {
-//     let data = yield call(createPost,text,url,videoName);
-//     // data = data.map(event => new Event(event));
-//     yield put({
-//       type: types.CREATE_POST_SUCCESS, 
-//       data,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     yield put({
-//       type: types.CREATE_POST_FAIL,
-//       error,
-//     });
-//   }
-// }
+function* createDonations({handlingMethod,user,receivingUser,donationDetails}) {
+  try {
+    let data = yield call(createDonation,handlingMethod,user,receivingUser,donationDetails);
+    // data = data.map(event => new Event(event));
+    yield put({
+      type: types.CREATE_DONATION_SUCCESS, 
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    yield put({
+      type: types.CREATE_DONATION_FAIL,
+      error,
+    });
+  }
+}
 
 export default function* donationsSagas() {
   yield takeLatest(types.FETCH_DONATIONS, requestDonations);
-  // yield takeLatest(types.FETCH_POSTS_USER_ID, requestEventsByUserId);
+  yield takeLatest(types.CREATE_DONATION, createDonations);
   // yield takeLatest(types.CREATE_POST, createPosts);
 }

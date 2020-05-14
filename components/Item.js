@@ -18,7 +18,7 @@ class Item extends React.Component {
         number = Number(number);
         number++;
         this.setState({ number });
-        // this.props.changeNumber(this.state.type,number);
+        this.props.changeNumber(this.props.id,number);
     }
     decrease() {
         let number = this.state.number;
@@ -28,13 +28,16 @@ class Item extends React.Component {
             return;
         }
         this.setState({ number });
-        // this.props.changeNumber(this.state.type,number);
+        this.props.changeNumber(this.props.id,number);
     }
     handleChange(number) {
         this.setState({ number })
     }
     handleChangeType(type) {
         this.setState({ type })
+    }
+    handleItemName(){
+        this.props.changeName(this.props.id,this.state.type)
     }
     handleInput() {
         if (this.state.number === "") {
@@ -52,6 +55,7 @@ class Item extends React.Component {
                     value={this.state.type}
                     onChangeText={type => this.handleChangeType(type)}
                     editable={this.state.edit}
+                    onEndEditing={() => this.handleItemName()}
                 >
                 </TextInput>
 
@@ -103,7 +107,8 @@ const mapStateToProps = ({ rooms }, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    changeNumber: (text,number) => dispatch(actions.changeNumber(text,number)),
+    changeNumber: (id,number) => dispatch(actions.changeNumber(id,number)),
+    changeName: (id,type) => dispatch(actions.changeName(id,type)),
     // postsReceived: post => dispatch(actions.postsReceived(post)),
     // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });

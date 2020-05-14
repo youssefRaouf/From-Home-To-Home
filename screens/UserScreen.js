@@ -101,7 +101,7 @@ class UserScreen extends Component {
 
       // this.props.navigation.navigate("Links")
       // this.props.saveUser(user);
-      this.props.createUser(user);
+      this.props.createUser(user,this.props.deviceToken);
       // this.props.navigation.dispatch(
       //   CommonActions.reset({
       //     index: 1,
@@ -113,8 +113,12 @@ class UserScreen extends Component {
       this.props.navigation.navigate('Receive')
     } else {
       if (this.props.route.params.receiveMethod === 2) {
+    this.props.createDonation(1,this.props.user,{name:this.state.name,mobile:this.state.mobile},this.props.donations)
+
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
+    this.props.createDonation(2,this.props.user,{name:this.state.name,mobile:this.state.mobile},this.props.donations)
+
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(
@@ -236,22 +240,25 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({ rooms }, props) => {
+const mapStateToProps = ({ rooms,user,donations }, props) => {
   // const { activePost, isLoading } = posts;
   return {
     // posts: posts.list || [],
     // post: activePost,
     // isLoading,
     // user:"ss"
-    number: rooms.number
+    number: rooms.number,
+    user:user.user,
+    deviceToken: user.deviceToken,
+    donations:donations.list
+
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   // saveUser: (user) => dispatch(actions.saveUser(user)),
-  createUser: (user) => dispatch(actions.createUser(user)),
-  // postsReceived: post => dispatch(actions.postsReceived(post)),
-  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
+  createUser: (user,deviceToken) => dispatch(actions.createUser(user,deviceToken)),
+  createDonation: (handlingMethod,user,receivingUser,donationDetails) => dispatch(actions.createDonation(handlingMethod,user,receivingUser,donationDetails)),
 });
 // export default HomeScreen
 

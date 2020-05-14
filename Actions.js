@@ -1,7 +1,10 @@
 import * as types from './utils/Consts';
 
-export function changeNumber(text,number) {
-    return {type: types.CHANGE_NUMBER,text,number};
+export function changeNumber(id,number) {
+    return {type: types.CHANGE_NUMBER,id,number};
+}
+export function changeName(id,name) {
+    return {type: types.CHANGE_NAME,id,name};
 }
 export function fetchUser() {
     return {type: types.FETCH_USER};
@@ -9,8 +12,14 @@ export function fetchUser() {
 export function fetchDonations() {
     return {type: types.FETCH_DONATIONS};
 }
-export function createUser(user) {
-    return {type: types.CREATE_USER,user};
+export function addType() {
+    return {type: types.ADD_TYPE};
+}
+export function createUser(user,deviceToken) {
+    return {type: types.CREATE_USER,user,deviceToken};
+}
+export function createDonation(handlingMethod,user,receivingUser,donationDetails) {
+    return {type: types.CREATE_DONATION,handlingMethod,user,receivingUser,donationDetails};
 }
 // export function fetchPostsByUserId(offset,user_id) {
 //   console.log("d5lna user posts",user_id,offset)

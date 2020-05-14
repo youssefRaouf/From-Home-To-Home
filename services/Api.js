@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
- const baseUrl = '';
+const baseUrl = 'http://lydiamaged-002-site5.ctempurl.com/api/';
 // let Token
 async function doRequest(url, options = {}, data = {}) {
   // let dataUser = await fetchUser()
@@ -31,17 +31,35 @@ async function doRequest(url, options = {}, data = {}) {
 //   return eventsRequest()
 //     .then(response => response.json())
 // };
+
 const getDonations = () => {
-  const limit = 15;
-  const offset=15;
-  const eventsRequest = () => {
-    return doRequest('donations', { method: 'GET' }, { offset, limit });
-  };
-  return eventsRequest()
-    .then(response => response.json())
-};xx
-async function createUser(user) {
-  let data = await fetch(baseUrl + 'Users', {
+  return [
+    {
+      "id": "1",
+      "item": "gebna",
+      "imageName": "string",
+      "image": "string",
+      "modifierUser": "string",
+      "lastModified": "2020-05-14T14:05:35.006Z"
+    },
+    {
+      "id": "2",
+      "item": "roz",
+      "imageName": "string",
+      "image": "string",
+      "modifierUser": "string",
+      "lastModified": "2020-05-14T14:05:35.006Z"
+    }
+  ]
+  // const eventsRequest = () => {
+  //   return doRequest('DefaultFoodDonations', { method: 'GET' }, {});
+  // };
+  // return eventsRequest()
+  //   .then(response => response.json())
+};
+
+async function createUser(user,deviceToken) {
+  let data = await fetch(baseUrl + 'User', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -49,13 +67,34 @@ async function createUser(user) {
     },
     body: JSON.stringify({
       name: user.name,
-      mobile: user.mobile,
-      mobile1: user.mobile1,
-      street:user.street,
-      area:user.area,
+      phone1: user.mobile,
+      phone2: user.mobile1,
+      address1: user.street,
+      deviceToken:deviceToken,
     }),
   }).then(response => response.json())
   await _storeUser(data)
+  return data;
+}
+
+async function createDonation(handlingMethod,user,receivingUser,donationDetails) {
+  console.log("hna",donationDetails)
+  let data = await fetch(baseUrl + 'Donation', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      handlingMethod:handlingMethod,
+      donorCode:user.id,
+      donorName: user.name,
+      donorPhone: user.mobile,
+      receivingFromName: receivingUser.name,
+      receivingFromPhone: receivingUser.mobile,
+      donationDetails
+    }),
+  }).then(response => response.json())
   return data;
 }
 
@@ -65,8 +104,8 @@ async function fetchData() {
     let user = await AsyncStorage.getItem('user');
     let receiveMethod = await AsyncStorage.getItem('receiveMethod');
 
-    user=JSON.parse(user)
-    return [user, token,receiveMethod];
+    user = JSON.parse(user)
+    return [user, token, receiveMethod];
   } catch (error) {
     // Error retrieving data
   }
@@ -74,8 +113,8 @@ async function fetchData() {
 const _storeUser = async (user) => {
   try {
     console.log("lol yaaaa")
-      const strData = JSON.stringify(user);
-      await AsyncStorage.setItem('user', strData);
+    const strData = JSON.stringify(user);
+    await AsyncStorage.setItem('user', strData);
   } catch (error) {
     // Error saving data
     console.log(error)
@@ -83,8 +122,8 @@ const _storeUser = async (user) => {
 };
 const _storeReceiveMethod = async (receiveMethod) => {
   try {
-      // const strData = JSON.stringify(user);
-      await AsyncStorage.setItem('receiveMethod', receiveMethod);
+    // const strData = JSON.stringify(user);
+    await AsyncStorage.setItem('receiveMethod', receiveMethod);
   } catch (error) {
     // Error saving data
     console.log(error)
@@ -92,11 +131,11 @@ const _storeReceiveMethod = async (receiveMethod) => {
 };
 const _storeDeviceToken = async (deviceToken) => {
   try {
-      // const strData = JSON.stringify(user);
-      await AsyncStorage.setItem('deviceToken',deviceToken);
+    // const strData = JSON.stringify(user);
+    await AsyncStorage.setItem('deviceToken', deviceToken);
   } catch (error) {
     // Error saving data
     console.log(error)
   }
 };
-export {getDonations,createUser,_storeReceiveMethod,_storeDeviceToken,_storeUser,fetchData};
+export { createDonation,getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };

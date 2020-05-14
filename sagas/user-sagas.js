@@ -36,10 +36,10 @@ function* saveUser({user}) {
       });
     }
   }
-  function* createUsers({user}) {
+  function* createUsers({user,deviceToken}) {
     try {
   
-      let data = yield call(createUser,user);
+      let data = yield call(createUser,user,deviceToken);
       yield put({
         type: types.CREATE_USER_SUCCESS, 
         data,

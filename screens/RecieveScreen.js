@@ -24,75 +24,10 @@ class RecieveScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // nameFocus: false,
-      // mobileFocus: false,
-      // streetFocus: false,
-      // areaFocus: false,
-      // mobile1Focus: false,
-      // name: "",
-      // mobile: "",
-      // street: "",
-      // area: "",
-      // mobile1: "",
-      // message: ""
-
+  
     };
   }
-  // changeFocus(type, typeFocus) {
-  //   if (typeFocus) {
-  //     const text = true
-  //     console.log(type)
-  //     if (type === "nameFocus") {
-
-  //       this.setState({ nameFocus: text })
-  //     }
-  //     else if (type === "mobileFocus") {
-  //       this.setState({ mobileFocus: text })
-  //     }
-  //     else if (type === "streetFocus") {
-  //       this.setState({ streetFocus: text })
-  //     }
-  //     else if (type === "areaFocus") {
-  //       this.setState({ areaFocus: text })
-  //     } else {
-  //       this.setState({ mobile1Focus: text })
-  //     }
-
-  //   } else {
-  //     const text = false
-  //     if (type === "nameFocus") {
-
-  //       this.setState({ nameFocus: text })
-  //     }
-  //     else if (type === "mobileFocus") {
-  //       this.setState({ mobileFocus: text })
-  //     }
-  //     else if (type === "streetFocus") {
-  //       this.setState({ streetFocus: text })
-  //     }
-  //     else if (type === "areaFocus") {
-  //       this.setState({ areaFocus: text })
-  //     } else {
-  //       this.setState({ mobile1Focus: text })
-  //     }
-  //   }
-  // }
-  // handleChange(text, type) {
-  //   if (type === "name") {
-  //     this.setState({ name: text })
-  //   }
-  //   else if (type === "mobile") {
-  //     this.setState({ mobile: text })
-  //   }
-  //   else if (type === "street") {
-  //     this.setState({ street: text })
-  //   }
-  //   else if (type === "area") {
-  //     this.setState({ area: text })
-  //   } else {
-  //     this.setState({ mobile1: text })
-  //   }
-  // }
+  
   async continue1() {
   // const area=  this.state.area
   // const name = this.state.name
@@ -100,7 +35,7 @@ class RecieveScreen extends Component {
    await _storeReceiveMethod("1")
     // this.props.navigation.navigate("Links")
     // this.props.saveUser(user);
-    console.log("sss")
+    this.props.createDonation(0,this.props.user,this.props.user,this.props.donations)
     alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
 
     this.props.navigation.dispatch(
@@ -197,21 +132,22 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({ rooms }, props) => {
+const mapStateToProps = ({ rooms,user,donations }, props) => {
   // const { activePost, isLoading } = posts;
   return {
     // posts: posts.list || [],
     // post: activePost,
     // isLoading,
-    // user:"ss"
+    user:user.user,
+    donations:donations.list,
     number: rooms.number
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   saveUser: (user) => dispatch(actions.saveUser(user)),
-  // postsReceived: post => dispatch(actions.postsReceived(post)),
-  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
+  createDonation: (handlingMethod,user,receivingUser,donationDetails) => dispatch(actions.createDonation(handlingMethod,user,receivingUser,donationDetails)),
+
 });
 // export default HomeScreen
 
