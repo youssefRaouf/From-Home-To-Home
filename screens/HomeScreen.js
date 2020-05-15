@@ -30,6 +30,7 @@ class HomeScreen extends Component {
 
   componentDidMount(){
     this.getDonations()
+    this.addType()
   }
   getDonations(){
     this.props.fetchDonations();
