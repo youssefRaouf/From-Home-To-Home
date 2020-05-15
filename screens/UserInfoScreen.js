@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  FlatList,
-  Button,
-  Alert,
-  TextInput,
   Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+
 class UserInfoScreen extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +19,7 @@ class UserInfoScreen extends Component {
   }
 
   render() {
-    console.log("el data",this.props.user)
+    console.log("el data", this.props.user)
     return (
       <View style={styles.container}>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderBottomWidth: 1.5, borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -78,6 +72,7 @@ class UserInfoScreen extends Component {
     );
   }
 }
+
 UserInfoScreen.navigationOptions = {
   header: null,
 };
@@ -106,24 +101,14 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({ rooms, user }, props) => {
-  // const { activePost, isLoading } = posts;
+const mapStateToProps = ({ user }, props) => {
   return {
-    // posts: posts.list || [],
-    // post: activePost,
-    // isLoading,
-    // user:"ss"
-    number: rooms.number,
     user: user.user
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // fetchPosts: offset => dispatch(actions.fetchPosts(offset)),
-  // postsReceived: post => dispatch(actions.postsReceived(post)),
-  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });
-// export default HomeScreen
 
 export default connect(
   mapStateToProps,

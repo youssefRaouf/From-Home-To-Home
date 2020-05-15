@@ -18,21 +18,21 @@ class HomeScreen2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [{ text: "كيس ارز" }, { text: "كيس ارز" }, { text: "كيس ارز" }],
       showError: false,
-      initialLength: 3,
       message: "",
-      donations:[]
+      donations: []
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getDonations()
     this.addType()
   }
-  getDonations(){
+
+  getDonations() {
     this.props.fetchDonations();
   }
+
   addType() {
     this.props.addType();
   }
@@ -49,31 +49,29 @@ class HomeScreen2 extends Component {
 
   renderItem(item) {
     item = item.item;
-   console.log(item)
+    console.log(item)
     return <Item id={item.id} text={item.item} edit={item.edit || false}> </Item>
   }
 
   continue() {
-    let total=0;
+    let total = 0;
     console.log(this.props.donations)
     console.log(this.props.donations.length)
-    for(let i=0;i<this.props.donations.length;i++){
-      if(this.props.donations[i].item===""&&this.props.donations[i].count!==0){
-        return ;
+    for (let i = 0; i < this.props.donations.length; i++) {
+      if (this.props.donations[i].item === "" && this.props.donations[i].count !== 0) {
+        return;
       }
       let item = this.props.donations[i]
-   let    count= item.count||0;
-        total=total +Number(count);
-      // }
-    } 
-    if(total===0){
-      return ;
-    }   
-    console.log("total number",total)
+      let count = item.count || 0;
+      total = total + Number(count);
+    }
+    if (total === 0) {
+      return;
+    }
+    console.log("total number", total)
     this.createTwoButtonAlert();
-    // this.props.navigation.navigate("User",{receive:false,title:"بيانات المستخدم"})
-
   }
+
   createTwoButtonAlert() {
     console.log(this.props.receiveMethod);
     let message = ""
@@ -87,61 +85,58 @@ class HomeScreen2 extends Component {
     }
     Alert.alert(
       "",
-      ""+message,
+      "" + message,
       [
-      {
-        text: "لا",
-        onPress: () => {
-
-          if (this.props.receiveMethod === "1") {
-            alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
-            this.props.navigation.dispatch(
-              CommonActions.reset({
-                index: 1,
-                routes: [
-                  { name: 'Links' },
-                ],
-              })
-            );
-      
-          }
-          else if (this.props.receiveMethod === "2") {
-            alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
-            this.props.navigation.dispatch(
-              CommonActions.reset({
-                index: 1,
-                routes: [
-                  { name: 'Links' },
-                ],
-              })
-            );
-      
-          } else {
-            alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
-            this.props.navigation.dispatch(
-              CommonActions.reset({
-                index: 1,
-                routes: [
-                  { name: 'Links' },
-                ],
-              })
-            );
-      
-          }
+        {
+          text: "لا",
+          onPress: () => {
+            if (this.props.receiveMethod === "1") {
+              alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
+              this.props.navigation.dispatch(
+                CommonActions.reset({
+                  index: 1,
+                  routes: [
+                    { name: 'Links' },
+                  ],
+                })
+              );
+            }
+            else if (this.props.receiveMethod === "2") {
+              alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+              this.props.navigation.dispatch(
+                CommonActions.reset({
+                  index: 1,
+                  routes: [
+                    { name: 'Links' },
+                  ],
+                })
+              );
+            } else {
+              alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+              this.props.navigation.dispatch(
+                CommonActions.reset({
+                  index: 1,
+                  routes: [
+                    { name: 'Links' },
+                  ],
+                })
+              );
+            }
+          },
+          style: "cancel"
         },
-        style: "cancel"
-      },
-      {
-        text: "نعم", onPress: () => {
-          this.props.navigation.navigate("Receive")
+        {
+          text: "نعم", onPress: () => {
+            this.props.navigation.navigate("Receive")
+          }
         }
-      }
       ],
       { cancelable: false }
     );
   }
+
   render() {
-    this.state.donations=this.props.donations
+    this.state.donations = this.props.donations
 
     return (
       <View style={styles.container}>
@@ -151,16 +146,13 @@ class HomeScreen2 extends Component {
           </TouchableOpacity>
         </View>
         <View >
-
           <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>بماذا تريد المساهمة ؟</Text>
         </View>
-
         <Text style={{ color: '#00004d', fontSize: 20, marginRight: 35 }}>العدد</Text>
         <FlatList
           data={this.state.donations}
           renderItem={this.renderItem.bind(this)}
           onEndReached={() => {
-
           }}
           ListFooterComponent={() => {
             return (
@@ -198,37 +190,23 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     backgroundColor: '#e6ffee'
-    // b3ffcc
   },
 });
 
-
-
-const mapStateToProps = ({ user, rooms,donations }, props) => {
-  // const { activePost, isLoading } = posts;
+const mapStateToProps = ({ user, donations }, props) => {
   return {
-    // posts: posts.list || [],
-    // post: activePost,
-    // isLoading,
-    // user:"ss"
-    number: rooms.number,
     user: user.user,
     deviceToken: user.deviceToken,
     receiveMethod: user.receiveMethod,
     loading: user.loading,
-    donations:donations.list
+    donations: donations.list
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // fetchPosts: offset => dispatch(actions.fetchPosts(offset)),
-  // postsReceived: post => dispatch(actions.postsReceived(post)),
   fetchDonations: () => dispatch(actions.fetchDonations()),
   addType: () => dispatch(actions.addType()),
-
-  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });
-// export default HomeScreen
 
 export default connect(
   mapStateToProps,

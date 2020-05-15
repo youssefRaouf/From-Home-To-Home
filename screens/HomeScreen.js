@@ -5,41 +5,34 @@ import {
   TouchableOpacity,
   View,
   FlatList,
-  Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../Actions';
 import Item from '../components/Item';
-import { CommonActions } from '@react-navigation/native';
-import LottieView from 'lottie-react-native';
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [{ text: "كيس ارز" }, { text: "كيس ارز" }, { text: "كيس ارز" }],
       showError: false,
-      initialLength: 3,
       message: "",
-      render: false,
-      donations:[]
+      donations: []
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getDonations()
     this.addType()
   }
-  getDonations(){
+
+  getDonations() {
     this.props.fetchDonations();
   }
+
   addType() {
-    // let arr = this.state.donations;
     this.props.addType()
-    // arr.push({id:5, item: "", edit: true })
-    // this.setState({ donations: arr })
   }
 
   removeType() {
@@ -56,39 +49,50 @@ class HomeScreen extends Component {
     item = item.item;
     return <Item id={item.id} text={item.item} edit={item.edit || false}> </Item>
   }
-
+  // nshof(total,element) {
+  //   console.log("ya moshel el 7al",element)
+  //   if (element.item === "" && element.count !== 0) {
+  //     return;
+  //   }
+  //   let item = element
+  //   let count = item.count || 0;
+  //   total = total + Number(count);
+  //   console.log("el total",total)
+  //   if (total === 0) {
+  //     return;
+  //   }
+  //   return Number(total);
+  // }
   continue() {
-    let total=0;
+    let total = 0;
     console.log(this.props.donations)
     console.log(this.props.donations.length)
-    for(let i=0;i<this.props.donations.length;i++){
-      if(this.props.donations[i].item===""&&this.props.donations[i].count!==0){
-        return ;
+  // console.log("adena bngrb",this.props.donations.reduce(this.nshof));
+    for (let i = 0; i < this.props.donations.length; i++) {
+      if (this.props.donations[i].item === "" && this.props.donations[i].count !== 0) {
+        return;
       }
       let item = this.props.donations[i]
-    let   count= item.count||0;
-        total=total +Number(count);
-      // }
-    } 
-    if(total===0){
-      return ;
-    }   
-    console.log("total number",total)
+      let count = item.count || 0;
+      total = total + Number(count);
+    }
+    if (total === 0) {
+      return;
+    }
+    console.log("total number", total)
     this.props.navigation.navigate("User", { receive: false, title: "بيانات المستخدم" })
   }
 
   render() {
-    this.state.donations=this.props.donations
+    this.state.donations = this.props.donations
     return (
 
       <View style={styles.container}>
-      
         <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>بماذا تريد المساهمة ؟</Text>
         <Text style={{ color: '#00004d', fontSize: 20, marginRight: 35 }}>العدد</Text>
         <FlatList
           data={this.state.donations}
           renderItem={this.renderItem.bind(this)}
-         
           ListFooterComponent={() => {
             return (
               <View>
@@ -112,13 +116,12 @@ class HomeScreen extends Component {
             <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
           </TouchableOpacity>
         </View>
-
       </View>
 
     );
   }
 }
-// }
+
 HomeScreen.navigationOptions = {
   header: null,
 };
@@ -128,19 +131,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     backgroundColor: '#e6ffee'
-    // b3ffcc
   },
 });
 
 
 
 const mapStateToProps = ({ user, rooms, donations }, props) => {
-  // const { activePost, isLoading } = posts;
   return {
-    // posts: posts.list || [],
-    // post: activePost,
-    // isLoading,
-    // user:"ss"
     number: rooms.number,
     user: user.user,
     deviceToken: user.deviceToken,
@@ -150,14 +147,10 @@ const mapStateToProps = ({ user, rooms, donations }, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  // fetchPosts: offset => dispatch(actions.fetchPosts(offset)),
   fetchDonations: () => dispatch(actions.fetchDonations()),
   addType: () => dispatch(actions.addType()),
 
-  // postsReceived: post => dispatch(actions.postsReceived(post)),
-  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });
-// export default HomeScreen
 
 export default connect(
   mapStateToProps,

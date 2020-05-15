@@ -58,7 +58,7 @@ const getDonations = () => {
   //   .then(response => response.json())
 };
 
-async function createUser(user,deviceToken) {
+async function createUser(user, deviceToken) {
   let data = await fetch(baseUrl + 'User', {
     method: 'POST',
     headers: {
@@ -70,15 +70,15 @@ async function createUser(user,deviceToken) {
       phone1: user.mobile,
       phone2: user.mobile1,
       address1: user.street,
-      deviceToken:deviceToken,
+      deviceToken: deviceToken,
     }),
   }).then(response => response.json())
   await _storeUser(data)
   return data;
 }
 
-async function createDonation(handlingMethod,user,receivingUser,donationDetails) {
-  console.log("hna",donationDetails)
+async function createDonation(handlingMethod, user, receivingUser, donationDetails) {
+  console.log("hna", donationDetails)
   let data = await fetch(baseUrl + 'Donation', {
     method: 'POST',
     headers: {
@@ -86,8 +86,8 @@ async function createDonation(handlingMethod,user,receivingUser,donationDetails)
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      handlingMethod:handlingMethod,
-      donorCode:user.id,
+      handlingMethod: handlingMethod,
+      donorCode: user.id,
       donorName: user.name,
       donorPhone: user.mobile,
       receivingFromName: receivingUser.name,
@@ -98,7 +98,7 @@ async function createDonation(handlingMethod,user,receivingUser,donationDetails)
   return data;
 }
 
-async function fetchData() {
+const fetchData = async () => {
   try {
     let token = await AsyncStorage.getItem('deviceToken');
     let user = await AsyncStorage.getItem('user');
@@ -138,4 +138,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export { createDonation,getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };
+export { createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };

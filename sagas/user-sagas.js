@@ -7,7 +7,7 @@ function* fetchUser() {
   try {
     let data = yield call(fetchData);
     // data = data.map(event => new Event(event));
-    console.log(data)
+    console.log("3mlna fetch ya 3m",data)
     yield put({
       type: types.FETCH_USER_SUCCESS, 
       data,

@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  FlatList,
-  Button,
-  Alert,
   TextInput,
   Dimensions,
   Keyboard
@@ -17,10 +11,8 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Item from '../components/Item';
-import { _storeUser } from '../services/Api';
 import { CommonActions } from '@react-navigation/native';
+
 class UserScreen extends Component {
   constructor(props) {
     super(props);
@@ -36,15 +28,14 @@ class UserScreen extends Component {
       area: "",
       mobile1: "",
       message: ""
-
     };
   }
+
   changeFocus(type, typeFocus) {
     if (typeFocus) {
       const text = true
       console.log(type)
       if (type === "nameFocus") {
-
         this.setState({ nameFocus: text })
       }
       else if (type === "mobileFocus") {
@@ -58,11 +49,9 @@ class UserScreen extends Component {
       } else {
         this.setState({ mobile1Focus: text })
       }
-
     } else {
       const text = false
       if (type === "nameFocus") {
-
         this.setState({ nameFocus: text })
       }
       else if (type === "mobileFocus") {
@@ -78,6 +67,7 @@ class UserScreen extends Component {
       }
     }
   }
+
   handleChange(text, type) {
     if (type === "name") {
       this.setState({ name: text })
@@ -94,31 +84,18 @@ class UserScreen extends Component {
       this.setState({ mobile1: text })
     }
   }
+
   async continue() {
     if (!this.props.route.params.receive) {
       let user = { name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
-      //  await _storeUser(user);
-
-      // this.props.navigation.navigate("Links")
-      // this.props.saveUser(user);
-      this.props.createUser(user,this.props.deviceToken);
-      // this.props.navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 1,
-      //     routes: [
-      //       { name: 'Links' },
-      //     ],
-      //   })
-      // );
+      this.props.createUser(user, this.props.deviceToken);
       this.props.navigation.navigate('Receive')
     } else {
       if (this.props.route.params.receiveMethod === 2) {
-    this.props.createDonation(1,this.props.user,{name:this.state.name,mobile:this.state.mobile},this.props.donations)
-
+        this.props.createDonation(1, this.props.user, { name: this.state.name, mobile: this.state.mobile }, this.props.donations)
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
-    this.props.createDonation(2,this.props.user,{name:this.state.name,mobile:this.state.mobile},this.props.donations)
-
+        this.props.createDonation(2, this.props.user, { name: this.state.name, mobile: this.state.mobile }, this.props.donations)
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(
@@ -129,9 +106,9 @@ class UserScreen extends Component {
           ],
         })
       );
-
     }
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -169,7 +146,6 @@ class UserScreen extends Component {
             : null
           }
           {!this.props.route.params.receive ?
-
             <TextInput
               style={{ ...styles.input, borderColor: this.state.areaFocus ? '#4287f5' : '#a7b2b5' }}
               value={this.state.area}
@@ -208,14 +184,12 @@ class UserScreen extends Component {
             <Text style={{ fontSize: 25, color: '#00004d' }}>السابق</Text>
             <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
           </TouchableOpacity>
-          {/* {this.state.message === "" ? null :
-            <Text style={{color:'red',fontSize:30,marginTop:15}}>{this.state.message}</Text>
-          } */}
         </View>
       </View>
     );
   }
 }
+
 UserScreen.navigationOptions = {
   header: null,
 };
@@ -240,27 +214,18 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({ rooms,user,donations }, props) => {
-  // const { activePost, isLoading } = posts;
+const mapStateToProps = ({ user, donations }, props) => {
   return {
-    // posts: posts.list || [],
-    // post: activePost,
-    // isLoading,
-    // user:"ss"
-    number: rooms.number,
-    user:user.user,
+    user: user.user,
     deviceToken: user.deviceToken,
-    donations:donations.list
-
+    donations: donations.list
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // saveUser: (user) => dispatch(actions.saveUser(user)),
-  createUser: (user,deviceToken) => dispatch(actions.createUser(user,deviceToken)),
-  createDonation: (handlingMethod,user,receivingUser,donationDetails) => dispatch(actions.createDonation(handlingMethod,user,receivingUser,donationDetails)),
+  createUser: (user, deviceToken) => dispatch(actions.createUser(user, deviceToken)),
+  createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
 });
-// export default HomeScreen
 
 export default connect(
   mapStateToProps,

@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  FlatList,
-  Button,
-  Alert,
   Dimensions,
   TextInput,
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
-import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Item from '../components/Item';
+
 class AboutUsScreen extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +31,7 @@ class AboutUsScreen extends Component {
     }
     this.props.navigation.navigate("User")
   }
+
   handleChange(complain) {
     this.setState({ complain })
   }
@@ -68,7 +63,6 @@ class AboutUsScreen extends Component {
               disabled={(this.state.complain === "") ? true : false}
               onPress={() => { this.continue() }}
               style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
-              {/* <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: 'white' }}></Entypo> */}
               <Text style={{ fontSize: 25, color: '#00004d' }}>ارسال</Text>
             </TouchableOpacity>
           </View>
@@ -77,6 +71,7 @@ class AboutUsScreen extends Component {
     );
   }
 }
+
 AboutUsScreen.navigationOptions = {
   header: null,
 };
@@ -85,29 +80,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#e6ffee'
-    // b3ffcc
   },
 });
 
 
 
-const mapStateToProps = ({ rooms }, props) => {
-  // const { activePost, isLoading } = posts;
+const mapStateToProps = ({  }, props) => {
   return {
-    // posts: posts.list || [],
-    // post: activePost,
-    // isLoading,
-    // user:"ss"
-    number: rooms.number
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // fetchPosts: offset => dispatch(actions.fetchPosts(offset)),
-  // postsReceived: post => dispatch(actions.postsReceived(post)),
-  // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });
-// export default HomeScreen
 
 export default connect(
   mapStateToProps,
