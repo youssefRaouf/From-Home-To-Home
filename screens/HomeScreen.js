@@ -62,6 +62,9 @@ class HomeScreen extends Component {
     console.log(this.props.donations)
     console.log(this.props.donations.length)
     for(let i=0;i<this.props.donations.length;i++){
+      if(this.props.donations[i].item===""&&this.props.donations[i].count!==0){
+        return ;
+      }
       let item = this.props.donations[i]
     let   count= item.count||0;
         total=total +Number(count);

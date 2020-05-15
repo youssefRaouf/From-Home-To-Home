@@ -58,6 +58,9 @@ class HomeScreen2 extends Component {
     console.log(this.props.donations)
     console.log(this.props.donations.length)
     for(let i=0;i<this.props.donations.length;i++){
+      if(this.props.donations[i].item===""&&this.props.donations[i].count!==0){
+        return ;
+      }
       let item = this.props.donations[i]
    let    count= item.count||0;
         total=total +Number(count);
@@ -92,11 +95,38 @@ class HomeScreen2 extends Component {
 
           if (this.props.receiveMethod === "1") {
             alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
+            this.props.navigation.dispatch(
+              CommonActions.reset({
+                index: 1,
+                routes: [
+                  { name: 'Links' },
+                ],
+              })
+            );
+      
           }
           else if (this.props.receiveMethod === "2") {
             alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+            this.props.navigation.dispatch(
+              CommonActions.reset({
+                index: 1,
+                routes: [
+                  { name: 'Links' },
+                ],
+              })
+            );
+      
           } else {
             alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+            this.props.navigation.dispatch(
+              CommonActions.reset({
+                index: 1,
+                routes: [
+                  { name: 'Links' },
+                ],
+              })
+            );
+      
           }
         },
         style: "cancel"
