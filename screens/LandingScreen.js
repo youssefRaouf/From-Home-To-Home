@@ -4,9 +4,13 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
+  Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo'
+import Geolocation from '@react-native-community/geolocation';
+
 import * as actions from '../Actions';
 import { CommonActions } from '@react-navigation/native';
 
@@ -19,7 +23,25 @@ class landingScreen extends Component {
 
   componentDidMount() {
     this.props.fetchUser();
+    this.findCoordinates()
+
   }
+
+  findCoordinates = () => {
+    // Geolocation.requestAuthorization();
+    Geolocation.getCurrentPosition(
+      position => {
+        const location = position
+        console.log("location",location.coords)
+      const coordinates=location.coords.latitude+","+location.coords.longitude;
+      this.setState({coordinates})
+
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
+
 
   continue() {
     if (this.props.user !== null && this.props.user !== '') {
@@ -49,6 +71,7 @@ class landingScreen extends Component {
 
     return (
       <View style={styles.container}>
+          <Image style={{width:Dimensions.get('screen').width-30,margin:10,height:Dimensions.get('screen').height-200}} resizeMode='contain' source={require("../assets/logo.jpeg")}></Image>
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
@@ -82,7 +105,6 @@ const mapStateToProps = ({ user, rooms }, props) => {
     // post: activePost,
     // isLoading,
     // user:"ss"
-    number: rooms.number,
     user: user.user,
     deviceToken: user.deviceToken,
     loading: user.loading

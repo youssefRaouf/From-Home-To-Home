@@ -6,12 +6,14 @@ import {
   View,
   TextInput,
   Dimensions,
-  Keyboard
+  Keyboard,
 } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { CommonActions } from '@react-navigation/native';
+import { _storeDelegate } from '../services/Api';
 
 class UserScreen extends Component {
   constructor(props) {
@@ -27,7 +29,8 @@ class UserScreen extends Component {
       street: "",
       area: "",
       mobile1: "",
-      message: ""
+      message: "",
+      coordinates:""
     };
   }
 
@@ -67,6 +70,23 @@ class UserScreen extends Component {
       }
     }
   }
+  componentDidMount(){
+    this.findCoordinates()
+  }
+
+  findCoordinates = () => {
+    Geolocation.getCurrentPosition(
+      position => {
+        const location = position
+        console.log("location",location.coords)
+      const coordinates=location.coords.latitude+","+location.coords.longitude;
+      this.setState({coordinates})
+
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
 
   handleChange(text, type) {
     if (type === "name") {
@@ -86,15 +106,20 @@ class UserScreen extends Component {
   }
 
   async continue() {
+  //  this.findCoordinates();
     if (!this.props.route.params.receive) {
-      let user = { name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
+      let user = { coordinates:this.state.coordinates,name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
       this.props.createUser(user, this.props.deviceToken);
       this.props.navigation.navigate('Receive')
     } else {
       if (this.props.route.params.receiveMethod === 2) {
+    this.props.changeReceiveMethod("2",{name:this.state.name,mobile:this.state.mobile})
+     await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
         this.props.createDonation(1, this.props.user, { name: this.state.name, mobile: this.state.mobile }, this.props.donations)
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
+    this.props.changeReceiveMethod("3",{name:this.state.name,mobile:this.state.mobile})
+     await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
         this.props.createDonation(2, this.props.user, { name: this.state.name, mobile: this.state.mobile }, this.props.donations)
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
@@ -225,6 +250,8 @@ const mapStateToProps = ({ user, donations }, props) => {
 const mapDispatchToProps = dispatch => ({
   createUser: (user, deviceToken) => dispatch(actions.createUser(user, deviceToken)),
   createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
+  changeReceiveMethod: (receiveMethod,delegate) => dispatch(actions.changeReceiveMethod(receiveMethod,delegate)),
+
 });
 
 export default connect(

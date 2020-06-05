@@ -17,6 +17,8 @@ import PushNotificationManager from './PushNotificationsManager'
 import HomeScreen2 from './screens/HomeScreen2';
 import RecieveScreen from './screens/RecieveScreen';
 import LandingScreen from './screens/LandingScreen';
+import Geolocation from '@react-native-community/geolocation';
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -43,6 +45,8 @@ function drawer() {
 }
 
 const App = () => {
+  // Geolocation.getCurrentPosition();
+// geolocation.requestAuthorization();
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(reducers, applyMiddleware(sagaMiddleware));
   sagaMiddleware.run(rootSaga);

@@ -19,6 +19,7 @@ class RecieveScreen extends Component {
   }
 
   async continue1() {
+    this.props.changeReceiveMethod("1")
     await _storeReceiveMethod("1")
     this.props.createDonation(0, this.props.user, this.props.user, this.props.donations)
     alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
@@ -33,11 +34,13 @@ class RecieveScreen extends Component {
   }
 
   async continue2() {
+    
     await _storeReceiveMethod("2")
     this.props.navigation.push("User", { receive: true, receiveMethod: 2, title: "من فضلك ادخل بيانات الشخص المفوض منك :" })
   }
 
   async continue3() {
+
     await _storeReceiveMethod("3")
     this.props.navigation.push("User", { receive: true, receiveMethod: 3, title: "من فضلك ادخل بيانات حارس العقار :" })
   }
@@ -100,6 +103,7 @@ const mapStateToProps = ({ user, donations }, props) => {
 const mapDispatchToProps = dispatch => ({
   saveUser: (user) => dispatch(actions.saveUser(user)),
   createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
+  changeReceiveMethod: (receiveMethod,delegate) => dispatch(actions.changeReceiveMethod(receiveMethod,delegate)),
 
 });
 

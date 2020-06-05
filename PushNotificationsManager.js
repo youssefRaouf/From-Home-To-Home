@@ -13,11 +13,16 @@ import * as actions from './Actions';
   }
 
   registerDevice = async () => {
+    // console.log("eah")
     Notifications.events().registerRemoteNotificationsRegistered(async(event) => {
+    // console.log("eah2")
+
       // TODO: Send the token to my server so it could send back push notifications...
       console.log('Device Token Received', event.deviceToken)
+      // console.log("sss")
     await  _storeDeviceToken(event.deviceToken);
     })
+    // console.log("ss")
     Notifications.events().registerRemoteNotificationsRegistrationFailed(event => {
       console.error(event)
     })

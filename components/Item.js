@@ -34,6 +34,7 @@ class Item extends React.Component {
         this.setState({ number })
     }
     handleChangeType(type) {
+   console.log("ss")
         this.setState({ type })
     }
     handleItemName(){
@@ -53,6 +54,7 @@ class Item extends React.Component {
                 <TextInput
                     style={{color:'#00004d', borderRadius: 10, borderWidth: 1, padding: 5, marginRight: 10, fontSize: 20, width: Dimensions.get('screen').width - 100, textAlign: 'center' }}
                     value={this.state.type}
+                    placeholder="ادخل اسم المنتج..."
                     onChangeText={type => this.handleChangeType(type)}
                     editable={this.state.edit}
                     onEndEditing={() => this.handleItemName()}
@@ -102,7 +104,6 @@ const mapStateToProps = ({ rooms }, props) => {
         // post: activePost,
         // isLoading,
         // user:"ss"
-        number: rooms.number
     };
 };
 

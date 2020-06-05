@@ -7,7 +7,7 @@ function* fetchUser() {
   try {
     let data = yield call(fetchData);
     // data = data.map(event => new Event(event));
-    console.log("3mlna fetch ya 3m",data)
+    // console.log("3mlna fetch ya 3m",data)
     yield put({
       type: types.FETCH_USER_SUCCESS, 
       data,
@@ -40,6 +40,7 @@ function* saveUser({user}) {
     try {
   
       let data = yield call(createUser,user,deviceToken);
+      console.log("saga",data)
       yield put({
         type: types.CREATE_USER_SUCCESS, 
         data,

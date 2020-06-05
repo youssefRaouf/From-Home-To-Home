@@ -14,10 +14,11 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.data[0],
         deviceToken: action.data[1],
         receiveMethod: action.data[2],
+        delegate:action.data[3],
         loading: true
       };
     case types.SAVE_USER_SUCCESS:
-      console.log("ya 3mo", action.user)
+      // console.log("ya 3mo", action.user)
       return {
         ...state,
         user: action.user,
@@ -33,6 +34,12 @@ function user(state = USER_INITIAL_STATE, action) {
       };
     case types.CREATE_USER_FAIL:
       return state
+    case types.CHANGE_RECEIVE_METHOD:
+      return {
+        ...state,
+        receiveMethod:action.receiveMethod,
+        delegate:action.delegate
+      }
     default:
       return state;
 

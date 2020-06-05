@@ -4,14 +4,16 @@ let DONATIONS_INITIAL_STATE = {
   list: [],
   isLoading: false,
   isFetching: false,
+  loading:false
 };
 function donations(state = DONATIONS_INITIAL_STATE, action) {
   switch (action.type) {
     case types.FETCH_DONATIONS:
       return {
         ...state,
-        isLoading: action.refresh ? true : false,
+        isLoading: true,
         isFetching: true,
+        loading:false,
         list: action.refresh ? [] : state.list,
       };
     case types.FETCH_DONATIONS_SUCCESS:
@@ -20,6 +22,7 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
         ...state,
         isLoading: false,
         isFetching: false,
+        loading:true,
         list: action.data,
       };
 
@@ -48,7 +51,7 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
         isFetching: false,
       };
     case types.CHANGE_NUMBER:
-      console.log("ss", action)
+      // console.log("ss", action)
       let newList = state.list.map((item) => {
         if (item.id === action.id) {
           return {
@@ -66,6 +69,8 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
         list: newList
       };
     case types.ADD_TYPE:
+      console.log("add")
+     let randomId= Math.floor(Math.random() * 10000) + 1 ;
       let newList1 = state.list.map((item) => {
         return {
           ...item,
@@ -75,7 +80,7 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
       newList1.push({
         count: 0,
         item: "",
-        id: 10,
+        id: randomId,
         edit:true
       })
       return {
@@ -83,6 +88,7 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
         list: newList1
       };
     case types.CHANGE_NAME:
+      console.log("change")
       let newList2 = state.list.map((item) => {
         if(item.id===action.id){
           return{
