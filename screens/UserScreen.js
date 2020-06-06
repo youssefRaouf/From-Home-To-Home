@@ -113,14 +113,15 @@ class UserScreen extends Component {
       this.props.navigation.navigate('Receive')
     } else {
       if (this.props.route.params.receiveMethod === 2) {
-    this.props.changeReceiveMethod("2",{name:this.state.name,mobile:this.state.mobile})
-     await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
-        this.props.createDonation(1, this.props.user, { name: this.state.name, mobile: this.state.mobile }, this.props.donations)
+   await this.props.changeReceiveMethod("2",{name:this.state.name,mobile:this.state.mobile})
+  
+    //  await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
+        this.props.createDonation(1, this.props.user, { code:this.props.delegate.code,name: this.state.name, mobile: this.state.mobile }, this.props.donations)
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
-    this.props.changeReceiveMethod("3",{name:this.state.name,mobile:this.state.mobile})
-     await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
-        this.props.createDonation(2, this.props.user, { name: this.state.name, mobile: this.state.mobile }, this.props.donations)
+   await this.props.changeReceiveMethod("3",{name:this.state.name,mobile:this.state.mobile})
+    //  await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
+        this.props.createDonation(2, this.props.user, { code:this.props.delegate.code ,name: this.state.name, mobile: this.state.mobile }, this.props.donations)
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(
@@ -243,7 +244,8 @@ const mapStateToProps = ({ user, donations }, props) => {
   return {
     user: user.user,
     deviceToken: user.deviceToken,
-    donations: donations.list
+    donations: donations.list,
+    delegate:user.delegate
   };
 };
 

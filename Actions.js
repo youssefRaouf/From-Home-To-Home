@@ -26,6 +26,10 @@ export function createDonation(handlingMethod,user,receivingUser,donationDetails
 export function changeReceiveMethod(receiveMethod,delegate) {
     return {type: types.CHANGE_RECEIVE_METHOD,receiveMethod,delegate};
 }
+
+export function setDeviceToken(deviceToken) {
+    return {type: types.SET_DEVICE_TOKEN,deviceToken};
+}
 // export function fetchPostsByUserId(offset,user_id) {
 //   console.log("d5lna user posts",user_id,offset)
 //   return {type: types.FETCH_POSTS_USER_ID,offset,user_id};

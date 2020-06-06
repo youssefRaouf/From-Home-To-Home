@@ -14,7 +14,7 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.data[0],
         deviceToken: action.data[1],
         receiveMethod: action.data[2],
-        delegate:action.data[3],
+        delegate: action.data[3],
         loading: true
       };
     case types.SAVE_USER_SUCCESS:
@@ -34,11 +34,20 @@ function user(state = USER_INITIAL_STATE, action) {
       };
     case types.CREATE_USER_FAIL:
       return state
-    case types.CHANGE_RECEIVE_METHOD:
+    case types.CHANGE_RECEIVE_METHOD_SUCCESS:
+      // let createUser = action.data[0] || '';
+      // let createToken = action.data[1] || null;
       return {
         ...state,
-        receiveMethod:action.receiveMethod,
-        delegate:action.delegate
+        receiveMethod: action.receiveMethod,
+        delegate: action.data
+      };
+    case types.CHANGE_RECEIVE_METHOD_FAIL:
+      return state
+    case types.SET_DEVICE_TOKEN:
+      return {
+        ...state,
+        deviceToken: action.deviceToken
       }
     default:
       return state;

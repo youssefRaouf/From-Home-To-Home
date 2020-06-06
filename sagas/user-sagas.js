@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import * as types from '../utils/Consts';
 // import Event from '../models/Event';
-import {createUser,fetchData, _storeUser} from '../services/Api';
+import {createUser,fetchData, _storeUser, createDelegate} from '../services/Api';
 
 function* fetchUser() {
   try {
@@ -54,11 +54,32 @@ function* saveUser({user}) {
     }
   }
 
+  function* createDelegates({delegate,receiveMethod}) {
+    try {
+  
+      let data = yield call(createDelegate,delegate);
+      console.log("saga",data)
+      yield put({
+        type: types.CHANGE_RECEIVE_METHOD_SUCCESS, 
+        data,
+        receiveMethod
+      });
+    } catch (error) {
+      console.log(error);
+      yield put({
+        type: types.CHANGE_RECEIVE_METHOD_FAIL,
+        error,
+      });
+    }
+  }
+
 
 export default function* userSagas() {
   yield takeLatest(types.FETCH_USER, fetchUser);
   yield takeLatest(types.SAVE_USER, saveUser);
   yield takeLatest(types.CREATE_USER, createUsers);
+  yield takeLatest(types.CHANGE_RECEIVE_METHOD, createDelegates);
+
 
 
 }

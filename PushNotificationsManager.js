@@ -20,7 +20,10 @@ import * as actions from './Actions';
       // TODO: Send the token to my server so it could send back push notifications...
       console.log('Device Token Received', event.deviceToken)
       // console.log("sss")
-    await  _storeDeviceToken(event.deviceToken);
+      if(this.props.deviceToken===""||this.props.deviceToken===null){
+        this.props.setDeviceToken(event.deviceToken);
+        await  _storeDeviceToken(event.deviceToken);
+      }
     })
     // console.log("ss")
     Notifications.events().registerRemoteNotificationsRegistrationFailed(event => {
@@ -82,6 +85,8 @@ const mapStateToProps = ({ user}, props) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchUser: () => dispatch(actions.fetchUser()),
+  setDeviceToken: (deviceToken) => dispatch(actions.setDeviceToken(deviceToken)),
+  
   // postsReceived: post => dispatch(actions.postsReceived(post)),
   // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });

@@ -121,6 +121,7 @@ class HomeScreen2 extends Component {
                 })
               );
             } else {
+              console.log("delegate",this.props.delegate)
           this.props.createDonation(2, this.props.user, this.props.delegate, this.props.donations)
 
               alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
