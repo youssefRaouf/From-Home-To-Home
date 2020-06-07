@@ -92,7 +92,7 @@ class UserScreen extends Component {
         this.setState({ coordinates })
 
       },
-      error => Alert.alert(error.message),
+      error => {},
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
@@ -133,16 +133,16 @@ class UserScreen extends Component {
         this.props.updateUser(this.props.user.code,user,this.props.deviceToken)
         this.props.navigation.navigate('بيانات المستخدم')
         return;
-      } 
+      }
     else {
-      
+
        if (this.props.route.params.receiveMethod === 2) {
         this.props.changeReceiveMethod("2", { name: this.state.name, mobile: this.state.mobile },1, this.props.user, this.props.donations)
 
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
         this.props.changeReceiveMethod("3", { name: this.state.name, mobile: this.state.mobile },2, this.props.user, this.props.donations)
-        //  
+        //
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(

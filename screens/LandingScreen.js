@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   View,
   Image,
-  Dimensions
+  Dimensions,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -38,7 +39,7 @@ class landingScreen extends Component {
       this.setState({coordinates})
 
       },
-      error => {},
+      error => Alert.alert('تنبيه', 'من فضلك قم بتفعيل اعدادات تحديد المكان'),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
