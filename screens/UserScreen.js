@@ -14,6 +14,7 @@ import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { CommonActions } from '@react-navigation/native';
 import { _storeDelegate } from '../services/Api';
+import { backgroundColor, activeTextBox, activeButton } from '../utils/Colors';
 
 class UserScreen extends Component {
   constructor(props) {
@@ -24,13 +25,15 @@ class UserScreen extends Component {
       streetFocus: false,
       areaFocus: false,
       mobile1Focus: false,
+      mobileVerifyFocus: false,
       name: "",
       mobile: "",
       street: "",
       area: "",
       mobile1: "",
       message: "",
-      coordinates:""
+      coordinates: "",
+      mobileVerify: ""
     };
   }
 
@@ -43,6 +46,9 @@ class UserScreen extends Component {
       }
       else if (type === "mobileFocus") {
         this.setState({ mobileFocus: text })
+      }
+      else if (type === "mobileVerifyFocus") {
+        this.setState({ mobileVerifyFocus: text })
       }
       else if (type === "streetFocus") {
         this.setState({ streetFocus: text })
@@ -60,6 +66,9 @@ class UserScreen extends Component {
       else if (type === "mobileFocus") {
         this.setState({ mobileFocus: text })
       }
+      else if (type === "mobileVerifyFocus") {
+        this.setState({ mobileVerifyFocus: text })
+      }
       else if (type === "streetFocus") {
         this.setState({ streetFocus: text })
       }
@@ -70,7 +79,7 @@ class UserScreen extends Component {
       }
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     this.findCoordinates()
   }
 
@@ -78,9 +87,9 @@ class UserScreen extends Component {
     Geolocation.getCurrentPosition(
       position => {
         const location = position
-        console.log("location",location.coords)
-      const coordinates=location.coords.latitude+","+location.coords.longitude;
-      this.setState({coordinates})
+        console.log("location", location.coords)
+        const coordinates = location.coords.latitude + "," + location.coords.longitude;
+        this.setState({ coordinates })
 
       },
       error => Alert.alert(error.message),
@@ -89,10 +98,12 @@ class UserScreen extends Component {
   };
 
   handleChange(text, type) {
+    console.log(type)
     if (type === "name") {
       this.setState({ name: text })
     }
     else if (type === "mobile") {
+      console.log(":D")
       this.setState({ mobile: text })
     }
     else if (type === "street") {
@@ -100,28 +111,38 @@ class UserScreen extends Component {
     }
     else if (type === "area") {
       this.setState({ area: text })
-    } else {
+    }
+    else if (type === "mobile1") {
       this.setState({ mobile1: text })
+    }
+    else {
+      console.log("ss")
+      this.setState({ mobileVerify: text })
     }
   }
 
   async continue() {
-  //  this.findCoordinates();
+    //  this.findCoordinates();
     if (!this.props.route.params.receive) {
-      let user = { coordinates:this.state.coordinates,name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
+      let user = { coordinates: this.state.coordinates, name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
       this.props.createUser(user, this.props.deviceToken);
       this.props.navigation.navigate('Receive')
-    } else {
-      if (this.props.route.params.receiveMethod === 2) {
-   await this.props.changeReceiveMethod("2",{name:this.state.name,mobile:this.state.mobile})
-  
-    //  await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
-        this.props.createDonation(1, this.props.user, { code:this.props.delegate.code,name: this.state.name, mobile: this.state.mobile }, this.props.donations)
+    }
+  else  if(this.props.route.params.update){
+      let user = { coordinates: this.state.coordinates, name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
+        this.props.updateUser(this.props.user.code,user,this.props.deviceToken)
+        this.props.navigation.navigate('بيانات المستخدم')
+        return;
+      } 
+    else {
+      
+       if (this.props.route.params.receiveMethod === 2) {
+        this.props.changeReceiveMethod("2", { name: this.state.name, mobile: this.state.mobile },1, this.props.user, this.props.donations)
+
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
-   await this.props.changeReceiveMethod("3",{name:this.state.name,mobile:this.state.mobile})
-    //  await   _storeDelegate({name:this.state.name,mobile:this.state.mobile})
-        this.props.createDonation(2, this.props.user, { code:this.props.delegate.code ,name: this.state.name, mobile: this.state.mobile }, this.props.donations)
+        this.props.changeReceiveMethod("3", { name: this.state.name, mobile: this.state.mobile },2, this.props.user, this.props.donations)
+        //  
         alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(
@@ -141,7 +162,7 @@ class UserScreen extends Component {
         <Text style={{ marginTop: 10, marginRight: 10, borderBottomWidth: 1.5, fontSize: 20, marginLeft: 10, borderColor: 'grey' }}>{this.props.route.params.title}</Text>
         <View style={{ alignItems: 'center' }}>
           <TextInput
-            style={{ ...styles.input, borderColor: this.state.nameFocus ? '#4287f5' : '#a7b2b5' }}
+            style={{ ...styles.input, borderColor: this.state.nameFocus ? activeTextBox : '#a7b2b5' }}
             value={this.state.name}
             onChangeText={type => this.handleChange(type, "name")}
             placeholder={"الاسم"}
@@ -150,18 +171,30 @@ class UserScreen extends Component {
           >
           </TextInput>
           <TextInput
-            style={{ ...styles.input, borderColor: this.state.mobileFocus ? '#4287f5' : '#a7b2b5' }}
+            style={{ ...styles.input, borderColor: this.state.mobileFocus ? activeTextBox :this.state.mobile!==""&&this.state.mobile.length!==11?'red': '#a7b2b5' }}
             value={this.state.mobile}
             onChangeText={type => this.handleChange(type, "mobile")}
             placeholder={"رقم التليفون الأساسي"}
+            contextMenuHidden={true}
             keyboardType='numeric'
             onEndEditing={() => this.changeFocus("mobileFocus", false)}
             onFocus={() => this.changeFocus("mobileFocus", true)}
           >
           </TextInput>
-          {!this.props.route.params.receive ?
+          <TextInput
+            style={{ ...styles.input, borderColor: this.state.mobileVerifyFocus ? activeTextBox : this.state.mobileVerify !== "" && this.state.mobileVerify !== this.state.mobile ? 'red' : '#a7b2b5' }}
+            value={this.state.mobileVerify}
+            onChangeText={type => this.handleChange(type, "mobileVerify")}
+            placeholder={"تأكيد رقم التليفون"}
+            contextMenuHidden={true}
+            keyboardType='numeric'
+            onEndEditing={() => this.changeFocus("mobileVerifyFocus", false)}
+            onFocus={() => this.changeFocus("mobileVerifyFocus", true)}
+          >
+          </TextInput>
+          {!this.props.route.params.receive ||this.props.route.params.update?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.streetFocus ? '#4287f5' : '#a7b2b5' }}
+              style={{ ...styles.input, borderColor: this.state.streetFocus ? activeTextBox : '#a7b2b5' }}
               value={this.state.street}
               onChangeText={type => this.handleChange(type, "street")}
               placeholder={"الشارع"}
@@ -171,9 +204,9 @@ class UserScreen extends Component {
             </TextInput>
             : null
           }
-          {!this.props.route.params.receive ?
+          {!this.props.route.params.receive ||this.props.route.params.update?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.areaFocus ? '#4287f5' : '#a7b2b5' }}
+              style={{ ...styles.input, borderColor: this.state.areaFocus ? activeTextBox : '#a7b2b5' }}
               value={this.state.area}
               onChangeText={type => this.handleChange(type, "area")}
               placeholder={"المنطقة"}
@@ -182,9 +215,9 @@ class UserScreen extends Component {
             >
             </TextInput>
             : null}
-          {!this.props.route.params.receive ?
+          {!this.props.route.params.receive ||this.props.route.params.update ?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? '#4287f5' : '#a7b2b5' }}
+              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? activeTextBox :this.state.mobile1!==""&&this.state.mobile1.length!==11?'red': '#a7b2b5' }}
               value={this.state.mobile1}
               onChangeText={type => this.handleChange(type, "mobile1")}
               placeholder={"رقم تليفون بديل"}
@@ -200,13 +233,13 @@ class UserScreen extends Component {
           <TouchableOpacity
             disabled={(this.state.mobile === "" || this.state.name === "") ? true : false}
             onPress={() => { this.continue() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
             <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { this.props.navigation.goBack() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Text style={{ fontSize: 25, color: '#00004d' }}>السابق</Text>
             <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
           </TouchableOpacity>
@@ -223,7 +256,7 @@ UserScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
     // b3ffcc
   },
   input: {
@@ -245,14 +278,16 @@ const mapStateToProps = ({ user, donations }, props) => {
     user: user.user,
     deviceToken: user.deviceToken,
     donations: donations.list,
-    delegate:user.delegate
+    delegate: user.delegate,
+    delegateLoading:user.delegateLoading
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  updateUser: (code,user, deviceToken) => dispatch(actions.updateUser(code,user, deviceToken)),
   createUser: (user, deviceToken) => dispatch(actions.createUser(user, deviceToken)),
   createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
-  changeReceiveMethod: (receiveMethod,delegate) => dispatch(actions.changeReceiveMethod(receiveMethod,delegate)),
+  changeReceiveMethod: (receiveMethod, delegate,handlingMethod, user, donationDetails) => dispatch(actions.changeReceiveMethod(receiveMethod, delegate,handlingMethod, user, donationDetails)),
 
 });
 

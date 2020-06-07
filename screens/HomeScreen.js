@@ -13,6 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../Actions';
 import Item from '../components/Item';
 import LottieView from 'lottie-react-native';
+import { backgroundColor, activeButton } from '../utils/Colors';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -86,9 +87,9 @@ class HomeScreen extends Component {
         {
           !this.props.donationLoading ?
 
-            <View style={{ backgroundColor: '#e6ffee', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}>
+            <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}>
               {/* <Text>LOADING</Text> */}
-              <LottieView style={{marginTop:-100}} source={require('../assets/loading.json')} autoPlay loop />
+              <LottieView style={{ marginTop: -100,height:Dimensions.get('screen').height }} source={require('../assets/loading3.json')} autoPlay loop />
             </View>
             :
             <FlatList
@@ -115,13 +116,12 @@ class HomeScreen extends Component {
         }
 
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
-          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
             <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
           </TouchableOpacity>
         </View>
       </View>
-
     );
   }
 }
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
   },
 });
 

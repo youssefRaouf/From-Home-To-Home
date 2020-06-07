@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { backgroundColor, activeButton } from '../utils/Colors';
 
 class AboutUsScreen extends Component {
   
@@ -62,7 +63,7 @@ class AboutUsScreen extends Component {
             <TouchableOpacity
               disabled={(this.state.complain === "") ? true : false}
               onPress={() => { this.continue() }}
-              style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : '#19E363', width: 100, flexDirection: 'row' }}>
+              style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
               <Text style={{ fontSize: 25, color: '#00004d' }}>ارسال</Text>
             </TouchableOpacity>
           </View>
@@ -79,7 +80,7 @@ AboutUsScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
   },
 });
 

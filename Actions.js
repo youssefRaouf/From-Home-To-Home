@@ -19,12 +19,18 @@ export function createUser(user,deviceToken) {
     console.log("gwa action",user)
     return {type: types.CREATE_USER,user,deviceToken};
 }
+
+export function updateUser(code,user,deviceToken) {
+    console.log("gwa action",user)
+    return {type: types.UPDATE_USER,code,user,deviceToken};
+}
+
 export function createDonation(handlingMethod,user,receivingUser,donationDetails) {
     return {type: types.CREATE_DONATION,handlingMethod,user,receivingUser,donationDetails};
 }
 
-export function changeReceiveMethod(receiveMethod,delegate) {
-    return {type: types.CHANGE_RECEIVE_METHOD,receiveMethod,delegate};
+export function changeReceiveMethod(receiveMethod,delegate,handlingMethod,user,donationDetails) {
+    return {type: types.CHANGE_RECEIVE_METHOD,receiveMethod,delegate,handlingMethod,user,donationDetails};
 }
 
 export function setDeviceToken(deviceToken) {

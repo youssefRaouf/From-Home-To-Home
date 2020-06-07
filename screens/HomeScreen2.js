@@ -15,6 +15,7 @@ import * as actions from '../Actions';
 import Item from '../components/Item';
 import { CommonActions } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
+import { backgroundColor,activeButton } from '../utils/Colors';
 
 class HomeScreen2 extends Component {
   constructor(props) {
@@ -167,9 +168,9 @@ class HomeScreen2 extends Component {
         {
           !this.props.donationLoading ?
             
-              <View style={{ backgroundColor:'#e6ffee',justifyContent: 'center', alignItems: 'center',height:Dimensions.get('screen').height }}>
+              <View style={{ backgroundColor:backgroundColor,justifyContent: 'center', alignItems: 'center',height:Dimensions.get('screen').height }}>
                 {/* <Text>LOADING</Text> */}
-               <LottieView style={{marginTop:-100}} source={require('../assets/loading.json')} autoPlay loop />
+               <LottieView style={{marginTop:-100,height:Dimensions.get('screen').height}} source={require('../assets/loading3.json')} autoPlay loop />
               </View>
             :
             <FlatList
@@ -197,7 +198,7 @@ class HomeScreen2 extends Component {
             }
         
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
-          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
             <Text style={{ color: '#00004d', fontSize: 25 }}>تابع</Text>
           </TouchableOpacity>
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
   },
 });
 

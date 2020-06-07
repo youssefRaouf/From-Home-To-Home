@@ -36,7 +36,7 @@ function customDrawer(props) {
 
 function drawer() {
   return (
-    <Drawer.Navigator drawerContent={customDrawer} drawerPosition="right" backBehavior='none' drawerStyle={{ backgroundColor: '#ccffdc' }} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10 } }}>
+    <Drawer.Navigator drawerContent={customDrawer} drawerPosition="right" backBehavior='none' drawerStyle={{ backgroundColor: 'white' }} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10 } }}>
       <Drawer.Screen options={{ headerShown: false }} name="التبرع" component={HomeScreen2} />
       <Drawer.Screen options={{ headerShown: false }} name="صفحة الدعم" component={AboutUsScreen} />
       <Drawer.Screen options={{ headerShown: false }} name="بيانات المستخدم" component={UserInfoScreen} />

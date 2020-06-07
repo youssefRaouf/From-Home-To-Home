@@ -4,7 +4,8 @@ let USER_INITIAL_STATE = {
   user: '',
   deviceToken: '',
   receiveMethod: '',
-  loading: false
+  loading: false,
+  delegateLoading: false
 };
 function user(state = USER_INITIAL_STATE, action) {
   switch (action.type) {
@@ -24,23 +25,31 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.user,
       };
     case types.CREATE_USER_SUCCESS:
-      // let createUser = action.data[0] || '';
-      // let createToken = action.data[1] || null;
       return {
         ...state,
         user: action.data,
-        // token: createToken,
-        // loading1: true
       };
     case types.CREATE_USER_FAIL:
       return state
+
+    case types.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.data,
+      };
+    case types.UPDATE_USER_FAIL:
+      return state
+    case types.CHANGE_RECEIVE_METHOD:
+      return {
+        ...state,
+        delegateLoading:true
+      };
     case types.CHANGE_RECEIVE_METHOD_SUCCESS:
-      // let createUser = action.data[0] || '';
-      // let createToken = action.data[1] || null;
       return {
         ...state,
         receiveMethod: action.receiveMethod,
-        delegate: action.data
+        delegate: action.data,
+        delegateLoading:false
       };
     case types.CHANGE_RECEIVE_METHOD_FAIL:
       return state

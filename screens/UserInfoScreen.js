@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { backgroundColor,activeButton } from '../utils/Colors';
 
 class UserInfoScreen extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class UserInfoScreen extends Component {
           </View>
         </View>
         <View style={{ backgroundColor: 'white', margin: 10 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("User", { receive:true,update: true, title: "تجديد بيانات المستخدم" })}}>
             <MaterialIcons style={{ color: 'black', fontSize: 20, marginLeft: 10, marginTop: 10 }} name="edit"></MaterialIcons>
           </TouchableOpacity>
           <View style={styles.textContainer}>
@@ -46,25 +47,19 @@ class UserInfoScreen extends Component {
           <View style={styles.textContainer}>
             <Text>رقم التليفون الأساسي :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.mobile}</Text>
+              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.phone1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
-            <Text>الشارع :</Text>
+            <Text>العنوان :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.street}</Text>
-            </View>
-          </View>
-          <View style={styles.textContainer}>
-            <Text>المنطقة :</Text>
-            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.area}</Text>
+              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.address1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text>رقم التليفون البديل :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.mobile1}</Text>
+              <Text style={{ marginRight: 20, fontSize: 17 }}>{this.props.user.phone2}</Text>
             </View>
           </View>
         </View>
@@ -80,7 +75,7 @@ UserInfoScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
     // b3ffcc
   },
   textContainer: {

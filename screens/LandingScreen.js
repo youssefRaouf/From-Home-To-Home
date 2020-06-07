@@ -13,6 +13,7 @@ import Geolocation from '@react-native-community/geolocation';
 
 import * as actions from '../Actions';
 import { CommonActions } from '@react-navigation/native';
+import { backgroundColor,activeButton } from '../utils/Colors';
 
 class landingScreen extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class landingScreen extends Component {
       <View style={styles.container}>
           <Image style={{width:Dimensions.get('screen').width-30,margin:10,height:Dimensions.get('screen').height-200}} resizeMode='contain' source={require("../assets/logo.jpeg")}></Image>
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
-          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: '#19E363', width: 100, flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
             <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
           </TouchableOpacity>
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
     // b3ffcc
   },
 });

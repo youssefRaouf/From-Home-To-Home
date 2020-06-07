@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>ayc</string>
+	<string>من البيت للبيت</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

@@ -60,7 +60,7 @@ const getDonations = () => {
 
 async function createUser(user, deviceToken) {
   console.log("d5lna el function bt3et el create", deviceToken)
-  console.log(user.mobile1)
+  // console.log(user.mobile1)
   let data = await fetch(baseUrl + 'user', {
     method: 'POST',
     headers: {
@@ -71,7 +71,33 @@ async function createUser(user, deviceToken) {
       name: user.name,
       phone1: user.mobile,
       phone2: user.mobile1||null,
-      address1: user.street||null,
+      address1: user.street+" "+user.area||null,
+      deviceToken: deviceToken,
+      coordinates: user.coordinates
+    }),
+  }).then(response=>response.json())
+  // console.log("response el user",data);
+  // let response = data.json();
+  console.log("ss",data.status)
+  await _storeUser(data)
+  return data;
+}
+
+async function updateUser(code,user, deviceToken) {
+  console.log("d5lna el function bt3et el update", deviceToken)
+  console.log(user)
+  console.log(code)
+  let data = await fetch(baseUrl + 'user/'+code, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: user.name,
+      phone1: user.mobile,
+      phone2: user.mobile1||null,
+      address1: user.street+" "+user.area||null,
       deviceToken: deviceToken,
       coordinates: user.coordinates
     }),
@@ -116,7 +142,7 @@ async function createDonation(handlingMethod, user, receivingUser, donationDetai
       donations.push({item:donationDetails[i].item,count:donationDetails[i].count});
     }
   }
-  console.log("gwa el create donation ya 3m el 7g",receivingUser.name)
+  // console.log("gwa el create donation ya 3m el 7g",receivingUser.name,user,donationDetails)
   let data = await fetch(baseUrl + 'Donation', {
     method: 'POST',
     headers: {
@@ -196,4 +222,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export {createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };
+export {updateUser,createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };

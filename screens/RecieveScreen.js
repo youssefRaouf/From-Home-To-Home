@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import { _storeUser, _storeReceiveMethod } from '../services/Api';
 import { CommonActions } from '@react-navigation/native';
+import { backgroundColor, activeButton } from '../utils/Colors';
 
 class RecieveScreen extends Component {
   constructor(props) {
@@ -52,17 +53,17 @@ class RecieveScreen extends Component {
           <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>سيتم استلام مساهمتكم من ...</Text>
         </View>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <TouchableOpacity onPress={() => this.continue1()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', backgroundColor: '#19E363', width: Dimensions.get('screen').width - 30, height: 40, borderRadius: 15 }}>
+          <TouchableOpacity onPress={() => this.continue1()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', backgroundColor: activeButton, width: Dimensions.get('screen').width - 30, height: 40, borderRadius: 15 }}>
             <Text style={{ fontSize: 23, color: '#00004d' }}>مني شخصيا</Text>
           </TouchableOpacity>
         </View>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <TouchableOpacity onPress={() => this.continue2()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: '#19E363', height: 40, borderRadius: 15 }}>
+          <TouchableOpacity onPress={() => this.continue2()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: activeButton, height: 40, borderRadius: 15 }}>
             <Text style={{ fontSize: 23, color: '#00004d' }}>من شخص مفوض في نفس العقار</Text>
           </TouchableOpacity>
         </View>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <TouchableOpacity onPress={() => this.continue3()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: '#19E363', height: 40, borderRadius: 15 }}>
+          <TouchableOpacity onPress={() => this.continue3()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: activeButton, height: 40, borderRadius: 15 }}>
             <Text style={{ fontSize: 23, color: '#00004d' }}>من حارس العقار</Text>
           </TouchableOpacity>
         </View>
@@ -78,7 +79,7 @@ RecieveScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6ffee'
+    backgroundColor: backgroundColor
   },
   input: {
     textAlign: 'right',
