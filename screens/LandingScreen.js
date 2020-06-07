@@ -38,7 +38,7 @@ class landingScreen extends Component {
       this.setState({coordinates})
 
       },
-      error => Alert.alert(error.message),
+      error => {},
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
