@@ -43,13 +43,8 @@ class HomeScreen2 extends Component {
   }
 
   removeType() {
-    let arr = this.state.data;
-    if (arr.length == 3) {
-      return;
-    } else {
-      arr.splice(arr.length - 1, 1)
-    }
-    this.setState({ data: arr })
+    this.props.removeType()
+
   }
 
   renderItem(item) {
@@ -96,9 +91,9 @@ class HomeScreen2 extends Component {
           text: "لا",
           onPress: () => {
             if (this.props.receiveMethod === "1") {
-              
+
           this.props.createDonation(0, this.props.user, this.props.user, this.props.donations)
-              alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
+              Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
               console.log("sss",this.props.delegate)
               this.props.navigation.dispatch(
                 CommonActions.reset({
@@ -112,7 +107,7 @@ class HomeScreen2 extends Component {
             else if (this.props.receiveMethod === "2") {
           this.props.createDonation(1, this.props.user, this.props.delegate, this.props.donations)
           console.log("sss",this.props.delegate)
-              alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+              Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
               this.props.navigation.dispatch(
                 CommonActions.reset({
                   index: 1,
@@ -125,7 +120,7 @@ class HomeScreen2 extends Component {
               console.log("delegate",this.props.delegate)
           this.props.createDonation(2, this.props.user, this.props.delegate, this.props.donations)
 
-              alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+              Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
               this.props.navigation.dispatch(
                 CommonActions.reset({
                   index: 1,
@@ -167,7 +162,7 @@ class HomeScreen2 extends Component {
         <Text style={{ color: '#00004d', fontSize: 20, marginRight: 35 }}>العدد</Text>
         {
           !this.props.donationLoading ?
-            
+
               <View style={{ backgroundColor:backgroundColor,justifyContent: 'center', alignItems: 'center',height:Dimensions.get('screen').height }}>
                 {/* <Text>LOADING</Text> */}
                <LottieView style={{marginTop:-100,height:Dimensions.get('screen').height}} source={require('../assets/loading3.json')} autoPlay loop />
@@ -196,7 +191,7 @@ class HomeScreen2 extends Component {
           }
         />
             }
-        
+
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
@@ -235,6 +230,7 @@ const mapStateToProps = ({ user, donations }, props) => {
 const mapDispatchToProps = dispatch => ({
   fetchDonations: () => dispatch(actions.fetchDonations()),
   addType: () => dispatch(actions.addType()),
+  removeType: () => dispatch(actions.removeType()),
   createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
 });
 

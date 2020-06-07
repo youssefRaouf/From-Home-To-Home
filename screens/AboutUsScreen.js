@@ -13,7 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { backgroundColor, activeButton } from '../utils/Colors';
 
 class AboutUsScreen extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -55,6 +55,7 @@ class AboutUsScreen extends Component {
           <TextInput
             style={{marginTop:10, textAlignVertical: 'top', backgroundColor: '#E9EBEE', borderRadius: 10, color: 'black', fontSize: 15, marginLeft: 8, textAlign: 'right', padding: 5 }}
             value={this.state.complain}
+            placeholder={"اكتب رسالتك ..."}
             onChangeText={complain => this.handleChange(complain)}
             multiline={true}
             numberOfLines={8}
@@ -64,7 +65,7 @@ class AboutUsScreen extends Component {
               disabled={(this.state.complain === "") ? true : false}
               onPress={() => { this.continue() }}
               style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
-              <Text style={{ fontSize: 25, color: '#00004d' }}>ارسال</Text>
+              <Text style={{ padding:3,fontSize: 23, color: '#00004d' }}>ارسال</Text>
             </TouchableOpacity>
           </View>
         </View>

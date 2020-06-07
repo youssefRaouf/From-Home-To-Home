@@ -87,6 +87,15 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
         ...state,
         list: newList1
       };
+      case types.REMOVE_TYPE:
+     let arr3=[...state.list]
+     if(arr3[arr3.length-1].item===""){
+       arr3.splice(arr3.length-1,1)
+     }
+      return {
+        ...state,
+        list: arr3
+      };
     case types.CHANGE_NAME:
       console.log("change")
       let newList2 = state.list.map((item) => {

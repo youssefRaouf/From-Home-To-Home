@@ -5,7 +5,7 @@ let USER_INITIAL_STATE = {
   deviceToken: '',
   receiveMethod: '',
   loading: false,
-  delegateLoading: false
+  delegateLoading: false,
 };
 function user(state = USER_INITIAL_STATE, action) {
   switch (action.type) {
@@ -16,7 +16,7 @@ function user(state = USER_INITIAL_STATE, action) {
         deviceToken: action.data[1],
         receiveMethod: action.data[2],
         delegate: action.data[3],
-        loading: true
+        loading: true,
       };
     case types.SAVE_USER_SUCCESS:
       // console.log("ya 3mo", action.user)
@@ -30,7 +30,7 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.data,
       };
     case types.CREATE_USER_FAIL:
-      return state
+      return state;
 
     case types.UPDATE_USER_SUCCESS:
       return {
@@ -38,29 +38,34 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.data,
       };
     case types.UPDATE_USER_FAIL:
-      return state
+      return state;
+    case types.CHANGE_RECEIVE_METHOD_ONLY:
+      return {
+        ...state,
+        receiveMethod: action.receiveMethod,
+      };
     case types.CHANGE_RECEIVE_METHOD:
       return {
         ...state,
-        delegateLoading:true
+        delegateLoading: true,
       };
     case types.CHANGE_RECEIVE_METHOD_SUCCESS:
+      console.log(action.receiveMethod);
       return {
         ...state,
         receiveMethod: action.receiveMethod,
         delegate: action.data,
-        delegateLoading:false
+        delegateLoading: false,
       };
     case types.CHANGE_RECEIVE_METHOD_FAIL:
-      return state
+      return state;
     case types.SET_DEVICE_TOKEN:
       return {
         ...state,
-        deviceToken: action.deviceToken
-      }
+        deviceToken: action.deviceToken,
+      };
     default:
       return state;
-
   }
 }
 

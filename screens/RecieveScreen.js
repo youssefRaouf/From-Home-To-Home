@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -20,10 +21,10 @@ class RecieveScreen extends Component {
   }
 
   async continue1() {
-    this.props.changeReceiveMethod("1")
+    this.props.changeReceiveMethodOnly("1")
     await _storeReceiveMethod("1")
     this.props.createDonation(0, this.props.user, this.props.user, this.props.donations)
-    alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
+    Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
     this.props.navigation.dispatch(
       CommonActions.reset({
         index: 1,
@@ -35,7 +36,7 @@ class RecieveScreen extends Component {
   }
 
   async continue2() {
-    
+
     await _storeReceiveMethod("2")
     this.props.navigation.push("User", { receive: true, receiveMethod: 2, title: "من فضلك ادخل بيانات الشخص المفوض منك :" })
   }
@@ -104,7 +105,7 @@ const mapStateToProps = ({ user, donations }, props) => {
 const mapDispatchToProps = dispatch => ({
   saveUser: (user) => dispatch(actions.saveUser(user)),
   createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
-  changeReceiveMethod: (receiveMethod,delegate) => dispatch(actions.changeReceiveMethod(receiveMethod,delegate)),
+  changeReceiveMethodOnly: (receiveMethod) => dispatch(actions.changeReceiveMethodOnly(receiveMethod)),
 
 });
 

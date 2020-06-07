@@ -15,6 +15,11 @@ export function fetchDonations() {
 export function addType() {
     return {type: types.ADD_TYPE};
 }
+
+export function removeType() {
+    return {type: types.REMOVE_TYPE};
+}
+
 export function createUser(user,deviceToken) {
     console.log("gwa action",user)
     return {type: types.CREATE_USER,user,deviceToken};
@@ -31,6 +36,10 @@ export function createDonation(handlingMethod,user,receivingUser,donationDetails
 
 export function changeReceiveMethod(receiveMethod,delegate,handlingMethod,user,donationDetails) {
     return {type: types.CHANGE_RECEIVE_METHOD,receiveMethod,delegate,handlingMethod,user,donationDetails};
+}
+
+export function changeReceiveMethodOnly(receiveMethod) {
+    return {type: types.CHANGE_RECEIVE_METHOD_ONLY,receiveMethod};
 }
 
 export function setDeviceToken(deviceToken) {

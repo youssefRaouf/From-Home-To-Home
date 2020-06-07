@@ -40,13 +40,7 @@ class HomeScreen extends Component {
   }
 
   removeType() {
-    let arr = this.state.data;
-    if (arr.length == 3) {
-      return;
-    } else {
-      arr.splice(arr.length - 1, 1)
-    }
-    this.setState({ data: arr })
+    this.props.removeType()
   }
 
   renderItem(item) {
@@ -153,6 +147,8 @@ const mapStateToProps = ({ user, donations }, props) => {
 const mapDispatchToProps = dispatch => ({
   fetchDonations: () => dispatch(actions.fetchDonations()),
   addType: () => dispatch(actions.addType()),
+  removeType: () => dispatch(actions.removeType()),
+
 
 });
 

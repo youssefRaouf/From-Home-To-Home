@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   Dimensions,
-  Keyboard,
+  Alert
+
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import { connect } from 'react-redux';
@@ -139,11 +140,11 @@ class UserScreen extends Component {
        if (this.props.route.params.receiveMethod === 2) {
         this.props.changeReceiveMethod("2", { name: this.state.name, mobile: this.state.mobile },1, this.props.user, this.props.donations)
 
-        alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+        Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
       } else {
         this.props.changeReceiveMethod("3", { name: this.state.name, mobile: this.state.mobile },2, this.props.user, this.props.donations)
         //
-        alert("شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
+        Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
       this.props.navigation.dispatch(
         CommonActions.reset({
