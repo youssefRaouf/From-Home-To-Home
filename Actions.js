@@ -16,9 +16,13 @@ export function addType() {
     return {type: types.ADD_TYPE};
 }
 
+export function createComplain(user,complain) {
+    return {type: types.CREATE_COMPLAIN,user,complain};
+}
 export function removeType() {
     return {type: types.REMOVE_TYPE};
 }
+
 
 export function createUser(user,deviceToken) {
     console.log("gwa action",user)

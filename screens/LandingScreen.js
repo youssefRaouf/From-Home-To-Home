@@ -70,16 +70,37 @@ class landingScreen extends Component {
   }
 
   render() {
+    if (this.props.user !== null && this.props.user !== '') {
+      this.props.navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [
+            { name: 'Links' },
+          ],
+        })
+      );
+    }
+    else {
+      this.props.navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [
+            { name: 'Home' },
+          ],
+        })
+      );
+
+    }
 
     return (
       <View style={styles.container}>
           <Image style={{width:Dimensions.get('screen').width-30,margin:10,height:Dimensions.get('screen').height-200}} resizeMode='contain' source={require("../assets/logo.jpeg")}></Image>
-        <View style={{ alignItems: 'center', marginBottom: 50 }}>
+        {/* <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
             <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     );
   }

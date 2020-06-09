@@ -46,7 +46,7 @@ class HomeScreen extends Component {
   renderItem(item) {
     item = item.item;
     console.log("render")
-    return <Item id={item.id} text={item.item} edit={item.edit || false}> </Item>
+    return <Item id={item.id} text={item.item} image={item.image} edit={item.edit || false}> </Item>
   }
 
   continue() {

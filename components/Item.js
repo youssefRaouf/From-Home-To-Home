@@ -18,7 +18,7 @@ class Item extends React.Component {
         number = Number(number);
         number++;
         this.setState({ number });
-        this.props.changeNumber(this.props.id,number);
+        this.props.changeNumber(this.props.id, number);
     }
     decrease() {
         let number = this.state.number;
@@ -28,17 +28,17 @@ class Item extends React.Component {
             return;
         }
         this.setState({ number });
-        this.props.changeNumber(this.props.id,number);
+        this.props.changeNumber(this.props.id, number);
     }
     handleChange(number) {
         this.setState({ number })
     }
     handleChangeType(type) {
-   console.log("ss")
+        console.log("ss")
         this.setState({ type })
     }
-    handleItemName(){
-        this.props.changeName(this.props.id,this.state.type)
+    handleItemName() {
+        this.props.changeName(this.props.id, this.state.type)
     }
     handleInput() {
         if (this.state.number === "") {
@@ -46,36 +46,38 @@ class Item extends React.Component {
             this.props.changeNumber(0)
             return;
         }
-        this.props.changeNumber(this.state.type,this.state.number)
+        this.props.changeNumber(this.state.type, this.state.number)
     }
     render() {
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <TextInput
-                    style={{color:'#00004d', borderRadius: 10, borderWidth: 1, padding: 5, marginRight: 10, fontSize: 20, width: Dimensions.get('screen').width - 100, textAlign: 'center' }}
-                    value={this.state.type}
-                    placeholder="ادخل اسم المنتج..."
-                    onChangeText={type => this.handleChangeType(type)}
-                    editable={this.state.edit}
-                    onEndEditing={() => this.handleItemName()}
-                >
-                </TextInput>
+            <View style={{ flexDirection: 'row-reverse', alignItems: 'center', marginLeft: 20,marginBottom:5 }}>
+                <Image resizeMode="center" style={{ width:100,height:100 ,borderRadius:10}} source={{ uri: "data:image/png;base64," + this.props.image }}></Image>
+                <View style={{flexDirection:'column',justifyContent:'flex-start',height:70}}>
+                    <TextInput
+                        style={{ color: '#00004d', fontSize: 20, textAlign: 'right' }}
+                        value={this.state.type}
+                        placeholder="ادخل اسم المنتج..."
+                        onChangeText={type => this.handleChangeType(type)}
+                        editable={this.state.edit}
+                        onEndEditing={() => this.handleItemName()}
+                    >
+                    </TextInput>
+                </View>
 
-                
-                <View style={{ flexDirection: 'column',justifyContent:'center',alignItems:'center' }}>
-                    <TouchableOpacity style={{backgroundColor:'white',marginTop:10,height:30,width:30,borderWidth:1,borderRadius:30,alignItems:'center',justifyContent:'center'}} onPress={() => { this.increase() }} >
+                <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start',flex:1,marginLeft:15 }}>
+                    <TouchableOpacity style={{ backgroundColor: 'white', marginTop: 10, height: 30, width: 30, borderWidth: 1, borderRadius: 30, alignItems: 'center', justifyContent: 'center' }} onPress={() => { this.increase() }} >
                         <Entypo name="plus" style={{ fontSize: 20 }}></Entypo>
                     </TouchableOpacity>
                     <TextInput
-                    style={{ borderRadius: 10, color: 'black', fontSize: 20, textAlign: 'center', padding: 5 }}
-                    value={"" + this.state.number}
-                    onChangeText={number => this.handleChange(number)}
-                    keyboardType="numeric"
-                    editable={false}
-                    onEndEditing={() => this.handleInput()}
-                />
-                    <TouchableOpacity style={{backgroundColor:'white',height:30,width:30,borderWidth:1,borderRadius:15,alignItems:'center',justifyContent:'center'}} onPress={() => { this.decrease() }}>
-                        <Entypo name="minus" style={{ fontSize: 20}}></Entypo>
+                        style={{ borderRadius: 10, color: 'black', fontSize: 20, textAlign: 'center', padding: 5 }}
+                        value={"" + this.state.number}
+                        onChangeText={number => this.handleChange(number)}
+                        keyboardType="numeric"
+                        editable={false}
+                        onEndEditing={() => this.handleInput()}
+                    />
+                    <TouchableOpacity style={{ backgroundColor: 'white', height: 30, width: 30, borderWidth: 1, borderRadius: 15, alignItems: 'center', justifyContent: 'center' }} onPress={() => { this.decrease() }}>
+                        <Entypo name="minus" style={{ fontSize: 20 }}></Entypo>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -108,8 +110,8 @@ const mapStateToProps = ({ rooms }, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    changeNumber: (id,number) => dispatch(actions.changeNumber(id,number)),
-    changeName: (id,type) => dispatch(actions.changeName(id,type)),
+    changeNumber: (id, number) => dispatch(actions.changeNumber(id, number)),
+    changeName: (id, type) => dispatch(actions.changeName(id, type)),
     // postsReceived: post => dispatch(actions.postsReceived(post)),
     // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });

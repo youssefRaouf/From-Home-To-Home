@@ -58,6 +58,27 @@ const getDonations = () => {
     .then(response => response.json())
 };
 
+async function createComplain(user,complain) {
+  console.log("d5lna el function bt3et el create complain", complain)
+  // console.log(user.mobile1)
+  let data = await fetch(baseUrl + 'Message', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      concerningUserCode:user.code,
+      content:complain
+    }),
+  }).then(response=>response.json())
+  // console.log("response el user",data);
+  // let response = data.json();
+  console.log("ss",data.status)
+  await _storeUser(data)
+  return data;
+}
+
 async function createUser(user, deviceToken) {
   console.log("d5lna el function bt3et el create", deviceToken)
   // console.log(user.mobile1)
@@ -222,4 +243,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export {updateUser,createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };
+export {createComplain,updateUser,createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };

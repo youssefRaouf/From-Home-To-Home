@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   TextInput,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -23,14 +24,11 @@ class AboutUsScreen extends Component {
   }
 
   continue() {
-    console.log(this.props.number)
-    for (let i = 0; i < this.state.data.length; i++) {
-      if (this.state.data[i].text === "") {
-
-        return;
-      }
-    }
-    this.props.navigation.navigate("User")
+    this.createComplain(this.props.user,this.state.complain)
+    this.setState({complain:''})
+    Alert.alert(
+      "",
+      "تم توصيل رسالتك بنجاح")
   }
 
   handleChange(complain) {
@@ -87,12 +85,15 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({  }, props) => {
+const mapStateToProps = ({  user}, props) => {
   return {
+    user: user.user,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  createComplain: (user,complain) => dispatch(actions.createComplain(user,complain)),
+
 });
 
 export default connect(

@@ -5,7 +5,7 @@ let USER_INITIAL_STATE = {
   deviceToken: '',
   receiveMethod: '',
   loading: false,
-  delegateLoading: false,
+  delegateLoading: false
 };
 function user(state = USER_INITIAL_STATE, action) {
   switch (action.type) {
@@ -16,7 +16,7 @@ function user(state = USER_INITIAL_STATE, action) {
         deviceToken: action.data[1],
         receiveMethod: action.data[2],
         delegate: action.data[3],
-        loading: true,
+        loading: true
       };
     case types.SAVE_USER_SUCCESS:
       // console.log("ya 3mo", action.user)
@@ -30,8 +30,13 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.data,
       };
     case types.CREATE_USER_FAIL:
-      return state;
-
+      return state
+    case types.CREATE_COMPLAIN_SUCCESS:
+      return {
+        ...state,
+      };
+    case types.CREATE_COMPLAIN_FAIL:
+      return state
     case types.UPDATE_USER_SUCCESS:
       return {
         ...state,
