@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   Dimensions,
-  Alert
+  Alert,
+  ListView
 
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
@@ -15,7 +16,8 @@ import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { CommonActions } from '@react-navigation/native';
 import { _storeDelegate } from '../services/Api';
-import { backgroundColor, activeTextBox, activeButton } from '../utils/Colors';
+import { backgroundColor, activeTextBox, activeButton, textInButton } from '../utils/Colors';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class UserScreen extends Component {
   constructor(props) {
@@ -159,11 +161,11 @@ class UserScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={{...styles.container}}>
         <Text style={{ marginTop: 10, marginRight: 10, borderBottomWidth: 1.5, fontSize: 20, marginLeft: 10, borderColor: 'grey' }}>{this.props.route.params.title}</Text>
         <View style={{ alignItems: 'center' }}>
           <TextInput
-            style={{ ...styles.input, borderColor: this.state.nameFocus ? activeTextBox : '#a7b2b5' }}
+            style={{ ...styles.input, borderColor: this.state.nameFocus ? activeTextBox : '#a7b2b5'}}
             value={this.state.name}
             onChangeText={type => this.handleChange(type, "name")}
             placeholder={"الاسم"}
@@ -235,17 +237,17 @@ class UserScreen extends Component {
             disabled={(this.state.mobile === "" || this.state.name === "") ? true : false}
             onPress={() => { this.continue() }}
             style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
-            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
-            <Text style={{ fontSize: 25, color: '#00004d' }}>تابع</Text>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: textInButton }}></Entypo>
+            <Text style={{ fontSize: 25, color: textInButton }}>تابع</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { this.props.navigation.goBack() }}
             style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
-            <Text style={{ fontSize: 25, color: '#00004d' }}>السابق</Text>
-            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
+            <Text style={{ fontSize: 25, color: textInButton }}>السابق</Text>
+            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: textInButton }}></Entypo>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

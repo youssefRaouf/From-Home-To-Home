@@ -10,8 +10,9 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import { _storeUser, _storeReceiveMethod } from '../services/Api';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { CommonActions } from '@react-navigation/native';
-import { backgroundColor, activeButton } from '../utils/Colors';
+import { backgroundColor, activeButton, textInButton } from '../utils/Colors';
 
 class RecieveScreen extends Component {
   constructor(props) {
@@ -50,22 +51,25 @@ class RecieveScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ alignItems: 'flex-end', marginRight: 20, marginTop: 20 }}>
-          <Text style={{ textAlign: 'center', color: 'blue', fontSize: 20 }}>سيتم استلام مساهمتكم من ...</Text>
+        <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderBottomWidth: 1.5, borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center',marginTop:10,paddingBottom:5 }}>
+        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+            <Ionicons style={{ marginLeft: 20, fontSize: 30, color: '#1e1e8e' }} name="md-arrow-round-back" />
+          </TouchableOpacity>
+          <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 20 }}>سيتم استلام مساهمتكم من ...</Text>
         </View>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <TouchableOpacity onPress={() => this.continue1()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', backgroundColor: activeButton, width: Dimensions.get('screen').width - 30, height: 40, borderRadius: 15 }}>
-            <Text style={{ fontSize: 23, color: '#00004d' }}>مني شخصيا</Text>
+            <Text style={{ fontSize: 23, color: textInButton }}>مني شخصيا</Text>
           </TouchableOpacity>
         </View>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <TouchableOpacity onPress={() => this.continue2()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: activeButton, height: 40, borderRadius: 15 }}>
-            <Text style={{ fontSize: 23, color: '#00004d' }}>من شخص مفوض في نفس العقار</Text>
+            <Text style={{ fontSize: 23, color: textInButton }}>من شخص مفوض في نفس العقار</Text>
           </TouchableOpacity>
         </View>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <TouchableOpacity onPress={() => this.continue3()} style={{ padding: 5, justifyContent: 'center', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: activeButton, height: 40, borderRadius: 15 }}>
-            <Text style={{ fontSize: 23, color: '#00004d' }}>من حارس العقار</Text>
+            <Text style={{ fontSize: 23, color: textInButton }}>من حارس العقار</Text>
           </TouchableOpacity>
         </View>
       </View>

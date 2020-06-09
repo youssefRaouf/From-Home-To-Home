@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text ,StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
@@ -36,9 +36,9 @@ function customDrawer(props) {
 
 function drawer() {
   return (
-    <Drawer.Navigator drawerContent={customDrawer} drawerPosition="right" backBehavior='none' drawerStyle={{ backgroundColor: 'white' }} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10 } }}>
-      <Drawer.Screen options={{ headerShown: false }} name="التبرع" component={HomeScreen2} />
-      <Drawer.Screen options={{ headerShown: false }} name="صفحة الدعم" component={AboutUsScreen} />
+    <Drawer.Navigator drawerContent={customDrawer} drawerPosition="left" backBehavior='none' drawerStyle={{ backgroundColor: 'white' }} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10 } }}>
+      <Drawer.Screen options={{ headerShown: false, }}  name="التبرع" component={HomeScreen2} />
+      <Drawer.Screen options={{ headerShown: false, }} name="صفحة الدعم" component={AboutUsScreen} />
       <Drawer.Screen options={{ headerShown: false }} name="بيانات المستخدم" component={UserInfoScreen} />
     </Drawer.Navigator>
   );
@@ -55,11 +55,12 @@ const App = () => {
       <Provider store={store}>
         <PushNotificationManager>
           <NavigationContainer>
+          <StatusBar  barStyle ="light-content" hidden = {false} backgroundColor = "#1e1e8e" translucent = {false}/>
             {
               <Stack.Navigator initialRouteName='Landing'>
-                <Stack.Screen options={{ headerShown: false }} name="Landing" component={LandingScreen} />
+                <Stack.Screen options={{ headerShown:false}} name="Landing" component={LandingScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
-                <Stack.Screen options={{ headerShown: false }} name="Links" component={drawer} />
+                <Stack.Screen options={{ headerShown: false}} name="Links" component={drawer} />
                 <Stack.Screen options={{ headerShown: false, }} name="User" component={UserScreen} />
                 <Stack.Screen options={{ headerShown: false, }} name="Receive" component={RecieveScreen} />
               </Stack.Navigator>

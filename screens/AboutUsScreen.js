@@ -11,7 +11,8 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { backgroundColor, activeButton } from '../utils/Colors';
+import Foundation from 'react-native-vector-icons/Foundation'
+import { backgroundColor, activeButton, textInButton } from '../utils/Colors';
 
 class AboutUsScreen extends Component {
 
@@ -24,8 +25,8 @@ class AboutUsScreen extends Component {
   }
 
   continue() {
-    this.createComplain(this.props.user,this.state.complain)
-    this.setState({complain:''})
+    this.createComplain(this.props.user, this.state.complain)
+    this.setState({ complain: '' })
     Alert.alert(
       "",
       "تم توصيل رسالتك بنجاح")
@@ -38,35 +39,37 @@ class AboutUsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderBottomWidth: 1.5, borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'flex-end', alignItems: 'center' }}>
-          <Text style={{ marginTop: 10, marginRight: 10, fontSize: 20, marginLeft: 10, }}>صفحة الدعم</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
-            <FontAwesome style={{ fontSize: 20 }} name="list-ul"></FontAwesome>
+        <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderBottomWidth: 1.5, borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center' }}>
+          <TouchableOpacity style={{width:80}} onPress={() => this.props.navigation.toggleDrawer()}>
+            <Foundation style={{ marginLeft:5,fontSize: 25, color: '#1e1e8e' }} name="list"></Foundation>
           </TouchableOpacity>
+          <Text style={{ color:'#1e1e8e',marginTop: 10, marginRight: 10, fontSize: 20, marginLeft: 10, }}>صفحة الدعم</Text>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10,marginTop:10 }}>
-          <Text style={{ fontSize: 18,color:'#00004d' }}>{this.state.number}</Text>
-          <Text style={{ fontSize: 18,color:'#00004d' }}> اتصل بنا: </Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10, marginTop: 10 }}>
+          <Text style={{ fontSize: 18, color: '#00004d' }}>{this.state.number}</Text>
+          <Text style={{ fontSize: 18, color: '#00004d' }}> اتصل بنا: </Text>
         </View>
-        <View style={{ flexDirection: 'column', justifyContent: 'flex-end', marginRight: 10,marginTop:10 }}>
-          <Text style={{ fontSize: 18,color:'#00004d' }}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
-          <TextInput
-            style={{marginTop:10, textAlignVertical: 'top', backgroundColor: '#E9EBEE', borderRadius: 10, color: 'black', fontSize: 15, marginLeft: 8, textAlign: 'right', padding: 5 }}
+        <View style={{ flexDirection: 'column', justifyContent: 'flex-end', marginRight: 10, marginTop: 10 }}>
+          <Text style={{ fontSize: 18, color: '#00004d' }}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
+        </View>
+        <View style={{alignItems:'center'}}>
+        <TextInput
+            style={{ marginTop: 10, textAlignVertical: 'top', backgroundColor: '#DDDFE2', borderRadius: 10, color: 'black', fontSize: 15, textAlign: 'right', padding: 5, width:Dimensions.get('window').width-20,paddingRight:10,paddingTop:5 }}
             value={this.state.complain}
             placeholder={"اكتب رسالتك ..."}
             onChangeText={complain => this.handleChange(complain)}
             multiline={true}
             numberOfLines={8}
           />
-          <View style={{ alignItems: 'center',marginTop:20 }}>
+          </View>
+        <View style={{ alignItems: 'center', marginTop: 20 }}>
             <TouchableOpacity
               disabled={(this.state.complain === "") ? true : false}
               onPress={() => { this.continue() }}
-              style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.complain === "") ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
-              <Text style={{ padding:3,fontSize: 23, color: '#00004d' }}>ارسال</Text>
+              style={{height:50, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: (this.state.complain === "") ? '#DDDFE2' : activeButton, width:Dimensions.get('window').width-20, flexDirection: 'row' }}>
+              <Text style={{ padding: 3, fontSize: 23, color: textInButton,fontWeight:'bold' }}>ارسال</Text>
             </TouchableOpacity>
           </View>
-        </View>
       </View>
     );
   }
@@ -85,14 +88,14 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({  user}, props) => {
+const mapStateToProps = ({ user }, props) => {
   return {
     user: user.user,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  createComplain: (user,complain) => dispatch(actions.createComplain(user,complain)),
+  createComplain: (user, complain) => dispatch(actions.createComplain(user, complain)),
 
 });
 

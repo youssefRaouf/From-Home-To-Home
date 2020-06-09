@@ -14,7 +14,7 @@ import Geolocation from '@react-native-community/geolocation';
 
 import * as actions from '../Actions';
 import { CommonActions } from '@react-navigation/native';
-import { backgroundColor,activeButton } from '../utils/Colors';
+import { backgroundColor, activeButton } from '../utils/Colors';
 
 class landingScreen extends Component {
   constructor(props) {
@@ -26,17 +26,23 @@ class landingScreen extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.findCoordinates()
-
+    this.getDonations()
+    // this.addType()
   }
+
+  getDonations() {
+    this.props.fetchDonations();
+  }
+
 
   findCoordinates = () => {
     // Geolocation.requestAuthorization();
     Geolocation.getCurrentPosition(
       position => {
         const location = position
-        console.log("location",location.coords)
-      const coordinates=location.coords.latitude+","+location.coords.longitude;
-      this.setState({coordinates})
+        console.log("location", location.coords)
+        const coordinates = location.coords.latitude + "," + location.coords.longitude;
+        this.setState({ coordinates })
 
       },
       error => Alert.alert('تنبيه', 'من فضلك قم بتفعيل اعدادات تحديد المكان'),
@@ -46,6 +52,7 @@ class landingScreen extends Component {
 
 
   continue() {
+
     if (this.props.user !== null && this.props.user !== '') {
       this.props.navigation.dispatch(
         CommonActions.reset({
@@ -70,31 +77,33 @@ class landingScreen extends Component {
   }
 
   render() {
-    if (this.props.user !== null && this.props.user !== '') {
-      this.props.navigation.dispatch(
-        CommonActions.reset({
-          index: 1,
-          routes: [
-            { name: 'Links' },
-          ],
-        })
-      );
-    }
-    else {
-      this.props.navigation.dispatch(
-        CommonActions.reset({
-          index: 1,
-          routes: [
-            { name: 'Home' },
-          ],
-        })
-      );
+    if (this.props.donationLoading) {
+      if (this.props.user !== null && this.props.user !== '') {
+        this.props.navigation.dispatch(
+          CommonActions.reset({
+            index: 1,
+            routes: [
+              { name: 'Links' },
+            ],
+          })
+        );
+      }
+      else {
+        this.props.navigation.dispatch(
+          CommonActions.reset({
+            index: 1,
+            routes: [
+              { name: 'Home' },
+            ],
+          })
+        );
 
+      }
     }
 
     return (
       <View style={styles.container}>
-          <Image style={{width:Dimensions.get('screen').width-30,margin:10,height:Dimensions.get('screen').height-200}} resizeMode='contain' source={require("../assets/logo.jpeg")}></Image>
+        <Image style={{ width: Dimensions.get('screen').width - 30, margin: 10, height: Dimensions.get('screen').height - 200 }} resizeMode='contain' source={require("../assets/logo.jpeg")}></Image>
         {/* <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>
@@ -121,7 +130,7 @@ const styles = StyleSheet.create({
 
 
 
-const mapStateToProps = ({ user, rooms }, props) => {
+const mapStateToProps = ({ user, donations }, props) => {
   // const { activePost, isLoading } = posts;
   return {
     // posts: posts.list || [],
@@ -130,12 +139,15 @@ const mapStateToProps = ({ user, rooms }, props) => {
     // user:"ss"
     user: user.user,
     deviceToken: user.deviceToken,
-    loading: user.loading
+    loading: user.loading,
+    donationLoading: donations.loading
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchUser: () => dispatch(actions.fetchUser()),
+  fetchDonations: () => dispatch(actions.fetchDonations()),
+
 
 });
 
