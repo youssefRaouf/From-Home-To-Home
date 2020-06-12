@@ -29,11 +29,11 @@ class UserScreen extends Component {
       areaFocus: false,
       mobile1Focus: false,
       mobileVerifyFocus: false,
-      name: "",
-      mobile: "",
-      street: "",
-      area: "",
-      mobile1: "",
+      name: !this.props.route.params.edit?"":this.props.route.params.user.name||"",
+      mobile: !this.props.route.params.edit?"": this.props.route.params.user.phone1||"",
+      street: !this.props.route.params.edit?"": this.props.route.params.user.address1.split(" ")[0]||"",
+      area: !this.props.route.params.edit?"": this.props.route.params.user.address1.split(" ")[1]||"",
+      mobile1: !this.props.route.params.edit?"": this.props.route.params.user.phone2||"",
       message: "",
       coordinates: "",
       mobileVerify: ""
@@ -128,6 +128,7 @@ class UserScreen extends Component {
     //  this.findCoordinates();
     if (!this.props.route.params.receive) {
       let user = { coordinates: this.state.coordinates, name: this.state.name, mobile: this.state.mobile, street: this.state.street, area: this.state.area, mobile1: this.state.mobile1 }
+     console.log("ss",this.props.deviceToken)
       this.props.createUser(user, this.props.deviceToken);
       this.props.navigation.navigate('Receive')
     }
@@ -234,7 +235,7 @@ class UserScreen extends Component {
         </View>
         <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
           <TouchableOpacity
-            disabled={(this.state.mobile === "" || this.state.name === "") ? true : false}
+            disabled={ (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? true : false}
             onPress={() => { this.continue() }}
             style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: textInButton }}></Entypo>

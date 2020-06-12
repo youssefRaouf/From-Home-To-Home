@@ -20,7 +20,7 @@ class AboutUsScreen extends Component {
     super(props);
     this.state = {
       complain: '',
-      number: "01207330798"
+      number: "01275321274"
     };
   }
 
@@ -50,7 +50,7 @@ class AboutUsScreen extends Component {
           <Text style={{ fontSize: 18, color: '#00004d' }}> اتصل بنا: </Text>
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'flex-end', marginRight: 10, marginTop: 10 }}>
-          <Text style={{ fontSize: 18, color: '#00004d' }}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
+          <Text style={{ fontSize: 18, color: '#00004d' ,fontFamily:'normal'}}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
         </View>
         <View style={{alignItems:'center'}}>
         <TextInput

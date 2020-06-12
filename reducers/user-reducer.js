@@ -13,9 +13,8 @@ function user(state = USER_INITIAL_STATE, action) {
       return {
         ...state,
         user: action.data[0],
-        deviceToken: action.data[1],
-        receiveMethod: action.data[2],
-        delegate: action.data[3],
+        receiveMethod: action.data[1],
+        delegate: action.data[2],
         loading: true
       };
     case types.SAVE_USER_SUCCESS:
@@ -65,6 +64,7 @@ function user(state = USER_INITIAL_STATE, action) {
     case types.CHANGE_RECEIVE_METHOD_FAIL:
       return state;
     case types.SET_DEVICE_TOKEN:
+      console.log("ss hna set",action.deviceToken)
       return {
         ...state,
         deviceToken: action.deviceToken,

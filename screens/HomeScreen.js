@@ -62,7 +62,7 @@ class HomeScreen extends Component {
       return;
     }
     // console.log("total number", total)
-    this.props.navigation.navigate("User", { receive: false, title: "بيانات المستخدم" })
+    this.props.navigation.navigate("User", { receive: false, title: "بيانات المستخدم" ,edit:false})
   }
 
   render() {

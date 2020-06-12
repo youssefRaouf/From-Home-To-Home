@@ -115,6 +115,7 @@ async function updateUser(code,user, deviceToken) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      code:code,
       name: user.name,
       phone1: user.mobile,
       phone2: user.mobile1||null,
@@ -188,13 +189,13 @@ async function createDonation(handlingMethod, user, receivingUser, donationDetai
 
 const fetchData = async () => {
   try {
-    let token = await AsyncStorage.getItem('deviceToken');
+    // let token = await AsyncStorage.getItem('deviceToken');
     let user = await AsyncStorage.getItem('user');
     let receiveMethod = await AsyncStorage.getItem('receiveMethod');
     let delegate = await AsyncStorage.getItem('delegate')
     user = JSON.parse(user)
     delegate=JSON.parse(delegate)
-    return [user, token, receiveMethod,delegate];
+    return [user, receiveMethod,delegate];
   } catch (error) {
     // Error retrieving data
     console.log(errror)

@@ -39,31 +39,32 @@ class UserInfoScreen extends Component {
           </View>
         </View>
         <View style={{ backgroundColor: 'white', margin: 10 }}>
-          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("User", { receive:true,update: true, title: "تجديد بيانات المستخدم" })}}>
+          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("User", { receive:true,update: true, title: "تجديد بيانات المستخدم" ,user:this.props.user,edit:true})
+        console.log(this.props.user)}}>
             <MaterialIcons style={{ color: '#1e1e8e', fontSize: 25, marginLeft: 10, marginTop: 10 }} name="edit"></MaterialIcons>
           </TouchableOpacity>
           <View style={styles.textContainer}>
             <Text>الاسم :</Text>
-            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{padding:5, marginRight: 20, fontSize: 17 }}>{this.props.user.name}</Text>
+            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10,marginTop:5 }}>
+              <Text style={{padding:5, marginRight: 10, fontSize: 17 ,textAlign:'right'}}>{this.props.user.name}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text>رقم التليفون الأساسي :</Text>
-            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ padding:5,marginRight: 20, fontSize: 17 }}>{this.props.user.phone1}</Text>
+            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10,marginTop:5 }}>
+              <Text style={{ padding:5,marginRight: 10, fontSize: 17 ,textAlign:'right'}}>{this.props.user.phone1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text>العنوان :</Text>
-            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ padding:5,marginRight: 20, fontSize: 17 }}>{this.props.user.address1}</Text>
+            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
+              <Text style={{ padding:5,marginRight: 10, fontSize: 17,textAlign:'right' }}>{this.props.user.address1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text>رقم التليفون البديل :</Text>
-            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 }}>
-              <Text style={{ padding:5,marginRight: 20, fontSize: 17 }}>{this.props.user.phone2}</Text>
+            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
+              <Text style={{ padding:5,marginRight: 10, fontSize: 17,textAlign:'right' }}>{this.props.user.phone2}</Text>
             </View>
           </View>
         </View>
