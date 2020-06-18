@@ -13,7 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../Actions';
 import Item from '../components/Item';
 import LottieView from 'lottie-react-native';
-import { backgroundColor, activeButton, textInButton } from '../utils/Colors';
+import { backgroundColor, activeButton, textInButton, fontFamily } from '../utils/Colors';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -75,9 +75,9 @@ class HomeScreen extends Component {
     return (
 
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 20 }}>بماذا تريد المساهمة ؟</Text>
+        <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 25 ,fontFamily:fontFamily}}>بماذا تريد المساهمة ؟</Text>
         <View style={{alignItems:'flex-start',marginLeft:20}}>
-        <Text style={{ color: '#1e1e8e', fontSize: 20, marginRight: 35 }}>العدد</Text>
+        <Text style={{ color: '#1e1e8e', fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
         </View>
         {/* { */}
           {/* !this.props.donationLoading ? */}
@@ -101,7 +101,7 @@ class HomeScreen extends Component {
                       <TouchableOpacity onPress={() => { this.removeType() }}>
                         <FontAwesome name="minus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
                       </TouchableOpacity>
-                      <Text style={{ color: '#00004d', fontSize: 20 }}>أخري</Text>
+                      <Text style={{ color: '#00004d', fontSize: 20 ,fontFamily:fontFamily}}>أخري</Text>
                     </View>
                   </View>
                 );
@@ -113,8 +113,8 @@ class HomeScreen extends Component {
 
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
-            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: textInButton }}></Entypo>
-            <Text style={{ fontSize: 25, color: textInButton }}>تابع</Text>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 30, color: textInButton }}></Entypo>
+            <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>تابع</Text>
           </TouchableOpacity>
         </View>
       </View>

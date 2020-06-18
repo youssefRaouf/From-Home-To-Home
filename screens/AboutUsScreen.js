@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Foundation from 'react-native-vector-icons/Foundation'
-import { backgroundColor, activeButton, textInButton } from '../utils/Colors';
+import { backgroundColor, activeButton, textInButton, fontFamily, fontFamilyBold } from '../utils/Colors';
 
 class AboutUsScreen extends Component {
 
@@ -39,22 +39,22 @@ class AboutUsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderBottomWidth: 1.5, borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center' }}>
+        <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center' }}>
           <TouchableOpacity style={{width:80}} onPress={() => this.props.navigation.toggleDrawer()}>
-            <Foundation style={{ marginLeft:5,fontSize: 25, color: '#1e1e8e' }} name="list"></Foundation>
+            <Foundation style={{ marginLeft:5,fontSize: 30, color: '#1e1e8e' }} name="list"></Foundation>
           </TouchableOpacity>
-          <Text style={{ color:'#1e1e8e',marginTop: 10, marginRight: 10, fontSize: 20, marginLeft: 10, }}>صفحة الدعم</Text>
+          <Text style={{ color:'#1e1e8e',marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10,fontFamily:fontFamily}}>صفحة الدعم</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10, marginTop: 10 }}>
-          <Text style={{ fontSize: 18, color: '#00004d' }}>{this.state.number}</Text>
-          <Text style={{ fontSize: 18, color: '#00004d' }}> اتصل بنا: </Text>
+          <Text style={{ fontSize: 18, color: '#00004d',fontFamily:fontFamily }}>{this.state.number}</Text>
+          <Text style={{ fontSize: 18, color: '#00004d' ,fontFamily:fontFamily}}> اتصل بنا: </Text>
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'flex-end', marginRight: 10, marginTop: 10 }}>
-          <Text style={{ fontSize: 18, color: '#00004d' ,fontFamily:'normal'}}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
+          <Text style={{ fontSize: 18, color: '#00004d' ,fontFamily:fontFamily}}>للشكاوى أو الاستفسار يمكن أن ترسل لنا رسالة :</Text>
         </View>
         <View style={{alignItems:'center'}}>
         <TextInput
-            style={{ marginTop: 10, textAlignVertical: 'top', backgroundColor: '#DDDFE2', borderRadius: 10, color: 'black', fontSize: 15, textAlign: 'right', padding: 5, width:Dimensions.get('window').width-20,paddingRight:10,paddingTop:5 }}
+            style={{ fontFamily:fontFamily,marginTop: 10, textAlignVertical: 'top', backgroundColor: '#DDDFE2', borderRadius: 10, color: 'black', fontSize: 15, textAlign: 'right', padding: 5, width:Dimensions.get('window').width-20,paddingRight:10,paddingTop:5 }}
             value={this.state.complain}
             placeholder={"اكتب رسالتك ..."}
             onChangeText={complain => this.handleChange(complain)}
@@ -67,7 +67,7 @@ class AboutUsScreen extends Component {
               disabled={(this.state.complain === "") ? true : false}
               onPress={() => { this.continue() }}
               style={{height:50, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: (this.state.complain === "") ? '#DDDFE2' : activeButton, width:Dimensions.get('window').width-20, flexDirection: 'row' }}>
-              <Text style={{ padding: 3, fontSize: 23, color: textInButton,fontWeight:'bold' }}>ارسال</Text>
+              <Text style={{ padding: 3, fontSize: 23, color: textInButton,fontFamily:fontFamily }}>ارسال</Text>
             </TouchableOpacity>
           </View>
       </View>

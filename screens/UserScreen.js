@@ -16,7 +16,7 @@ import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { CommonActions } from '@react-navigation/native';
 import { _storeDelegate } from '../services/Api';
-import { backgroundColor, activeTextBox, activeButton, textInButton } from '../utils/Colors';
+import { backgroundColor, activeTextBox, activeButton, textInButton, fontFamily } from '../utils/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
 
 class UserScreen extends Component {
@@ -163,10 +163,10 @@ class UserScreen extends Component {
   render() {
     return (
       <ScrollView style={{...styles.container}}>
-        <Text style={{ marginTop: 10, marginRight: 10, borderBottomWidth: 1.5, fontSize: 20, marginLeft: 10, borderColor: 'grey' }}>{this.props.route.params.title}</Text>
+        <Text style={{ marginTop: 10, marginRight: 10, fontSize: 25,color:'#1e1e8e', marginLeft: 10, borderColor: 'grey' ,fontFamily:fontFamily}}>{this.props.route.params.title}</Text>
         <View style={{ alignItems: 'center' }}>
           <TextInput
-            style={{ ...styles.input, borderColor: this.state.nameFocus ? activeTextBox : '#a7b2b5'}}
+            style={{ ...styles.input, borderColor: this.state.nameFocus ? activeTextBox : '#a7b2b5',fontFamily:fontFamily}}
             value={this.state.name}
             onChangeText={type => this.handleChange(type, "name")}
             placeholder={"الاسم"}
@@ -175,7 +175,7 @@ class UserScreen extends Component {
           >
           </TextInput>
           <TextInput
-            style={{ ...styles.input, borderColor: this.state.mobileFocus ? activeTextBox :this.state.mobile!==""&&this.state.mobile.length!==11?'red': '#a7b2b5' }}
+            style={{ fontFamily:fontFamily,...styles.input, borderColor: this.state.mobileFocus ? activeTextBox :this.state.mobile!==""&&this.state.mobile.length!==11?'red': '#a7b2b5' }}
             value={this.state.mobile}
             onChangeText={type => this.handleChange(type, "mobile")}
             placeholder={"رقم التليفون الأساسي"}
@@ -186,7 +186,7 @@ class UserScreen extends Component {
           >
           </TextInput>
           <TextInput
-            style={{ ...styles.input, borderColor: this.state.mobileVerifyFocus ? activeTextBox : this.state.mobileVerify !== "" && this.state.mobileVerify !== this.state.mobile ? 'red' : '#a7b2b5' }}
+            style={{ fontFamily:fontFamily,...styles.input, borderColor: this.state.mobileVerifyFocus ? activeTextBox : this.state.mobileVerify !== "" && this.state.mobileVerify !== this.state.mobile ? 'red' : '#a7b2b5' }}
             value={this.state.mobileVerify}
             onChangeText={type => this.handleChange(type, "mobileVerify")}
             placeholder={"تأكيد رقم التليفون"}
@@ -198,7 +198,7 @@ class UserScreen extends Component {
           </TextInput>
           {!this.props.route.params.receive ||this.props.route.params.update?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.streetFocus ? activeTextBox : '#a7b2b5' }}
+              style={{ ...styles.input, borderColor: this.state.streetFocus ? activeTextBox : '#a7b2b5',fontFamily:fontFamily }}
               value={this.state.street}
               onChangeText={type => this.handleChange(type, "street")}
               placeholder={"الشارع"}
@@ -210,7 +210,7 @@ class UserScreen extends Component {
           }
           {!this.props.route.params.receive ||this.props.route.params.update?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.areaFocus ? activeTextBox : '#a7b2b5' }}
+              style={{ ...styles.input, borderColor: this.state.areaFocus ? activeTextBox : '#a7b2b5' ,fontFamily:fontFamily}}
               value={this.state.area}
               onChangeText={type => this.handleChange(type, "area")}
               placeholder={"المنطقة"}
@@ -221,7 +221,7 @@ class UserScreen extends Component {
             : null}
           {!this.props.route.params.receive ||this.props.route.params.update ?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? activeTextBox :this.state.mobile1!==""&&this.state.mobile1.length!==11?'red': '#a7b2b5' }}
+              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? activeTextBox :this.state.mobile1!==""&&this.state.mobile1.length!==11?'red': '#a7b2b5',fontFamily:fontFamily }}
               value={this.state.mobile1}
               onChangeText={type => this.handleChange(type, "mobile1")}
               placeholder={"رقم تليفون بديل"}
@@ -231,21 +231,21 @@ class UserScreen extends Component {
             >
             </TextInput>
             : null}
-          <Text style={{ margin: 10, fontSize: 15 }}>إذا كان مكانك الحالى هو مكان التسليم من الأفضل فتح ال location لسهولة الوصول إليك</Text>
+          <Text style={{ margin: 10, fontSize: 15,fontFamily:fontFamily,color:'#1e1e8e' }}>إذا كان مكانك الحالى هو مكان التسليم من الأفضل فتح ال location لسهولة الوصول إليك</Text>
         </View>
         <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
           <TouchableOpacity
             disabled={ (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? true : false}
             onPress={() => { this.continue() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 100, flexDirection: 'row' }}>
-            <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: textInButton }}></Entypo>
-            <Text style={{ fontSize: 25, color: textInButton }}>تابع</Text>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 120, flexDirection: 'row' }}>
+            <Entypo name="arrow-bold-left" style={{ fontSize: 25, color: textInButton }}></Entypo>
+            <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>تابع</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { this.props.navigation.goBack() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
-            <Text style={{ fontSize: 25, color: textInButton }}>السابق</Text>
-            <Entypo name="arrow-bold-right" style={{ fontSize: 20, color: textInButton }}></Entypo>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 120, flexDirection: 'row' }}>
+            <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>السابق</Text>
+            <Entypo name="arrow-bold-right" style={{ fontSize: 25, color: textInButton }}></Entypo>
           </TouchableOpacity>
         </View>
       </ScrollView>

@@ -26,17 +26,17 @@ const Drawer = createDrawerNavigator();
 function customDrawer(props) {
   return (
     <DrawerContentScrollView {...props}>
-      <View style={{ marginRight: 10, borderBottomWidth: 1, marginLeft: 10 }}>
-        <Text style={{ fontSize: 20 }}>من البيت للبيت</Text>
+      <View style={{ marginRight: 10, borderBottomWidth: 1, marginLeft: 10 ,marginBottom:5}}>
+        <Text style={{ fontSize: 25 ,color:'#1e1e8e'}}>من البيت للبيت</Text>
       </View>
-      <DrawerItemList {...props} />
+      <DrawerItemList labelStyle={{fontSize:20}} {...props} />
     </DrawerContentScrollView>
   );
 }
 
 function drawer() {
   return (
-    <Drawer.Navigator drawerContent={customDrawer} drawerPosition="left" backBehavior='none' drawerStyle={{ backgroundColor: 'white' }} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10 } }}>
+    <Drawer.Navigator drawerContent={customDrawer}  drawerPosition="left" backBehavior='none' drawerStyle={{ backgroundColor: 'white' ,}} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10, } }}>
       <Drawer.Screen options={{ headerShown: false, }}  name="التبرع" component={HomeScreen2} />
       <Drawer.Screen options={{ headerShown: false, }} name="صفحة الدعم" component={AboutUsScreen} />
       <Drawer.Screen options={{ headerShown: false }} name="بيانات المستخدم" component={UserInfoScreen} />
