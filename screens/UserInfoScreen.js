@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  SafeAreaView
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -26,12 +27,13 @@ class UserInfoScreen extends Component {
     console.log("el data", this.props.user)
     return (
       <ScrollView style={styles.container}>
+      <SafeAreaView>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent:'space-between', alignItems: 'center' }}>
         <TouchableOpacity style={{width:80}} onPress={() => this.props.navigation.toggleDrawer()}>
         <Foundation style={{ marginLeft:5,fontSize: 30,color:'#1e1e8e' }} name="list"></Foundation>
           </TouchableOpacity>
           <Text style={{ color:'#1e1e8e',marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10, marginBottom: 5,fontFamily:fontFamily }}>بيانات المستخدم</Text>
-         
+
         </View>
         <View style={{ alignItems: 'center', marginTop: 10 }}>
           <View style={{ alignItems: 'center', backgroundColor: '#363685', width: 200, borderRadius: 100, height: 210 }}>
@@ -68,6 +70,7 @@ class UserInfoScreen extends Component {
             </View>
           </View>
         </View>
+        </SafeAreaView>
       </ScrollView>
     );
   }

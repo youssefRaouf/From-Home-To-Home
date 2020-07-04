@@ -6,6 +6,7 @@ import {
   View,
   FlatList,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -73,8 +74,7 @@ class HomeScreen extends Component {
 
 
     return (
-
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 25 ,fontFamily:fontFamily}}>بماذا تريد المساهمة ؟</Text>
         <View style={{alignItems:'flex-start',marginLeft:20}}>
         <Text style={{ color: '#1e1e8e', fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
@@ -117,7 +117,7 @@ class HomeScreen extends Component {
             <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>تابع</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -6,7 +6,8 @@ import {
   View,
   Dimensions,
   Alert,
-  Image
+  Image,
+  SafeAreaView
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -53,9 +54,10 @@ class RecieveScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+      <SafeAreaView>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row',  borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center', marginTop: 10, paddingBottom: 5 }}>
           <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-            <Ionicons style={{ marginLeft: 20, fontSize: 30, color: '#1e1e8e' }} name="md-arrow-round-back" />
+            <Ionicons style={{ marginLeft: 20, fontSize: 30, color: '#1e1e8e' }} name="md-arrow-back" />
           </TouchableOpacity>
           <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 22,fontFamily:fontFamily, }}>سيتم استلام مساهمتكم من ...</Text>
         </View>
@@ -97,6 +99,7 @@ class RecieveScreen extends Component {
             </View>
           </TouchableOpacity>
         </View>
+        </SafeAreaView>
       </ScrollView>
     );
   }
