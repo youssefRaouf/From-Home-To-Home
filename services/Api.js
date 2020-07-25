@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
-const baseUrl = 'https://hometohome.skilful-hands.org/api/';
+const baseUrl = 'http://fromhometohome.skilful-hands.org/api/';
+let accessToken=''
 // let Token
 async function doRequest(url, options = {}, data = {}) {
   // let dataUser = await fetchUser()
@@ -11,8 +12,24 @@ async function doRequest(url, options = {}, data = {}) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Authorization':'Bearer '+accessToken
     }
   });
+}
+
+async function getAccessToken() {
+  const baseUrl = 'https://hometohome.skilful-hands.org/connect/token'
+  let result = await fetch(baseUrl, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      "content-type": "application/x-www-form-urlencoded",
+      "cache-control": "no-cache"
+    },
+    body: "client_id=HomeToHomeMobileApp&client_secret=87N3H0P5-6K79-4A12-A3D6-J42258FB89Y3&scope=HomeToHomeApi&grant_type=client_credentials",
+  }).then(response => response.json())
+  console.log(result.access_token)
+  accessToken=result.access_token
 }
 
 // const getPosts = (offset) => {
@@ -66,14 +83,13 @@ async function createComplain(user,complain) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Authorization':'Bearer '+accessToken
     },
     body: JSON.stringify({
       concerningUserCode:user.code,
       content:complain
     }),
   }).then(response=>response.json())
-  // console.log("response el user",data);
-  // let response = data.json();
   console.log("ss",data.status)
   await _storeUser(data)
   return data;
@@ -87,6 +103,7 @@ async function createUser(user, deviceToken) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Authorization':'Bearer '+accessToken
     },
     body: JSON.stringify({
       name: user.name,
@@ -113,6 +130,7 @@ async function updateUser(code,user, deviceToken) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Authorization':'Bearer '+accessToken
     },
     body: JSON.stringify({
       code:code,
@@ -139,6 +157,7 @@ async function createDelegate(delegate) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Authorization':'Bearer '+accessToken
     },
     body: JSON.stringify({
       name: delegate.name,
@@ -170,6 +189,7 @@ async function createDonation(handlingMethod, user, receivingUser, donationDetai
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Authorization':'Bearer '+accessToken
     },
     body: JSON.stringify({
       handlingMethod: handlingMethod,
@@ -244,4 +264,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export {createComplain,updateUser,createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };
+export {getAccessToken,createComplain,updateUser,createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };

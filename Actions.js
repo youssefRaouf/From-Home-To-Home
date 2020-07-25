@@ -49,6 +49,10 @@ export function changeReceiveMethodOnly(receiveMethod) {
 export function setDeviceToken(deviceToken) {
     return {type: types.SET_DEVICE_TOKEN,deviceToken};
 }
+
+export function getAccessToken() {
+    return {type: types.GET_ACCESS_TOKEN};
+}
 // export function fetchPostsByUserId(offset,user_id) {
 //   console.log("d5lna user posts",user_id,offset)
 //   return {type: types.FETCH_POSTS_USER_ID,offset,user_id};

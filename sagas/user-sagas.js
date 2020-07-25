@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import * as types from '../utils/Consts';
 // import Event from '../models/Event';
-import {createUser,fetchData,createComplain,updateUser, _storeUser, createDelegate, createDonation} from '../services/Api';
+import {createUser,fetchData,createComplain,updateUser, _storeUser, createDelegate, createDonation, getAccessToken} from '../services/Api';
 
 function* fetchUser() {
   try {
@@ -107,6 +107,23 @@ function* saveUser({user}) {
     }
   }
 
+  function* getToken() {
+    try {
+  
+      let data = yield call(getAccessToken);
+      yield put({
+        type: types.FETCH_DONATIONS, 
+      });
+    } catch (error) {
+      console.log(error);
+      yield put({
+        type: types.CHANGE_RECEIVE_METHOD_FAIL,
+        error,
+      });
+    }
+  }
+
+
 
 export default function* userSagas() {
   yield takeLatest(types.FETCH_USER, fetchUser);
@@ -115,7 +132,6 @@ export default function* userSagas() {
   yield takeLatest(types.CREATE_COMPLAIN, createComplains);
   yield takeLatest(types.UPDATE_USER, updateUsers);
   yield takeLatest(types.CHANGE_RECEIVE_METHOD, createDelegates);
-
-
+  yield takeLatest(types.GET_ACCESS_TOKEN, getToken);
 
 }

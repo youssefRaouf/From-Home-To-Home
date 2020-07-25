@@ -45,8 +45,6 @@ function drawer() {
 }
 
 const App = () => {
-  // Geolocation.getCurrentPosition();
-// geolocation.requestAuthorization();
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(reducers, applyMiddleware(sagaMiddleware));
   sagaMiddleware.run(rootSaga);

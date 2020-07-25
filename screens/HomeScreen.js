@@ -111,10 +111,10 @@ class HomeScreen extends Component {
 
         {/* } */}
 
-        <View style={{ alignItems: 'center', marginBottom: 50 }}>
+        <View style={{ alignItems: 'center', marginBottom: 20 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 30, color: textInButton }}></Entypo>
-            <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>تابع</Text>
+            <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily ,paddingBottom:5}}>تابع</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

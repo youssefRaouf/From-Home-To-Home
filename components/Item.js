@@ -53,7 +53,7 @@ class Item extends React.Component {
         return (
             <View style={{ flexDirection: 'row-reverse', alignItems: 'center', marginLeft: 20, marginBottom: 5, borderBottomWidth: 1, paddingBottom: 5, borderBottomColor: '#EDEDED', marginRight: 20 }}>
                 {this.state.edit?
-                <Image resizeMode="center" style={{ width: 100, height: 100, borderRadius: 10 }} source={require("../assets/defaultImage.png")}></Image>
+                <Image resizeMode="center" style={{ width: 100, height: 100, borderRadius: 10 }} source={require("../assets/FoodBox.jpg")}></Image>
                 :<Image resizeMode="center" style={{ width: 100, height: 100, borderRadius: 10 }} source={{ uri: "data:image/png;base64," + this.props.image }}></Image>
                 }
                <View style={{ flexDirection: 'column', justifyContent: 'flex-start', height: 70,flexGrow: 1, }}>

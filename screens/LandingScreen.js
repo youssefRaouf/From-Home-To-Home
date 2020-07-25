@@ -26,7 +26,7 @@ class landingScreen extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.findCoordinates()
-    this.getDonations()
+    // this.getDonations()
     // this.addType()
   }
 
@@ -103,7 +103,7 @@ class landingScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Image style={{ width: Dimensions.get('screen').width - 30, margin: 10, height: Dimensions.get('window').height -50,justifyContent:'center' }} resizeMode='contain' source={require("../assets/logo1.png")}></Image>
+        <Image style={{ width: Dimensions.get('screen').width - 30, margin: 10, height: Dimensions.get('window').height -50,justifyContent:'center' }} resizeMode='contain' source={require("../assets/logo2.png")}></Image>
         {/* <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>

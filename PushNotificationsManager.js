@@ -5,24 +5,27 @@ import { _storeDeviceToken } from './services/Api'
 import { connect } from 'react-redux';
 import * as actions from './Actions';
 
- class PushNotificationManager extends React.Component {
+class PushNotificationManager extends React.Component {
   componentDidMount() {
     this.registerDevice()
     this.registerNotificationEvents()
     this.props.fetchUser();
+    this.props.getAccessToken();
   }
+  
+ 
 
   registerDevice = async () => {
     // console.log("eah")
-    Notifications.events().registerRemoteNotificationsRegistered(async(event) => {
-    // console.log("eah2")
+    Notifications.events().registerRemoteNotificationsRegistered(async (event) => {
+      // console.log("eah2")
 
       // TODO: Send the token to my server so it could send back push notifications...
       console.log('Device Token Received', event.deviceToken)
       // console.log("sss")
-      if(this.props.deviceToken===""||this.props.deviceToken===null){
+      if (this.props.deviceToken === "" || this.props.deviceToken === null) {
         this.props.setDeviceToken(event.deviceToken);
-        await  _storeDeviceToken(event.deviceToken);
+        await _storeDeviceToken(event.deviceToken);
       }
     })
     // console.log("ss")
@@ -54,39 +57,40 @@ import * as actions from './Actions';
     })
 
     Notifications.getInitialNotification()
-        .then(notification => {
-          console.log('Initial notification was:', notification || 'N/A')
-        })
-        .catch(err => console.error('getInitialNotifiation() failed', err))
+      .then(notification => {
+        console.log('Initial notification was:', notification || 'N/A')
+      })
+      .catch(err => console.error('getInitialNotifiation() failed', err))
   }
 
   render() {
     const { children } = this.props
-    console.log("you",this.props.user,this.props.deviceToken);
-    if(this.props.user!==null&&this.props.user!==''&&this.props.loading){
+    console.log("you", this.props.user, this.props.deviceToken);
+    if (this.props.user !== null && this.props.user !== '' && this.props.loading) {
       // this.props.navigation.navigate('Links')
     }
     return <View style={{ flex: 1 }}>{children}</View>
   }
 }
 
-const mapStateToProps = ({ user}, props) => {
+const mapStateToProps = ({ user }, props) => {
   // const { activePost, isLoading } = posts;
   return {
     // posts: posts.list || [],
     // post: activePost,
     // isLoading,
     // user:"ss"
-    user:user.user,
-    deviceToken:user.deviceToken,
-    loading:user.loading
+    user: user.user,
+    deviceToken: user.deviceToken,
+    loading: user.loading
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchUser: () => dispatch(actions.fetchUser()),
+  getAccessToken: () => dispatch(actions.getAccessToken()),
   setDeviceToken: (deviceToken) => dispatch(actions.setDeviceToken(deviceToken)),
-  
+
   // postsReceived: post => dispatch(actions.postsReceived(post)),
   // getFollowings: (offset, userId) => dispatch(actions.getFollowings(offset, userId)),
 });

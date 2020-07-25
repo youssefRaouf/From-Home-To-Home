@@ -239,13 +239,13 @@ class UserScreen extends Component {
           <TouchableOpacity
             disabled={ (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? true : false}
             onPress={() => { this.continue() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 120, flexDirection: 'row' }}>
+            style={{ borderRadius: 10, alignItems: 'center',padding:5, justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === ""||this.state.mobile!==this.state.mobileVerify||this.state.mobile.length!==11) ? '#DDDFE2' : activeButton, width: 120, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 25, color: textInButton }}></Entypo>
             <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>تابع</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { this.props.navigation.goBack() }}
-            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 120, flexDirection: 'row' }}>
+            style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center',padding:5, borderWidth: 0, backgroundColor: activeButton, width: 120, flexDirection: 'row' }}>
             <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily }}>السابق</Text>
             <Entypo name="arrow-bold-right" style={{ fontSize: 25, color: textInButton }}></Entypo>
           </TouchableOpacity>
