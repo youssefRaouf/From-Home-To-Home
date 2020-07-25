@@ -16,6 +16,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { CommonActions } from '@react-navigation/native';
 import { backgroundColor, activeButton, textInButton, fontFamily } from '../utils/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
+import LottieView from 'lottie-react-native';
+
 
 class RecieveScreen extends Component {
   constructor(props) {
@@ -52,56 +54,66 @@ class RecieveScreen extends Component {
   }
 
   render() {
-    return (
-      <ScrollView style={styles.container}>
-      <SafeAreaView>
-        <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row',  borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center', marginTop: 10, paddingBottom: 5 }}>
-          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-            <Ionicons style={{ marginLeft: 20, fontSize: 30, color: '#1e1e8e' }} name="md-arrow-back" />
-          </TouchableOpacity>
-          <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 22,fontFamily:fontFamily, }}>سيتم استلام مساهمتكم من ...</Text>
+    if (this.props.user === ''||this.props.user===null) {
+      return (
+        <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}>
+          {/* <Text>LOADING</Text> */}
+          <LottieView style={{ marginTop: -50, height: Dimensions.get('screen').height }} source={require('../assets/loading3.json')} autoPlay loop />
         </View>
-        <View style={{ alignItems: 'center', marginTop: 20, }}>
-          <TouchableOpacity onPress={() => this.continue1()} style={{ flexWrap: 'wrap', flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', backgroundColor: activeButton, width: Dimensions.get('screen').width - 30, borderRadius: 15 }}>
-            <Image style={{ width: 150, margin: 10, height: 150 }} resizeMode='contain' source={require("../assets/defaultImage.png")}></Image>
-            <View style={{
-              width: 0,
-              flexGrow: 1,
-              flex: 1
-            }}>
-              <Text style={{ fontSize: 27, color: textInButton ,marginRight:10,fontFamily:fontFamily,lineHeight:32}}>مني شخصيا</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={{ alignItems: 'center', marginTop: 20, }}>
-          <TouchableOpacity onPress={() => this.continue2()} style={{ flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: activeButton, borderRadius: 15 }}>
-            <View >
-              <Image style={{ width: 150, margin: 10, height: 150 }} resizeMode='contain' source={require("../assets/defaultImage.png")}></Image>
-            </View>
-            <View style={{
-              width: 0,
-              flexGrow: 1,
-              flex: 1
-            }}>
-              <Text style={{ fontSize: 27, color: textInButton,marginRight:10,fontFamily:fontFamily,lineHeight:32 }}>من شخص مفوض في نفس العقار</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <TouchableOpacity onPress={() => this.continue3()} style={{ flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: activeButton, borderRadius: 15 }}>
-            <Image style={{ width: 150, margin: 10, height: 150 }} resizeMode='contain' source={require("../assets/defaultImage.png")}></Image>
-            <View style={{
-              width: 0,
-              flexGrow: 1,
-              flex: 1
-            }}>
-              <Text style={{ fontSize: 27, color: textInButton ,marginRight:10,fontFamily:fontFamily,lineHeight:32}}>من حارس العقار</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        </SafeAreaView>
-      </ScrollView>
-    );
+      );
+    } else {
+  
+      return (
+        <ScrollView style={styles.container}>
+         <SafeAreaView>
+          <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center', marginTop: 10, paddingBottom: 5 }}>
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <Ionicons style={{ marginLeft: 20, fontSize: 30, color: '#1e1e8e' }} name="md-arrow-round-back" />
+            </TouchableOpacity>
+            <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 22, fontFamily: fontFamily, }}>سيتم استلام مساهمتكم من ...</Text>
+          </View>
+          <View style={{ alignItems: 'center', marginTop: 20, }}>
+            <TouchableOpacity onPress={() => this.continue1()} style={{ flexWrap: 'wrap', flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', backgroundColor: '#335389', width: Dimensions.get('screen').width - 30, borderRadius: 15 }}>
+              <Image style={{ width: 200, height: 200 }} resizeMode='contain' source={require("../assets/icons-04.png")}></Image>
+              <View style={{
+                width: 0,
+                flexGrow: 1,
+                flex: 1
+              }}>
+                <Text style={{ fontSize: 27, color: textInButton, marginRight: 10, fontFamily: fontFamily, lineHeight: 32 }}>مني شخصيا</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ alignItems: 'center', marginTop: 20, }}>
+            <TouchableOpacity onPress={() => this.continue2()} style={{ flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: '#335389', borderRadius: 15 }}>
+              <View >
+                <Image style={{ width: 200, height: 200 }} resizeMode='contain' source={require("../assets/icons-05.png")}></Image>
+              </View>
+              <View style={{
+                width: 0,
+                flexGrow: 1,
+                flex: 1
+              }}>
+                <Text style={{ fontSize: 27, color: textInButton, marginRight: 10, fontFamily: fontFamily, lineHeight: 32 }}>من شخص مفوض في نفس العقار</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ alignItems: 'center', marginTop: 20 }}>
+            <TouchableOpacity onPress={() => this.continue3()} style={{ flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: '#84cc00', borderRadius: 15 }}>
+              <Image style={{ width: 200, height: 200 }} resizeMode='contain' source={require("../assets/icons-09.png")}></Image>
+              <View style={{
+                width: 0,
+                flexGrow: 1,
+                flex: 1
+              }}>
+                <Text style={{ fontSize: 27, color: textInButton, marginRight: 10, fontFamily: fontFamily, lineHeight: 32 }}>من حارس العقار</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          </SafeAreaView>
+        </ScrollView>
+      );
+    }
   }
 }
 
