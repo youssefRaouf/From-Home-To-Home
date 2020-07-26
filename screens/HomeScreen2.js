@@ -6,8 +6,7 @@ import {
   View,
   FlatList,
   Alert,
-  Dimensions,
-  SafeAreaView
+  Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -139,7 +138,7 @@ class HomeScreen2 extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: -20, marginLeft: 10 }}>
           <TouchableOpacity style={{ width: 80 }} onPress={() => this.props.navigation.toggleDrawer()}>
             <Foundation style={{ fontSize: 30, color: '#1e1e8e' }} name="list"></Foundation>
@@ -181,7 +180,7 @@ class HomeScreen2 extends Component {
             <Text style={{ color: textInButton, fontSize: 30,fontFamily:fontFamily,paddingBottom:5 }}>تابع</Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }

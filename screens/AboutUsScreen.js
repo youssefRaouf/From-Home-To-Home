@@ -6,8 +6,7 @@ import {
   View,
   Dimensions,
   TextInput,
-  Alert,
-  SafeAreaView
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -39,7 +38,7 @@ class AboutUsScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center' }}>
           <TouchableOpacity style={{width:80}} onPress={() => this.props.navigation.toggleDrawer()}>
             <Foundation style={{ marginLeft:5,fontSize: 30, color: '#1e1e8e' }} name="list"></Foundation>
@@ -71,7 +70,7 @@ class AboutUsScreen extends Component {
               <Text style={{ padding: 3, fontSize: 23, color: textInButton,fontFamily:fontFamily }}>ارسال</Text>
             </TouchableOpacity>
           </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }

@@ -7,8 +7,7 @@ import {
   TextInput,
   Dimensions,
   Alert,
-  ListView,
-  SafeAreaView
+  ListView
 
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
@@ -164,7 +163,6 @@ class UserScreen extends Component {
   render() {
     return (
       <ScrollView style={{...styles.container}}>
-      <SafeAreaView>
         <Text style={{ marginTop: 10, marginRight: 10, fontSize: 25,color:'#1e1e8e', marginLeft: 10, borderColor: 'grey' ,fontFamily:fontFamily}}>{this.props.route.params.title}</Text>
         <View style={{ alignItems: 'center' }}>
           <TextInput
@@ -250,7 +248,6 @@ class UserScreen extends Component {
             <Entypo name="arrow-bold-right" style={{ fontSize: 25, color: textInButton }}></Entypo>
           </TouchableOpacity>
         </View>
-        </SafeAreaView>
       </ScrollView>
     );
   }

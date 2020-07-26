@@ -54,6 +54,7 @@ class RecieveScreen extends Component {
   }
 
   render() {
+
     if (this.props.user === ''||this.props.user===null) {
       return (
         <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}>

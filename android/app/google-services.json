@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "429717958245",
+    "firebase_url": "https://ayc-4ab97.firebaseio.com",
+    "project_id": "ayc-4ab97",
+    "storage_bucket": "ayc-4ab97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429717958245:android:c80c6c0bff624c56baa08c",
+        "android_client_info": {
+          "package_name": "com.ayc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429717958245-aui6tvcafccohktq28mgtdmdijqal61k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl2dWmdibqxpHWiRt3Ims4UnKSg-xZT9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "429717958245-aui6tvcafccohktq28mgtdmdijqal61k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
