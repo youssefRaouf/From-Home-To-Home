@@ -16,7 +16,7 @@ import * as actions from '../Actions';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { CommonActions } from '@react-navigation/native';
 import { _storeDelegate } from '../services/Api';
-import { backgroundColor, activeTextBox, activeButton, textInButton, fontFamily } from '../utils/Colors';
+import { backgroundColor, activeTextBox, activeButton, textInButton, fontFamily ,headerColor} from '../utils/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
 
 class UserScreen extends Component {
