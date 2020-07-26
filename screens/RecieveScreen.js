@@ -100,7 +100,7 @@ class RecieveScreen extends Component {
           </View>
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <TouchableOpacity onPress={() => this.continue3()} style={{ flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 30, backgroundColor: '#84cc00', borderRadius: 15 }}>
-              <Image style={{ width: 200, height: 200 }} resizeMode='contain' source={require("../assets/icons-09.png")}></Image>
+              <Image style={{ width: 200, height: 200 }} resizeMode='contain' source={require("../assets/icons-06.png")}></Image>
               <View style={{
                 width: 0,
                 flexGrow: 1,
