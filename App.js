@@ -53,7 +53,7 @@ const App = () => {
       <Provider store={store}>
         <PushNotificationManager>
           <NavigationContainer>
-          <StatusBar  barStyle ="light-content" hidden = {false} backgroundColor = "#1e1e8e" translucent = {false}/>
+          <StatusBar  barStyle ="light-content" hidden = {false} backgroundColor = "#84cc00" translucent = {false}/>
             {
               <Stack.Navigator initialRouteName='Landing'>
                 <Stack.Screen options={{ headerShown:false}} name="Landing" component={LandingScreen} />

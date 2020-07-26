@@ -4,7 +4,7 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
-import { fontFamily } from '../utils/Colors';
+import { fontFamily, headerColor } from '../utils/Colors';
 class Item extends React.Component {
     constructor(props) {
         super(props);
@@ -59,7 +59,7 @@ class Item extends React.Component {
                <View style={{ flexDirection: 'column', justifyContent: 'flex-start', height: 70,flexGrow: 1, }}>
                     {this.state.edit ?
                         <TextInput
-                            style={{ color: '#1e1e8e', fontSize: 20, textAlign:'right',fontFamily:fontFamily, }}
+                            style={{ color: headerColor, fontSize: 20, textAlign:'right',fontFamily:fontFamily, }}
                             value={this.state.type}
                             placeholder="ادخل اسم المنتج..."
                             onChangeText={type => this.handleChangeType(type)}
@@ -68,7 +68,7 @@ class Item extends React.Component {
                         >
                         </TextInput>
                         : <Text
-                            style={{ color: '#1e1e8e', fontSize: 20, textAlign: 'right',marginTop:8 ,fontFamily:fontFamily}}  
+                            style={{ color: headerColor, fontSize: 20, textAlign: 'right',marginTop:8 ,fontFamily:fontFamily}}  
                         >
                              {this.state.type}</Text>
 
@@ -77,13 +77,13 @@ class Item extends React.Component {
 
                 <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', flex: 1, }}>
                     <TouchableOpacity style={{ backgroundColor: '#E9E9E9', marginTop: 10, height: 30, width: 30, borderRadius: 30, alignItems: 'center', justifyContent: 'center' }} onPress={() => { this.increase() }} >
-                        <Entypo name="plus" style={{ fontSize: 20,color:'#1e1e8e' }}></Entypo>
+                        <Entypo name="plus" style={{ fontSize: 20,color:headerColor }}></Entypo>
                     </TouchableOpacity>
                     <Text
-                        style={{ borderRadius: 10, color: '#1e1e8e', fontSize: 20, padding: 5,marginLeft:4 }}
+                        style={{ borderRadius: 10, color: headerColor, fontSize: 20, padding: 5,marginLeft:4 }}
                     >{this.state.number}</Text>
                     <TouchableOpacity style={{ backgroundColor: '#E9E9E9', height: 30, width: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' }} onPress={() => { this.decrease() }}>
-                        <Entypo name="minus" style={{ fontSize: 20 ,color:'#1e1e8e'}}></Entypo>
+                        <Entypo name="minus" style={{ fontSize: 20 ,color:headerColor}}></Entypo>
                     </TouchableOpacity>
                 </View>
             </View>

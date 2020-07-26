@@ -13,7 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../Actions';
 import Item from '../components/Item';
 import LottieView from 'lottie-react-native';
-import { backgroundColor, activeButton, textInButton, fontFamily } from '../utils/Colors';
+import { backgroundColor, activeButton, textInButton, fontFamily, headerColor } from '../utils/Colors';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -75,9 +75,9 @@ class HomeScreen extends Component {
     return (
 
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 25 ,fontFamily:fontFamily}}>بماذا تريد المساهمة ؟</Text>
+        <Text style={{ textAlign: 'center', color: headerColor, fontSize: 25 ,fontFamily:fontFamily}}>بماذا تريد المساهمة ؟</Text>
         <View style={{alignItems:'flex-start',marginLeft:20}}>
-        <Text style={{ color: '#1e1e8e', fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
+        <Text style={{ color: headerColor, fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
         </View>
         {/* { */}
           {/* !this.props.donationLoading ? */}

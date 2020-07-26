@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Foundation from 'react-native-vector-icons/Foundation'
-import { backgroundColor, activeButton, textInButton, fontFamily, fontFamilyBold } from '../utils/Colors';
+import { backgroundColor, activeButton, textInButton, fontFamily, fontFamilyBold, headerColor } from '../utils/Colors';
 
 class AboutUsScreen extends Component {
 
@@ -41,9 +41,9 @@ class AboutUsScreen extends Component {
       <View style={styles.container}>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent: 'space-between', alignItems: 'center' }}>
           <TouchableOpacity style={{width:80}} onPress={() => this.props.navigation.toggleDrawer()}>
-            <Foundation style={{ marginLeft:5,fontSize: 30, color: '#1e1e8e' }} name="list"></Foundation>
+            <Foundation style={{ marginLeft:5,fontSize: 30, color: headerColor }} name="list"></Foundation>
           </TouchableOpacity>
-          <Text style={{ color:'#1e1e8e',marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10,fontFamily:fontFamily}}>صفحة الدعم</Text>
+          <Text style={{ color:headerColor,marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10,fontFamily:fontFamily}}>صفحة الدعم</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10, marginTop: 10 }}>
           <Text style={{ fontSize: 18, color: '#00004d',fontFamily:fontFamily }}>{this.state.number}</Text>

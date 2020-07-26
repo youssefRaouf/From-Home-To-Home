@@ -5,8 +5,10 @@ import {getDonations,createDonation} from '../services/Api';
 
 function* requestDonations() {
   try {
+    console.log("etnadet")
     let data = yield call(getDonations);
     // data = data.map(event => new Event(event));
+
     yield put({
       type: types.FETCH_DONATIONS_SUCCESS, 
       data,

@@ -163,7 +163,7 @@ class UserScreen extends Component {
   render() {
     return (
       <ScrollView style={{...styles.container}}>
-        <Text style={{ marginTop: 10, marginRight: 10, fontSize: 25,color:'#1e1e8e', marginLeft: 10, borderColor: 'grey' ,fontFamily:fontFamily}}>{this.props.route.params.title}</Text>
+        <Text style={{ marginTop: 10, marginRight: 10, fontSize: 25,color:headerColor, marginLeft: 10, borderColor: 'grey' ,fontFamily:fontFamily}}>{this.props.route.params.title}</Text>
         <View style={{ alignItems: 'center' }}>
           <TextInput
             style={{ ...styles.input, borderColor: this.state.nameFocus ? activeTextBox : '#a7b2b5',fontFamily:fontFamily}}

@@ -12,7 +12,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Foundation from 'react-native-vector-icons/Foundation'
 
-import { backgroundColor,activeButton, fontFamily } from '../utils/Colors';
+import { backgroundColor,activeButton, fontFamily, headerColor } from '../utils/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
 
 class UserInfoScreen extends Component {
@@ -28,9 +28,9 @@ class UserInfoScreen extends Component {
       <ScrollView style={styles.container}>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent:'space-between', alignItems: 'center' }}>
         <TouchableOpacity style={{width:80}} onPress={() => this.props.navigation.toggleDrawer()}>
-        <Foundation style={{ marginLeft:5,fontSize: 30,color:'#1e1e8e' }} name="list"></Foundation>
+        <Foundation style={{ marginLeft:5,fontSize: 30,color:headerColor }} name="list"></Foundation>
           </TouchableOpacity>
-          <Text style={{ color:'#1e1e8e',marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10, marginBottom: 5,fontFamily:fontFamily }}>بيانات المستخدم</Text>
+          <Text style={{ color:headerColor,marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10, marginBottom: 5,fontFamily:fontFamily }}>بيانات المستخدم</Text>
          
         </View>
         <View style={{ alignItems: 'center', marginTop: 10 }}>

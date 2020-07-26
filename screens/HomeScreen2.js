@@ -16,7 +16,7 @@ import * as actions from '../Actions';
 import Item from '../components/Item';
 import { CommonActions } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import { backgroundColor, activeButton, textInButton, fontFamily } from '../utils/Colors';
+import { backgroundColor, activeButton, textInButton, fontFamily, headerColor } from '../utils/Colors';
 
 class HomeScreen2 extends Component {
   constructor(props) {
@@ -141,14 +141,14 @@ class HomeScreen2 extends Component {
       <View style={styles.container}>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: -20, marginLeft: 10 }}>
           <TouchableOpacity style={{ width: 80 }} onPress={() => this.props.navigation.toggleDrawer()}>
-            <Foundation style={{ fontSize: 30, color: '#1e1e8e' }} name="list"></Foundation>
+            <Foundation style={{ fontSize: 30, color: headerColor }} name="list"></Foundation>
           </TouchableOpacity>
         </View>
         <View >
-          <Text style={{ textAlign: 'center', color: '#1e1e8e', fontSize: 25,fontFamily:fontFamily }}>بماذا تريد المساهمة ؟</Text>
+          <Text style={{ textAlign: 'center', color: headerColor, fontSize: 25,fontFamily:fontFamily }}>بماذا تريد المساهمة ؟</Text>
         </View>
         <View style={{ alignItems: 'flex-start', marginLeft: 20 }}>
-          <Text style={{ color: '#1e1e8e', fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
+          <Text style={{ color: headerColor, fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
         </View>
         <FlatList
           data={this.props.donations}
@@ -161,12 +161,12 @@ class HomeScreen2 extends Component {
               <View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
                   <TouchableOpacity onPress={() => { this.addType() }}>
-                    <FontAwesome name="plus" style={{ color: '#1e1e8e', fontSize: 20, marginRight: 10 }}></FontAwesome>
+                    <FontAwesome name="plus" style={{ color: headerColor, fontSize: 20, marginRight: 10 }}></FontAwesome>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => { this.removeType() }}>
-                    <FontAwesome name="minus" style={{ color: '#1e1e8e', fontSize: 20, marginRight: 10 }}></FontAwesome>
+                    <FontAwesome name="minus" style={{ color: headerColor, fontSize: 20, marginRight: 10 }}></FontAwesome>
                   </TouchableOpacity>
-                  <Text style={{ fontSize: 20 ,fontFamily:fontFamily,color:'#1e1e8e'}}>أخري</Text>
+                  <Text style={{ fontSize: 20 ,fontFamily:fontFamily,color:headerColor}}>أخري</Text>
                 </View>
               </View>
             );
