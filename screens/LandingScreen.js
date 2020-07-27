@@ -45,8 +45,9 @@ class landingScreen extends Component {
         this.setState({ coordinates })
 
       },
-      error => Alert.alert('تنبيه', 'من فضلك قم بتفعيل اعدادات تحديد المكان'),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      error =>{ Alert.alert('تنبيه', 'من فضلك قم بتفعيل اعدادات تحديد المكان'),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      console.log("error el location",error)}
     );
   };
 
@@ -103,7 +104,7 @@ class landingScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Image style={{ width: Dimensions.get('screen').width - 30, margin: 10, height: Dimensions.get('window').height -50,justifyContent:'center' }} resizeMode='contain' source={require("../assets/logo2.png")}></Image>
+        <Image style={{ marginTop:-20,width: Dimensions.get('screen').width - 30, margin: 10, height: Dimensions.get('window').height -50,justifyContent:'center' }}  source={require("../assets/logo2.png")}></Image>
         {/* <View style={{ alignItems: 'center', marginBottom: 50 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 20, color: '#00004d' }}></Entypo>

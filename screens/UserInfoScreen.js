@@ -34,7 +34,7 @@ class UserInfoScreen extends Component {
          
         </View>
         <View style={{ alignItems: 'center', marginTop: 10 }}>
-          <View style={{ alignItems: 'center', backgroundColor: '#363685', width: 200, borderRadius: 100, height: 210 }}>
+          <View style={{ alignItems: 'center', backgroundColor: headerColor, width: 200, borderRadius: 100, height: 210 }}>
             <FontAwesome style={{ fontSize: 200, color: 'white' }} name="user" />
           </View>
         </View>

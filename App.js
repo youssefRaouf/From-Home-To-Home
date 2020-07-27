@@ -11,13 +11,14 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import createSagaMiddleware from 'redux-saga'
 import UserScreen from './screens/UserScreen';
-import AboutUsScreen from './screens/AboutUsScreen';
+import TechnicalSupportScreen from './screens/TechnicalSupportScreen';
 import UserInfoScreen from './screens/UserInfoScreen';
 import PushNotificationManager from './PushNotificationsManager'
 import HomeScreen2 from './screens/HomeScreen2';
 import RecieveScreen from './screens/RecieveScreen';
 import LandingScreen from './screens/LandingScreen';
 import Geolocation from '@react-native-community/geolocation';
+import AboutUsScreen from './screens/AboutUsScreen';
 
 
 const Stack = createStackNavigator();
@@ -38,8 +39,9 @@ function drawer() {
   return (
     <Drawer.Navigator drawerContent={customDrawer}  drawerPosition="left" backBehavior='none' drawerStyle={{ backgroundColor: 'white' ,}} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10, } }}>
       <Drawer.Screen options={{ headerShown: false, }}  name="التبرع" component={HomeScreen2} />
-      <Drawer.Screen options={{ headerShown: false, }} name="صفحة الدعم" component={AboutUsScreen} />
+      <Drawer.Screen options={{ headerShown: false, }} name="صفحة الدعم" component={TechnicalSupportScreen} />
       <Drawer.Screen options={{ headerShown: false }} name="بيانات المستخدم" component={UserInfoScreen} />
+      <Drawer.Screen options={{ headerShown: false }} name="من نحن" component={AboutUsScreen} />
     </Drawer.Navigator>
   );
 }
