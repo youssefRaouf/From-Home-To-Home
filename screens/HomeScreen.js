@@ -95,11 +95,11 @@ class HomeScreen extends Component {
                 return (
                   <View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
-                      <TouchableOpacity onPress={() => { this.addType() }}>
-                        <FontAwesome name="plus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
-                      </TouchableOpacity>
                       <TouchableOpacity onPress={() => { this.removeType() }}>
                         <FontAwesome name="minus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => { this.addType() }}>
+                        <FontAwesome name="plus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
                       </TouchableOpacity>
                       <Text style={{ color: '#00004d', fontSize: 20 ,fontFamily:fontFamily}}>أخري</Text>
                     </View>

@@ -39,32 +39,32 @@ class UserInfoScreen extends Component {
           </View>
         </View>
         <View style={{ backgroundColor: 'white', margin: 10 }}>
-          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("User", { receive:true,update: true, title: "تجديد بيانات المستخدم" ,user:this.props.user,edit:true})
+          <TouchableOpacity style={{backgroundColor:headerColor,width:50,justifyContent:'center',alignItems:'center',height:50,borderRadius:25}} onPress={()=>{this.props.navigation.navigate("User", { receive:true,update: true, title: "تجديد بيانات المستخدم" ,user:this.props.user,edit:true})
         console.log(this.props.user)}}>
-            <MaterialIcons style={{ color: '#1e1e8e', fontSize: 25, marginLeft: 10, marginTop: 10 }} name="edit"></MaterialIcons>
+            <MaterialIcons style={{ color: 'white', fontSize: 25 }} name="edit"></MaterialIcons>
           </TouchableOpacity>
           <View style={styles.textContainer}>
             <Text style={{fontFamily:fontFamily}}>الاسم :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10,marginTop:5 }}>
-              <Text style={{padding:5, marginRight: 10, fontSize: 17 ,textAlign:'right',fontFamily:fontFamily}}>{this.props.user.name}</Text>
+              <Text style={{color:'grey', padding:5, marginRight: 10, fontSize: 17 ,textAlign:'right',fontFamily:fontFamily}}>{this.props.user.name}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text style={{fontFamily:fontFamily}}>رقم التليفون الأساسي :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10,marginTop:5 }}>
-              <Text style={{ padding:5,marginRight: 10, fontSize: 17 ,textAlign:'right',fontFamily:fontFamily}}>{this.props.user.phone1}</Text>
+              <Text style={{ color:'grey',padding:5,marginRight: 10, fontSize: 17 ,textAlign:'right',fontFamily:fontFamily}}>{this.props.user.phone1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text style={{fontFamily:fontFamily}}>العنوان :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
-              <Text style={{ padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.address1}</Text>
+              <Text style={{ color:'grey',padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.address1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
             <Text style={{fontFamily:fontFamily}}>رقم التليفون البديل :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
-              <Text style={{ padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.phone2}</Text>
+              <Text style={{ color:'grey',padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.phone2}</Text>
             </View>
           </View>
         </View>
