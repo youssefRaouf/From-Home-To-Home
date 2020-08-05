@@ -90,8 +90,7 @@ async function createComplain(user,complain) {
       content:complain
     }),
   }).then(response=>response.json())
-  console.log("ss",data.status)
-  await _storeUser(data)
+  console.log("ss",data)
   return data;
 }
 
@@ -109,14 +108,16 @@ async function createUser(user, deviceToken) {
       name: user.name,
       phone1: user.mobile,
       phone2: user.mobile1||null,
-      address1: user.street+" "+user.area||null,
+      address1: user.street||null,
+      neigberhood1: user.area||null,
+      Governorate1:"الأسكندرية",
       deviceToken: deviceToken,
       coordinates: user.coordinates
     }),
   }).then(response=>response.json())
   // console.log("response el user",data);
   // let response = data.json();
-  console.log("ss",data.status)
+  console.log("ss",data)
   await _storeUser(data)
   return data;
 }
@@ -137,14 +138,16 @@ async function updateUser(code,user, deviceToken) {
       name: user.name,
       phone1: user.mobile,
       phone2: user.mobile1||null,
-      address1: user.street+" "+user.area||null,
+      address1: user.street||null,
+      neigberhood1: user.area||null,
+      Governorate1:"الأسكندرية",
       deviceToken: deviceToken,
       coordinates: user.coordinates
     }),
   }).then(response=>response.json())
   // console.log("response el user",data);
   // let response = data.json();
-  console.log("ss",data.status)
+  console.log("ss",data)
   await _storeUser(data)
   return data;
 }

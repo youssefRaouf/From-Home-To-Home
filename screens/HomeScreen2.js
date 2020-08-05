@@ -100,7 +100,7 @@ class HomeScreen2 extends Component {
             else if (this.props.receiveMethod === "2") {
               this.props.createDonation(1, this.props.user, this.props.delegate, this.props.donations)
               console.log("sss", this.props.delegate)
-              Alert.alert("", "شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+              Alert.alert("", "شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من المفوض منك")
               this.props.navigation.dispatch(
                 CommonActions.reset({
                   index: 1,
@@ -137,6 +137,7 @@ class HomeScreen2 extends Component {
   }
 
   render() {
+    // this.navigation
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: -20, marginLeft: 10 }}>
@@ -145,28 +146,28 @@ class HomeScreen2 extends Component {
           </TouchableOpacity>
         </View>
         <View >
-          <Text style={{ textAlign: 'center', color: headerColor, fontSize: 25,fontFamily:fontFamily }}>بماذا تريد المساهمة ؟</Text>
+          <Text style={{ textAlign: 'center', color: headerColor, fontSize: 25, fontFamily: fontFamily }}>بماذا تريد المساهمة ؟</Text>
         </View>
         <View style={{ alignItems: 'flex-start', marginLeft: 20 }}>
-          <Text style={{ color: headerColor, fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
+          <Text style={{ color: headerColor, fontSize: 20, marginRight: 35, fontFamily: fontFamily }}>العدد</Text>
         </View>
         <FlatList
           data={this.props.donations}
-          renderItem={({item})=>this.renderItem(item)}
-          keyExtractor={(item, index)=>`${index}`}
+          renderItem={({ item }) => this.renderItem(item)}
+          keyExtractor={(item, index) => `${index}`}
           // initialNumToRender={10}
           // maxToRenderPerBatch={20}
           ListFooterComponent={() => {
             return (
               <View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
-                  <TouchableOpacity  style={{marginRight: 10 ,backgroundColor:headerColor,justifyContent:'center',alignItems:'center',height:30,width:30,borderRadius:15}} onPress={() => { this.removeType() }}>
-                    <FontAwesome name="minus" style={{ color:'white', fontSize: 20, }}></FontAwesome>
+                  <TouchableOpacity style={{ marginRight: 10, backgroundColor: headerColor, justifyContent: 'center', alignItems: 'center', height: 30, width: 30, borderRadius: 15 }} onPress={() => { this.removeType() }}>
+                    <FontAwesome name="minus" style={{ color: 'white', fontSize: 20, }}></FontAwesome>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{marginRight: 10 ,backgroundColor:headerColor,justifyContent:'center',alignItems:'center',height:30,width:30,borderRadius:15}} onPress={() => { this.addType() }}>
+                  <TouchableOpacity style={{ marginRight: 10, backgroundColor: headerColor, justifyContent: 'center', alignItems: 'center', height: 30, width: 30, borderRadius: 15 }} onPress={() => { this.addType() }}>
                     <FontAwesome name="plus" style={{ color: 'white', fontSize: 20, }}></FontAwesome>
                   </TouchableOpacity>
-                  <Text style={{ fontSize: 20 ,fontFamily:fontFamily,color:headerColor}}>أخري</Text>
+                  <Text style={{ fontSize: 20, fontFamily: fontFamily, color: headerColor }}>أخري</Text>
                 </View>
               </View>
             );
@@ -177,7 +178,7 @@ class HomeScreen2 extends Component {
         <View style={{ alignItems: 'center', marginBottom: 20 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 30, color: textInButton }}></Entypo>
-            <Text style={{ color: textInButton, fontSize: 30,fontFamily:fontFamily,paddingBottom:5 }}>تابع</Text>
+            <Text style={{ color: textInButton, fontSize: 30, fontFamily: fontFamily, paddingBottom: 5 }}>تابع</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -202,7 +203,7 @@ const mapStateToProps = ({ user, donations }, props) => {
     deviceToken: user.deviceToken,
     receiveMethod: user.receiveMethod,
     loading: user.loading,
-    donations: donations.list||[],
+    donations: donations.list || [],
     donationLoading: donations.loading,
     delegate: user.delegate
 

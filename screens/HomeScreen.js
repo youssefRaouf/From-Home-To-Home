@@ -62,7 +62,7 @@ class HomeScreen extends Component {
       return;
     }
     // console.log("total number", total)
-    this.props.navigation.navigate("User", { receive: false, title: "بيانات المستخدم" ,edit:false})
+    this.props.navigation.navigate("User", { receive: false, title: "بيانات المستخدم", edit: false })
   }
 
   render() {
@@ -75,46 +75,46 @@ class HomeScreen extends Component {
     return (
 
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center', color: headerColor, fontSize: 25 ,fontFamily:fontFamily}}>بماذا تريد المساهمة ؟</Text>
-        <View style={{alignItems:'flex-start',marginLeft:20}}>
-        <Text style={{ color: headerColor, fontSize: 20, marginRight: 35 ,fontFamily:fontFamily}}>العدد</Text>
+        <Text style={{ textAlign: 'center', color: headerColor, fontSize: 25, fontFamily: fontFamily }}>بماذا تريد المساهمة ؟</Text>
+        <View style={{ alignItems: 'flex-start', marginLeft: 20 }}>
+          <Text style={{ color: headerColor, fontSize: 20, marginRight: 35, fontFamily: fontFamily }}>العدد</Text>
         </View>
         {/* { */}
-          {/* !this.props.donationLoading ? */}
+        {/* !this.props.donationLoading ? */}
 
-            {/* <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}> */}
-              {/* <Text>LOADING</Text> */}
-              {/* <LottieView style={{ marginTop: -100,height:Dimensions.get('screen').height }} source={require('../assets/loading3.json')} autoPlay loop /> */}
-            {/* </View> */}
-            {/* : */}
-            <FlatList
-              data={this.props.donations}
-              renderItem={this.renderItem.bind(this)}
-          keyExtractor={(item, index)=>`${index}`}
-              ListFooterComponent={() => {
-                return (
-                  <View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
-                      <TouchableOpacity onPress={() => { this.removeType() }}>
-                        <FontAwesome name="minus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { this.addType() }}>
-                        <FontAwesome name="plus" style={{ color: '#00004d', fontSize: 20, marginRight: 10 }}></FontAwesome>
-                      </TouchableOpacity>
-                      <Text style={{ color: '#00004d', fontSize: 20 ,fontFamily:fontFamily}}>أخري</Text>
-                    </View>
-                  </View>
-                );
-              }
-              }
-            />
+        {/* <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}> */}
+        {/* <Text>LOADING</Text> */}
+        {/* <LottieView style={{ marginTop: -100,height:Dimensions.get('screen').height }} source={require('../assets/loading3.json')} autoPlay loop /> */}
+        {/* </View> */}
+        {/* : */}
+        <FlatList
+          data={this.props.donations}
+          renderItem={this.renderItem.bind(this)}
+          keyExtractor={(item, index) => `${index}`}
+          ListFooterComponent={() => {
+            return (
+              <View>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginRight: 20, marginTop: 10 }}>
+                  <TouchableOpacity style={{ marginRight: 10, backgroundColor: headerColor, justifyContent: 'center', alignItems: 'center', height: 30, width: 30, borderRadius: 15 }} onPress={() => { this.removeType() }}>
+                    <FontAwesome name="minus" style={{ color: 'white', fontSize: 20, }}></FontAwesome>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ marginRight: 10, backgroundColor: headerColor, justifyContent: 'center', alignItems: 'center', height: 30, width: 30, borderRadius: 15 }} onPress={() => { this.addType() }}>
+                    <FontAwesome name="plus" style={{ color: 'white', fontSize: 20, }}></FontAwesome>
+                  </TouchableOpacity>
+                  <Text style={{ fontSize: 20, fontFamily: fontFamily, color: headerColor }}>أخري</Text>
+                </View>
+              </View>
+            );
+          }
+          }
+        />
 
         {/* } */}
 
         <View style={{ alignItems: 'center', marginBottom: 20 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 30, color: textInButton }}></Entypo>
-            <Text style={{ fontSize: 30, color: textInButton,fontFamily:fontFamily ,paddingBottom:5}}>تابع</Text>
+            <Text style={{ fontSize: 30, color: textInButton, fontFamily: fontFamily, paddingBottom: 5 }}>تابع</Text>
           </TouchableOpacity>
         </View>
       </View>

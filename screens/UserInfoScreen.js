@@ -56,9 +56,21 @@ class UserInfoScreen extends Component {
             </View>
           </View>
           <View style={styles.textContainer}>
-            <Text style={{fontFamily:fontFamily}}>العنوان :</Text>
+            <Text style={{fontFamily:fontFamily}}>الشارع :</Text>
             <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
               <Text style={{ color:'grey',padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.address1}</Text>
+            </View>
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={{fontFamily:fontFamily}}>الحي أو المنطقة :</Text>
+            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
+              <Text style={{ color:'grey',padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.neigberhood1}</Text>
+            </View>
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={{fontFamily:fontFamily}}>المحافظة :</Text>
+            <View style={{ backgroundColor: '#E4ECEE', borderRadius: 10 ,marginTop:5}}>
+              <Text style={{ color:'grey',padding:5,marginRight: 10, fontSize: 17,textAlign:'right',fontFamily:fontFamily }}>{this.props.user.governorate1}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>

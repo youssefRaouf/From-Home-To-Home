@@ -31,8 +31,8 @@ class UserScreen extends Component {
       mobileVerifyFocus: false,
       name: !this.props.route.params.edit?"":this.props.route.params.user.name||"",
       mobile: !this.props.route.params.edit?"": this.props.route.params.user.phone1||"",
-      street: !this.props.route.params.edit?"": this.props.route.params.user.address1.split(" ")[0]||"",
-      area: !this.props.route.params.edit?"": this.props.route.params.user.address1.split(" ")[1]||"",
+      street: !this.props.route.params.edit?"": this.props.route.params.user.address1||"",
+      area: !this.props.route.params.edit?"": this.props.route.params.user.neigberhood1||"",
       mobile1: !this.props.route.params.edit?"": this.props.route.params.user.phone2||"",
       message: "",
       coordinates: "",
@@ -143,7 +143,7 @@ class UserScreen extends Component {
        if (this.props.route.params.receiveMethod === 2) {
         this.props.changeReceiveMethod("2", { name: this.state.name, mobile: this.state.mobile },1, this.props.user, this.props.donations)
 
-        Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من شقة المفوض منك")
+        Alert.alert("","شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من المفوض منك")
       } else {
         this.props.changeReceiveMethod("3", { name: this.state.name, mobile: this.state.mobile },2, this.props.user, this.props.donations)
         //
@@ -213,11 +213,19 @@ class UserScreen extends Component {
               style={{ ...styles.input, borderColor: this.state.areaFocus ? activeTextBox : '#a7b2b5' ,fontFamily:fontFamily}}
               value={this.state.area}
               onChangeText={type => this.handleChange(type, "area")}
-              placeholder={"المنطقة"}
+              placeholder={"المنطقة أو الحي"}
               onEndEditing={() => this.changeFocus("areaFocus", false)}
               onFocus={() => this.changeFocus("areaFocus", true)}
             >
             </TextInput>
+            : null}
+             {!this.props.route.params.receive ||this.props.route.params.update?
+            <Text
+              style={{ ...styles.input, borderColor: this.state.areaFocus ? activeTextBox : '#a7b2b5' ,fontFamily:fontFamily,textAlignVertical:'center'}}
+              value='الأسكندرية'
+            >
+              الأسكندرية
+            </Text>
             : null}
           {!this.props.route.params.receive ||this.props.route.params.update ?
             <TextInput

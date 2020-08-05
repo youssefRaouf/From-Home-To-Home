@@ -19,6 +19,7 @@ import RecieveScreen from './screens/RecieveScreen';
 import LandingScreen from './screens/LandingScreen';
 import Geolocation from '@react-native-community/geolocation';
 import AboutUsScreen from './screens/AboutUsScreen';
+import { fontFamily } from './utils/Colors';
 
 
 const Stack = createStackNavigator();
@@ -37,7 +38,7 @@ function customDrawer(props) {
 
 function drawer() {
   return (
-    <Drawer.Navigator drawerContent={customDrawer}  drawerPosition="left" backBehavior='none' drawerStyle={{ backgroundColor: 'white' ,}} drawerContentOptions={{ itemStyle: { alignItems: 'flex-end', marginRight: -10, } }}>
+    <Drawer.Navigator  drawerContent={customDrawer}  drawerPosition="left" backBehavior='none' drawerStyle={{ backgroundColor: 'white' ,}} drawerContentOptions={{ labelStyle:{fontFamily:fontFamily,fontSize:20},itemStyle: { alignItems: 'flex-end', marginRight: -10, } }}>
       <Drawer.Screen options={{ headerShown: false, }}  name="التبرع" component={HomeScreen2} />
       <Drawer.Screen options={{ headerShown: false, }} name="صفحة الدعم" component={TechnicalSupportScreen} />
       <Drawer.Screen options={{ headerShown: false }} name="بيانات المستخدم" component={UserInfoScreen} />

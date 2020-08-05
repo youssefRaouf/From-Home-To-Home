@@ -6,7 +6,8 @@ import {
   View,
   Dimensions,
   TextInput,
-  Alert
+  Alert,
+  Keyboard
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
@@ -25,8 +26,9 @@ class TechnicalSupportScreen extends Component {
   }
 
   continue() {
-    this.createComplain(this.props.user, this.state.complain)
+    this.props.createComplain(this.props.user, this.state.complain)
     this.setState({ complain: '' })
+    Keyboard.dismiss();
     Alert.alert(
       "",
       "تم توصيل رسالتك بنجاح")
