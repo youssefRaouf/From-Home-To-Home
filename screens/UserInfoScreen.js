@@ -11,7 +11,7 @@ import * as actions from '../Actions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Foundation from 'react-native-vector-icons/Foundation'
-
+import LottieView from 'lottie-react-native';
 import { backgroundColor,activeButton, fontFamily, headerColor } from '../utils/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -23,7 +23,15 @@ class UserInfoScreen extends Component {
   }
 
   render() {
-    console.log("el data", this.props.user)
+    console.log("el data", this.props.user,this.props.loading)
+    if (this.props.user === '' || this.props.user === null||this.props.loading===true) {
+      return (
+        <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}>
+          {/* <Text>LOADING</Text> */}
+          <LottieView style={{ alignSelf:'center' }} source={require('../assets/loading3.json')} autoPlay loop />
+        </View>
+      );
+    }
     return (
       <ScrollView style={styles.container}>
         <View style={{ paddingRight: 5, marginLeft: 5, flexDirection: 'row', borderColor: 'grey', width: Dimensions.get('screen').width - 20, justifyContent:'space-between', alignItems: 'center' }}>
@@ -115,7 +123,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ user }, props) => {
   return {
-    user: user.user
+    user: user.user,
+    loading:user.loading
   };
 };
 

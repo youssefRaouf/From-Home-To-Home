@@ -15,7 +15,7 @@ function user(state = USER_INITIAL_STATE, action) {
         user: action.data[0],
         receiveMethod: action.data[1],
         delegate: action.data[2],
-        loading: true
+        loading: false
       };
     case types.SAVE_USER_SUCCESS:
       // console.log("ya 3mo", action.user)
@@ -36,13 +36,23 @@ function user(state = USER_INITIAL_STATE, action) {
       };
     case types.CREATE_COMPLAIN_FAIL:
       return state
+    case types.UPDATE_USER:
+      return {
+        ...state,
+        loading: true
+      }
     case types.UPDATE_USER_SUCCESS:
       return {
         ...state,
         user: action.data,
+        loading: false
       };
     case types.UPDATE_USER_FAIL:
-      return state;
+      return {
+        ...state,
+        loading: false
+      };
+
     case types.CHANGE_RECEIVE_METHOD_ONLY:
       return {
         ...state,
@@ -64,7 +74,7 @@ function user(state = USER_INITIAL_STATE, action) {
     case types.CHANGE_RECEIVE_METHOD_FAIL:
       return state;
     case types.SET_DEVICE_TOKEN:
-      console.log("ss hna set",action.deviceToken)
+      console.log("ss hna set", action.deviceToken)
       return {
         ...state,
         deviceToken: action.deviceToken,

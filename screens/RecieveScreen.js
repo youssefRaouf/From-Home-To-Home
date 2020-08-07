@@ -60,7 +60,7 @@ class RecieveScreen extends Component {
       return (
         <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}>
           {/* <Text>LOADING</Text> */}
-          <LottieView style={{ marginTop: -50, height: Dimensions.get('screen').height }} source={require('../assets/loading3.json')} autoPlay loop />
+          <LottieView style={{ alignSelf:'center' }} source={require('../assets/loading3.json')} autoPlay loop />
         </View>
       );
     } else {
