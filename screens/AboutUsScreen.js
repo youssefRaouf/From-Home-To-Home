@@ -49,7 +49,7 @@ class AboutUsScreen extends Component {
                     </TouchableOpacity>
                     <Text style={{ color: headerColor, marginTop: 10, marginRight: 10, fontSize: 30, marginLeft: 10, fontFamily: fontFamily }}>من نحن</Text>
                 </View>
-                <Text style={{ lineHeight:25,color: headerColor, marginTop: 10, marginRight: 10, fontSize: 20, marginLeft: 10, fontFamily: fontFamily }}>هيئة شباب الأسكندرية هى هيئة مسيحية تحت سنودس النيل الإنجيلى ، المجمع الأعلى للكنائس الإنجيلية فى مصر.
+                <Text style={{direction:'rtl', lineHeight:25,color: headerColor, marginTop: 10, marginRight: 10, fontSize: 20, marginLeft: 10, fontFamily: fontFamily }}>هيئة شباب الأسكندرية هى هيئة مسيحية تحت سنودس النيل الإنجيلى ، المجمع الأعلى للكنائس الإنجيلية فى مصر.
                 نحن نقوى التضامن بين الناس فى مجتمعنا و نشجع الكنائس المحلية أن تعطى يد و تظهر الرحمة للمحتاجين بلا تفرقة .
                 هذا التطبيق يسهل للمتبرعين أن يساهموا بالمواد التموينية الصالحة و هيئة شباب الأسكندرية تجمع هذه المواد التموينية و تعيد توزيعها للأشخاص المحتاجين فى مناطق مختلفة فى مدن و قرى الأسكندرية و الدلتا.
                 

@@ -59,7 +59,7 @@ const App = () => {
           <StatusBar  barStyle ="light-content" hidden = {false} backgroundColor = "#84cc00" translucent = {false}/>
             {
               <Stack.Navigator initialRouteName='Landing'>
-                <Stack.Screen options={{ headerShown:false}} name="Landing" component={LandingScreen} />
+                <Stack.Screen options={{ headerShown:false}} name="Landing" component={RecieveScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
                 <Stack.Screen options={{ headerShown: false}} name="Links" component={drawer} />
                 <Stack.Screen options={{ headerShown: false, }} name="User" component={UserScreen} />

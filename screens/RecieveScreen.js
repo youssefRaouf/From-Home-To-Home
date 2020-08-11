@@ -76,44 +76,44 @@ class RecieveScreen extends Component {
             </View>
             <View style={{ alignItems: 'center', marginTop: 20, }}>
               <TouchableOpacity onPress={() => this.continue1()}>
-              <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{ flexWrap: 'wrap', flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
-                <Image style={{ width: 200, height: 200, marginLeft: -30 }} resizeMode='contain' source={require("../assets/icons-04.png")}></Image>
+              <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{ flexDirection: 'row', height:200, justifyContent: 'space-between', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
+                <Image style={{ width: 100, height: 100,marginLeft:5 }} resizeMode='contain' source={require("../assets/icons-04.png")}></Image>
                 <View style={{
                   width: 0,
                   flexGrow: 1,
                   flex: 1
                 }}>
-                  <Text style={{ fontSize: 27, color: textInButton, marginRight: 20, fontFamily: fontFamily, lineHeight: 32 }}>مني شخصيا</Text>
+                  <Text style={{ fontSize: 27, color: textInButton, paddingRight: 5, fontFamily: fontFamily, lineHeight: 32 }}>مني شخصيا</Text>
                 </View>
               </LinearGradient>
               </TouchableOpacity>
             </View>
-            <View style={{ alignItems: 'center', marginTop: 20, }}>
-              <TouchableOpacity onPress={() => this.continue2()}>
-              <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{ flexWrap: 'wrap', flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
+            <View style={{ alignItems: 'center', marginTop: 20 }}>
+              <TouchableOpacity onPress={() => this.continue2()} style={{justifyContent:'center'}}>
+              <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{  flexDirection: 'row', height:200, justifyContent: 'space-between', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
                 <View >
-                  <Image style={{ width: 200, height: 200, marginLeft: -30 }} resizeMode='contain' source={require("../assets/icons-05.png")}></Image>
+                  <Image style={{ width: 100, height: 100 }} resizeMode='center' source={require("../assets/cropped.png")}></Image>
                 </View>
                 <View style={{
                   width: 0,
                   flexGrow: 1,
                   flex: 1
                 }}>
-                  <Text style={{ fontSize: 27, color: textInButton, marginRight: 20, fontFamily: fontFamily, lineHeight: 32 }}>من شخص مفوض في نفس العقار</Text>
+                  <Text style={{ fontSize: 27, color: textInButton, fontFamily: fontFamily, lineHeight: 32 ,paddingRight:5}}>من شخص مفوض في نفس العقار</Text>
                 </View>
               </LinearGradient>
               </TouchableOpacity>
             </View>
             <View style={{ alignItems: 'center', marginTop: 20 }}>
               <TouchableOpacity onPress={() => this.continue3()} >
-              <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{ flexWrap: 'wrap', flexDirection: 'row', padding: 5, justifyContent: 'space-around', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
-                <Image style={{ width: 200, height: 200, marginLeft: -30 }} resizeMode='contain' source={require("../assets/icons-06.png")}></Image>
+              <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{  flexDirection: 'row', height:200, justifyContent: 'space-between', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
+                <Image style={{ width: 100, height: 100}} resizeMode='contain' source={require("../assets/icons-06.png")}></Image>
                 <View style={{
                   width: 0,
                   flexGrow: 1,
                   flex: 1
                 }}>
-                  <Text style={{ fontSize: 27, color: textInButton, marginRight: 20, fontFamily: fontFamily, lineHeight: 32 }}>من حارس العقار</Text>
+                  <Text style={{ fontSize: 27, color: textInButton, paddingRight:5, fontFamily: fontFamily, lineHeight: 32 }}>من حارس العقار</Text>
                 </View>
               </LinearGradient>
               </TouchableOpacity>
