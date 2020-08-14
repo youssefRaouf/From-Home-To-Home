@@ -4,7 +4,8 @@ let DONATIONS_INITIAL_STATE = {
   list: [],
   isLoading: false,
   isFetching: false,
-  loading:false
+  loading:false,
+  money:0
 };
 function donations(state = DONATIONS_INITIAL_STATE, action) {
   switch (action.type) {
@@ -124,6 +125,25 @@ function donations(state = DONATIONS_INITIAL_STATE, action) {
         ...state,
         list: newList2
       };
+      case types.SET_MONEY:{
+        console.log("ss money")
+        return{
+          ...state,
+          money:action.money||0
+        }
+      }
+      case types.REFRESH_COUNTS:{
+        let newList3 = state.list.map((item) => {
+          return {
+            ...item,
+            count:0
+          }
+        })
+        return{
+          ...state,
+          list:newList3
+        }
+      }
     default:
       return state;
 

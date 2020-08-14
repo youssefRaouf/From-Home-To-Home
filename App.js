@@ -29,7 +29,7 @@ function customDrawer(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={{ marginRight: 10, borderBottomWidth: 1, marginLeft: 10 ,marginBottom:5}}>
-        <Text style={{ fontSize: 25 ,color:'#1e1e8e'}}>من البيت للبيت</Text>
+        <Text style={{ fontSize: 25 ,color:'#1e1e8e',fontFamily:fontFamily}}>من البيت للبيت</Text>
       </View>
       <DrawerItemList labelStyle={{fontSize:20}} {...props} />
     </DrawerContentScrollView>
@@ -59,7 +59,7 @@ const App = () => {
           <StatusBar  barStyle ="light-content" hidden = {false} backgroundColor = "#84cc00" translucent = {false}/>
             {
               <Stack.Navigator initialRouteName='Landing'>
-                <Stack.Screen options={{ headerShown:false}} name="Landing" component={RecieveScreen} />
+                <Stack.Screen options={{ headerShown:false}} name="Landing" component={LandingScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
                 <Stack.Screen options={{ headerShown: false}} name="Links" component={drawer} />
                 <Stack.Screen options={{ headerShown: false, }} name="User" component={UserScreen} />

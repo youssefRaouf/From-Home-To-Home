@@ -178,15 +178,14 @@ async function createDelegate(delegate) {
   return data;
 }
 
-async function createDonation(handlingMethod, user, receivingUser, donationDetails) {
+async function createDonation(handlingMethod, user, receivingUser, donationDetails,money) {
   let donations = [];
   // _storeDelegate(receivingUser)
   for (let i = 0; i < donationDetails.length; i++) {
-    if (donationDetails[i].count != 0) {
+    if (donationDetails[i].count&&donationDetails[i].count != 0) {
       donations.push({item:donationDetails[i].item,count:donationDetails[i].count});
     }
   }
-  // console.log("gwa el create donation ya 3m el 7g",receivingUser.name,user,donationDetails)
   let data = await fetch(baseUrl + 'Donation', {
     method: 'POST',
     headers: {
@@ -198,11 +197,12 @@ async function createDonation(handlingMethod, user, receivingUser, donationDetai
       handlingMethod: handlingMethod,
       donerCode: user.code,
       donerName: user.name,
-      donerPhone: user.mobile,
+      donerPhone: user.phone1,
       receivingfromCode:receivingUser.code,
       receivingFromName: receivingUser.name,
       receivingFromPhone: receivingUser.phone1,
-      donationDetails:donations
+      donationDetails:donations,
+      moneyAmount:money
     }),
   }).then(response=>response.json())
   // let response= data.json()

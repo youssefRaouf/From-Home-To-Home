@@ -3,6 +3,9 @@ import * as types from './utils/Consts';
 export function changeNumber(id,number) {
     return {type: types.CHANGE_NUMBER,id,number};
 }
+export function setMoney(money) {
+    return {type: types.SET_MONEY,money};
+}
 export function changeName(id,name) {
     return {type: types.CHANGE_NAME,id,name};
 }
@@ -11,6 +14,9 @@ export function fetchUser() {
 }
 export function fetchDonations() {
     return {type: types.FETCH_DONATIONS};
+}
+export function refreshCounts() {
+    return {type: types.REFRESH_COUNTS};
 }
 export function addType() {
     return {type: types.ADD_TYPE};
@@ -34,12 +40,13 @@ export function updateUser(code,user,deviceToken) {
     return {type: types.UPDATE_USER,code,user,deviceToken};
 }
 
-export function createDonation(handlingMethod,user,receivingUser,donationDetails) {
-    return {type: types.CREATE_DONATION,handlingMethod,user,receivingUser,donationDetails};
+export function createDonation(handlingMethod,user,receivingUser,donationDetails,money) {
+    console.log(money)
+    return {type: types.CREATE_DONATION,handlingMethod,user,receivingUser,donationDetails,money};
 }
 
-export function changeReceiveMethod(receiveMethod,delegate,handlingMethod,user,donationDetails) {
-    return {type: types.CHANGE_RECEIVE_METHOD,receiveMethod,delegate,handlingMethod,user,donationDetails};
+export function changeReceiveMethod(receiveMethod,delegate,handlingMethod,user,donationDetails,money) {
+    return {type: types.CHANGE_RECEIVE_METHOD,receiveMethod,delegate,handlingMethod,user,donationDetails,money};
 }
 
 export function changeReceiveMethodOnly(receiveMethod) {

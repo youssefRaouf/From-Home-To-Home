@@ -2,6 +2,8 @@ export const CHANGE_NUMBER = 'CHANGE_NUMBER';
 
 export const CHANGE_NAME = 'CHANGE_NAME';
 
+export const REFRESH_COUNTS = 'REFRESH_COUNTS';
+
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const FETCH_USER_FAIL = 'FETCH_USER_FAIL';
@@ -44,6 +46,7 @@ export const SET_DEVICE_TOKEN ='SET_DEVICE_TOKEN'
 
 export const GET_ACCESS_TOKEN ='GET_ACCESS_TOKEN'
 
+export const SET_MONEY = 'SET_MONEY'
 
 
 

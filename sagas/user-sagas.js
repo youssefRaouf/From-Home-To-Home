@@ -86,12 +86,12 @@ function* saveUser({user}) {
     }
   }
 
-  function* createDelegates({delegate,receiveMethod,handlingMethod,user,donationDetails}) {
+  function* createDelegates({delegate,receiveMethod,handlingMethod,user,donationDetails,money}) {
     try {
   
       let data = yield call(createDelegate,delegate);
       console.log("saga",data)
-     let data2= yield call(createDonation,handlingMethod,user,data,donationDetails)
+     let data2= yield call(createDonation,handlingMethod,user,data,donationDetails,money)
      console.log(data2)
       yield put({
         type: types.CHANGE_RECEIVE_METHOD_SUCCESS, 

@@ -13,6 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../Actions';
 import Item from '../components/Item';
 import LottieView from 'lottie-react-native';
+import ItemInput from '../components/itemInput';
 import { backgroundColor, activeButton, textInButton, fontFamily, headerColor } from '../utils/Colors';
 
 class HomeScreen extends Component {
@@ -42,6 +43,13 @@ class HomeScreen extends Component {
     this.props.removeType()
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.money != this.props.money) {
+      return false;
+    };
+    return true;
+  }
+
   renderItem(item) {
     item = item.item;
     console.log("render")
@@ -58,10 +66,10 @@ class HomeScreen extends Component {
       let count = item.count || 0;
       total = total + Number(count);
     }
-    if (total === 0) {
+    if (total === 0 && this.props.money === 0) {
       return;
     }
-    // console.log("total number", total)
+    console.log("total number", total,this.props.money)
     this.props.navigation.navigate("User", { receive: false, title: "بيانات المستخدم", edit: false })
   }
 
@@ -79,14 +87,6 @@ class HomeScreen extends Component {
         <View style={{ alignItems: 'flex-start', marginLeft: 20 }}>
           <Text style={{ color: headerColor, fontSize: 20, marginRight: 35, fontFamily: fontFamily }}>العدد</Text>
         </View>
-        {/* { */}
-        {/* !this.props.donationLoading ? */}
-
-        {/* <View style={{ backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center', height: Dimensions.get('screen').height }}> */}
-        {/* <Text>LOADING</Text> */}
-        {/* <LottieView style={{ marginTop: -100,height:Dimensions.get('screen').height }} source={require('../assets/loading3.json')} autoPlay loop /> */}
-        {/* </View> */}
-        {/* : */}
         <FlatList
           data={this.props.donations}
           renderItem={this.renderItem.bind(this)}
@@ -103,14 +103,12 @@ class HomeScreen extends Component {
                   </TouchableOpacity>
                   <Text style={{ fontSize: 20, fontFamily: fontFamily, color: headerColor }}>أخري</Text>
                 </View>
+                <ItemInput></ItemInput>
               </View>
             );
           }
           }
         />
-
-        {/* } */}
-
         <View style={{ alignItems: 'center', marginBottom: 20 }}>
           <TouchableOpacity onPress={() => { this.continue() }} style={{ borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 0, backgroundColor: activeButton, width: 100, flexDirection: 'row' }}>
             <Entypo name="arrow-bold-left" style={{ fontSize: 30, color: textInButton }}></Entypo>
@@ -142,7 +140,8 @@ const mapStateToProps = ({ user, donations }, props) => {
     deviceToken: user.deviceToken,
     loading: user.loading,
     donations: donations.list || [],
-    donationLoading: donations.loading
+    donationLoading: donations.loading,
+    money: donations.money
   };
 };
 

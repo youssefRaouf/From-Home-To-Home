@@ -38,9 +38,9 @@ function* requestDonations() {
 //     });
 //   }
 // }
-function* createDonations({handlingMethod,user,receivingUser,donationDetails}) {
+function* createDonations({handlingMethod,user,receivingUser,donationDetails,money}) {
   try {
-    let data = yield call(createDonation,handlingMethod,user,receivingUser,donationDetails);
+    let data = yield call(createDonation,handlingMethod,user,receivingUser,donationDetails,money);
     // data = data.map(event => new Event(event));
     yield put({
       type: types.CREATE_DONATION_SUCCESS, 

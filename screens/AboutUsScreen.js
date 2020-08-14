@@ -55,7 +55,7 @@ class AboutUsScreen extends Component {
                 
                 </Text>
                 <Text style={{ color: headerColor, marginTop: 10, marginRight: 10, fontSize: 20, marginLeft: 10, fontFamily: fontFamily }}>
-                للمزيد عن المعلومات عنا ، من فضلك قم بزارة موقعنا :
+                للمزيد عن المعلومات عنا ، من فضلك قم بزيارة موقعنا :
                 </Text>
                 <View style={{ marginLeft: 10, width: Dimensions.get('window').width, justifyContent: 'center' }}>
                     <Text style={{ color: 'blue', fontSize: 20, fontFamily: fontFamily }}

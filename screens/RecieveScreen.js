@@ -30,7 +30,9 @@ class RecieveScreen extends Component {
   async continue1() {
     this.props.changeReceiveMethodOnly("1")
     await _storeReceiveMethod("1")
-    this.props.createDonation(0, this.props.user, this.props.user, this.props.donations)
+const money=this.props.money
+    this.props.createDonation(0, this.props.user, this.props.user, this.props.donations,money)
+   this.props.setMoney(0)
     Alert.alert("", "شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من البيت")
     this.props.navigation.dispatch(
       CommonActions.reset({
@@ -151,14 +153,15 @@ const mapStateToProps = ({ user, donations }, props) => {
   return {
     user: user.user,
     donations: donations.list,
+    money:donations.money
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   saveUser: (user) => dispatch(actions.saveUser(user)),
-  createDonation: (handlingMethod, user, receivingUser, donationDetails) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails)),
+  createDonation: (handlingMethod, user, receivingUser, donationDetails,money) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails,money)),
   changeReceiveMethodOnly: (receiveMethod) => dispatch(actions.changeReceiveMethodOnly(receiveMethod)),
-
+  setMoney: (text) => dispatch(actions.setMoney(text)),
 });
 
 export default connect(
