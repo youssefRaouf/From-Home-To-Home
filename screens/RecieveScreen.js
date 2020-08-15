@@ -79,13 +79,13 @@ const money=this.props.money
             <View style={{ alignItems: 'center', marginTop: 20, }}>
               <TouchableOpacity onPress={() => this.continue1()}>
               <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{ flexDirection: 'row', height:200, justifyContent: 'space-between', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
-                <Image style={{ width: 100, height: 100,marginLeft:5 }} resizeMode='contain' source={require("../assets/icons-04.png")}></Image>
+                <Image style={{ width: 80, height: 100,marginLeft:15 }} resizeMode='center' source={require("../assets/icons-04.png")}></Image>
                 <View style={{
                   width: 0,
                   flexGrow: 1,
                   flex: 1
                 }}>
-                  <Text style={{ fontSize: 27, color: textInButton, paddingRight: 5, fontFamily: fontFamily, lineHeight: 32 }}>مني شخصيا</Text>
+                  <Text style={{ fontSize: 25, color: textInButton, paddingRight: 10, fontFamily: fontFamily, lineHeight: 32 }}>مني شخصيا</Text>
                 </View>
               </LinearGradient>
               </TouchableOpacity>
@@ -94,14 +94,14 @@ const money=this.props.money
               <TouchableOpacity onPress={() => this.continue2()} style={{justifyContent:'center'}}>
               <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{  flexDirection: 'row', height:200, justifyContent: 'space-between', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
                 <View >
-                  <Image style={{ width: 100, height: 100 }} resizeMode='center' source={require("../assets/cropped.png")}></Image>
+                  <Image style={{ width: 100, height: 100,marginLeft:0 }} resizeMode='center' source={require("../assets/cropped.png")}></Image>
                 </View>
                 <View style={{
                   width: 0,
                   flexGrow: 1,
                   flex: 1
                 }}>
-                  <Text style={{ fontSize: 27, color: textInButton, fontFamily: fontFamily, lineHeight: 32 ,paddingRight:5}}>من شخص مفوض في نفس العقار</Text>
+                  <Text style={{ fontSize: 25, color: textInButton, fontFamily: fontFamily, lineHeight: 32 ,paddingRight:10}}>من شخص مفوض في نفس العقار</Text>
                 </View>
               </LinearGradient>
               </TouchableOpacity>
@@ -109,13 +109,13 @@ const money=this.props.money
             <View style={{ alignItems: 'center', marginTop: 20 }}>
               <TouchableOpacity onPress={() => this.continue3()} >
               <LinearGradient colors={['#4c669f', '#335389', '#192f6a']}  style={{  flexDirection: 'row', height:200, justifyContent: 'space-between', alignItems: 'center', width: Dimensions.get('screen').width - 50, borderRadius: 15 }}>
-                <Image style={{ width: 100, height: 100}} resizeMode='contain' source={require("../assets/icons-06.png")}></Image>
+                <Image style={{ width: 100, height: 100,marginLeft:0}} resizeMode='center' source={require("../assets/icons-06.png")}></Image>
                 <View style={{
                   width: 0,
                   flexGrow: 1,
                   flex: 1
                 }}>
-                  <Text style={{ fontSize: 27, color: textInButton, paddingRight:5, fontFamily: fontFamily, lineHeight: 32 }}>من حارس العقار</Text>
+                  <Text style={{ fontSize: 25, color: textInButton, paddingRight:10, fontFamily: fontFamily, lineHeight: 32 }}>من حارس العقار</Text>
                 </View>
               </LinearGradient>
               </TouchableOpacity>
