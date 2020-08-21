@@ -222,7 +222,7 @@ class UserScreen extends Component {
             : null}
           {!this.props.route.params.receive || this.props.route.params.update ?
             <Text
-              style={{ ...styles.input, borderColor: this.state.areaFocus ? activeTextBox : '#a7b2b5', fontFamily: fontFamily, textAlignVertical: 'center' }}
+              style={{ ...styles.input, borderColor: '#a7b2b5', fontFamily: fontFamily, textAlignVertical: 'center' }}
               value='الأسكندرية'
             >
               الأسكندرية

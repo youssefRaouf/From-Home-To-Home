@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
-const baseUrl = 'http://fromhometohome.skilful-hands.org/api/';
-let accessToken=''
+const baseUrl = 'https://fromhometohome.skilful-hands.org/api/';
+let accessToken = ''
 // let Token
 async function doRequest(url, options = {}, data = {}) {
   // let dataUser = await fetchUser()
@@ -12,7 +12,7 @@ async function doRequest(url, options = {}, data = {}) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization':'Bearer '+accessToken
+      'Authorization': 'Bearer ' + accessToken
     }
   });
 }
@@ -29,7 +29,7 @@ async function getAccessToken() {
     body: "client_id=HomeToHomeMobileApp&client_secret=87N3H0P5-6K79-4A12-A3D6-J42258FB89Y3&scope=HomeToHomeApi&grant_type=client_credentials",
   }).then(response => response.json())
   console.log(result.access_token)
-  accessToken=result.access_token
+  accessToken = result.access_token
 }
 
 // const getPosts = (offset) => {
@@ -75,7 +75,7 @@ const getDonations = () => {
     .then(response => response.json())
 };
 
-async function createComplain(user,complain) {
+async function createComplain(user, complain) {
   console.log("d5lna el function bt3et el create complain", complain)
   // console.log(user.mobile1)
   let data = await fetch(baseUrl + 'Message', {
@@ -83,14 +83,14 @@ async function createComplain(user,complain) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization':'Bearer '+accessToken
+      'Authorization': 'Bearer ' + accessToken
     },
     body: JSON.stringify({
-      concerningUserCode:user.code,
-      content:complain
+      concerningUserCode: user.code,
+      content: complain
     }),
-  }).then(response=>response.json())
-  console.log("ss",data)
+  }).then(response => response.json())
+  console.log("ss", data)
   return data;
 }
 
@@ -102,52 +102,52 @@ async function createUser(user, deviceToken) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization':'Bearer '+accessToken
+      'Authorization': 'Bearer ' + accessToken
     },
     body: JSON.stringify({
       name: user.name,
       phone1: user.mobile,
-      phone2: user.mobile1||null,
-      address1: user.street||null,
-      neigberhood1: user.area||null,
-      Governorate1:"الأسكندرية",
+      phone2: user.mobile1 || null,
+      address1: user.street || null,
+      neigberhood1: user.area || null,
+      Governorate1: "الأسكندرية",
       deviceToken: deviceToken,
       coordinates: user.coordinates
     }),
-  }).then(response=>response.json())
+  }).then(response => response.json())
   // console.log("response el user",data);
   // let response = data.json();
-  console.log("ss",data)
+  console.log("ss", data)
   await _storeUser(data)
   return data;
 }
 
-async function updateUser(code,user, deviceToken) {
+async function updateUser(code, user, deviceToken) {
   console.log("d5lna el function bt3et el update", deviceToken)
   console.log(user)
   console.log(code)
-  let data = await fetch(baseUrl + 'user/'+code, {
+  let data = await fetch(baseUrl + 'user/' + code, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization':'Bearer '+accessToken
+      'Authorization': 'Bearer ' + accessToken
     },
     body: JSON.stringify({
-      code:code,
+      code: code,
       name: user.name,
       phone1: user.mobile,
-      phone2: user.mobile1||null,
-      address1: user.street||null,
-      neigberhood1: user.area||null,
-      Governorate1:"الأسكندرية",
+      phone2: user.mobile1 || null,
+      address1: user.street || null,
+      neigberhood1: user.area || null,
+      Governorate1: "الأسكندرية",
       deviceToken: deviceToken,
       coordinates: user.coordinates
     }),
-  }).then(response=>response.json())
+  }).then(response => response.json())
   // console.log("response el user",data);
   // let response = data.json();
-  console.log("ss",data)
+  console.log("ss", data)
   await _storeUser(data)
   return data;
 }
@@ -160,7 +160,7 @@ async function createDelegate(delegate) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization':'Bearer '+accessToken
+      'Authorization': 'Bearer ' + accessToken
     },
     body: JSON.stringify({
       name: delegate.name,
@@ -170,20 +170,20 @@ async function createDelegate(delegate) {
       // deviceToken: deviceToken,
       // coordinates: user.coordinates
     }),
-  }).then(response=>response.json())
+  }).then(response => response.json())
   // console.log("response el user",data);
   // let response = data.json();
-  console.log("delegate api",data)
+  console.log("delegate api", data)
   await _storeDelegate(data)
   return data;
 }
 
-async function createDonation(handlingMethod, user, receivingUser, donationDetails,money) {
+async function createDonation(handlingMethod, user, receivingUser, donationDetails, money) {
   let donations = [];
   // _storeDelegate(receivingUser)
   for (let i = 0; i < donationDetails.length; i++) {
-    if (donationDetails[i].count&&donationDetails[i].count != 0) {
-      donations.push({item:donationDetails[i].item,count:donationDetails[i].count});
+    if (donationDetails[i].count && donationDetails[i].count != 0) {
+      donations.push({ item: donationDetails[i].item, count: donationDetails[i].count });
     }
   }
   let data = await fetch(baseUrl + 'Donation', {
@@ -191,20 +191,20 @@ async function createDonation(handlingMethod, user, receivingUser, donationDetai
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization':'Bearer '+accessToken
+      'Authorization': 'Bearer ' + accessToken
     },
     body: JSON.stringify({
       handlingMethod: handlingMethod,
       donerCode: user.code,
       donerName: user.name,
       donerPhone: user.phone1,
-      receivingfromCode:receivingUser.code,
+      receivingfromCode: receivingUser.code,
       receivingFromName: receivingUser.name,
       receivingFromPhone: receivingUser.phone1,
-      donationDetails:donations,
-      moneyAmount:money
+      donationDetails: donations,
+      moneyAmount: money
     }),
-  }).then(response=>response.json())
+  }).then(response => response.json())
   // let response= data.json()
   console.log(data)
   return data;
@@ -217,8 +217,8 @@ const fetchData = async () => {
     let receiveMethod = await AsyncStorage.getItem('receiveMethod');
     let delegate = await AsyncStorage.getItem('delegate')
     user = JSON.parse(user)
-    delegate=JSON.parse(delegate)
-    return [user, receiveMethod,delegate];
+    delegate = JSON.parse(delegate)
+    return [user, receiveMethod, delegate];
   } catch (error) {
     // Error retrieving data
     console.log(errror)
@@ -250,7 +250,7 @@ const _storeDelegate = async (delegate) => {
     const strData = JSON.stringify(delegate);
 
     await AsyncStorage.setItem('delegate', strData);
-    console.log("d5lna delegate ",delegate)
+    console.log("d5lna delegate ", delegate)
   } catch (error) {
     // Error saving data
     console.log(error)
@@ -267,4 +267,4 @@ const _storeDeviceToken = async (deviceToken) => {
     console.log(error)
   }
 };
-export {getAccessToken,createComplain,updateUser,createDelegate,_storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };
+export { getAccessToken, createComplain, updateUser, createDelegate, _storeDelegate, createDonation, getDonations, createUser, _storeReceiveMethod, _storeDeviceToken, _storeUser, fetchData };
