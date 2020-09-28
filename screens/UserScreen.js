@@ -141,11 +141,11 @@ class UserScreen extends Component {
     else {
 
       if (this.props.route.params.receiveMethod === 2) {
-        this.props.changeReceiveMethod("2", { name: this.state.name, mobile: this.state.mobile }, 1, this.props.user, this.props.donations,this.props.money)
+        this.props.changeReceiveMethod("2", { name: this.state.name, mobile: this.state.mobile }, 1, this.props.user, this.props.donations, this.props.money)
 
         Alert.alert("", "شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من المفوض منك")
       } else {
-        this.props.changeReceiveMethod("3", { name: this.state.name, mobile: this.state.mobile }, 2, this.props.user, this.props.donations,this.props.money)
+        this.props.changeReceiveMethod("3", { name: this.state.name, mobile: this.state.mobile }, 2, this.props.user, this.props.donations, this.props.money)
         //
         Alert.alert("", "شكرا لمساهمتك سيتم تحديد موعد لاستلام تبرعك من حارس العقار")
       }
@@ -181,7 +181,7 @@ class UserScreen extends Component {
             onChangeText={type => this.handleChange(type, "mobile")}
             placeholder={"رقم التليفون الأساسي"}
             contextMenuHidden={true}
-            keyboardType='numeric'
+            keyboardType="numeric"
             onEndEditing={() => this.changeFocus("mobileFocus", false)}
             onFocus={() => this.changeFocus("mobileFocus", true)}
           >
@@ -230,10 +230,10 @@ class UserScreen extends Component {
             : null}
           {!this.props.route.params.receive || this.props.route.params.update ?
             <TextInput
-              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? activeTextBox : this.state.mobile1 !== "" && this.state.mobile1.length !== 11 ? 'red' : '#a7b2b5', fontFamily: fontFamily }}
+              style={{ ...styles.input, borderColor: this.state.mobile1Focus ? activeTextBox : (this.state.mobile1 !== "" && (this.state.mobile1.length !== 11 && this.state.mobile1.length !== 9 && this.state.mobile1.length !== 10)) ? 'red' : '#a7b2b5', fontFamily: fontFamily }}
               value={this.state.mobile1}
               onChangeText={type => this.handleChange(type, "mobile1")}
-              placeholder={"رقم تليفون بديل"}
+              placeholder={"رقم تليفون بديل أو رقم أرضي"}
               keyboardType='numeric'
               onEndEditing={() => this.changeFocus("mobile1Focus", false)}
               onFocus={() => this.changeFocus("mobile1Focus", true)}
@@ -244,9 +244,9 @@ class UserScreen extends Component {
         </View>
         <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginTop: 50 }}>
           <TouchableOpacity
-            disabled={(this.state.mobile === "" || this.state.name === "" || this.state.mobile !== this.state.mobileVerify || this.state.mobile.length !== 11) ? true : false}
+            disabled={(this.state.mobile === "" || this.state.name === "" || this.state.mobile !== this.state.mobileVerify || this.state.mobile.length !== 11 || (this.state.mobile1 !== '' && (this.state.mobile1.length !== 11 && this.state.mobile1.length !== 9 && this.state.mobile1.length !== 10))) ? true : false}
             onPress={() => { this.continue() }}
-            style={{ borderRadius: 10, alignItems: 'center', padding: 5, justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "" || this.state.mobile !== this.state.mobileVerify || this.state.mobile.length !== 11) ? '#DDDFE2' : activeButton, width: 120, flexDirection: 'row' }}>
+            style={{ borderRadius: 10, alignItems: 'center', padding: 5, justifyContent: 'center', borderWidth: 0, backgroundColor: (this.state.mobile === "" || this.state.name === "" || this.state.mobile !== this.state.mobileVerify || this.state.mobile.length !== 11 || (this.state.mobile1 !== '' && (this.state.mobile1.length !== 11 && this.state.mobile1.length !== 9 && this.state.mobile1.length !== 10))) ? '#DDDFE2' : activeButton, width: 120, flexDirection: 'row' }}>
             {!this.props.route.params.update ? <Entypo name="arrow-bold-left" style={{ fontSize: 25, color: textInButton }}></Entypo> : null}
             {!this.props.route.params.update ? <Text style={{ fontSize: 30, color: textInButton, fontFamily: fontFamily }}>تابع</Text> :
               <Text style={{ fontSize: 30, color: textInButton, fontFamily: fontFamily }}>حفظ</Text>}
@@ -295,15 +295,15 @@ const mapStateToProps = ({ user, donations }, props) => {
     donations: donations.list,
     delegate: user.delegate,
     delegateLoading: user.delegateLoading,
-    money:donations.money
+    money: donations.money
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   updateUser: (code, user, deviceToken) => dispatch(actions.updateUser(code, user, deviceToken)),
   createUser: (user, deviceToken) => dispatch(actions.createUser(user, deviceToken)),
-  createDonation: (handlingMethod, user, receivingUser, donationDetails,money) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails,money)),
-  changeReceiveMethod: (receiveMethod, delegate, handlingMethod, user, donationDetails,money) => dispatch(actions.changeReceiveMethod(receiveMethod, delegate, handlingMethod, user, donationDetails,money)),
+  createDonation: (handlingMethod, user, receivingUser, donationDetails, money) => dispatch(actions.createDonation(handlingMethod, user, receivingUser, donationDetails, money)),
+  changeReceiveMethod: (receiveMethod, delegate, handlingMethod, user, donationDetails, money) => dispatch(actions.changeReceiveMethod(receiveMethod, delegate, handlingMethod, user, donationDetails, money)),
   setMoney: (text) => dispatch(actions.setMoney(text)),
 });
 
